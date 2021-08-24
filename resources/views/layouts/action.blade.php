@@ -1,9 +1,5 @@
-{{-- {{ $routeName }} --}}
-<br>
-{{-- {{ $model->id }} --}}
-
-{{-- <span class="dtr-data">
-    <a href="{{ route($routeName . '.show', [app()->getlocale(), $model->id]) }}" class="btn btn-sm btn-clean btn-icon mr-2" title="{{ __('View') }}">
+<span class="dtr-data d-flex">
+    <a href="{{ route(Request::segment(4) . '.show', [app()->getlocale(), $model->id]) }}" class="btn btn-sm btn-clean btn-icon mr-2" title="{{ __('View') }}">
         <span class="svg-icon svg-icon-xl"> 
             <svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                 <g id="Stockholm-icons-/-General-/-Visible" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
@@ -14,7 +10,7 @@
             </svg>
         </span>
     </a> 
-    <a href="{{ route($routeName . '.edit', [app()->getlocale(), $model->id]) }}" class="btn btn-sm btn-clean btn-icon mr-2" title="{{ __('Edit') }}">
+    <a href="{{ route(Request::segment(4) . '.edit', [app()->getlocale(), $model->id]) }}" class="btn btn-sm btn-clean btn-icon mr-2" title="{{ __('Edit') }}">
         <span class="svg-icon svg-icon-md"> 
             <svg xmlns="http://www.w3.org/2000/svg"
                 xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
@@ -32,7 +28,7 @@
             </svg>
         </span>
     </a>
-    <form action="{{ route($routeName . '.destroy', [app()->getlocale(), $model->id]) }}" method="post">
+    <form action="{{ route(Request::segment(4) . '.destroy', [app()->getlocale(), $model->id]) }}" method="post">
         @csrf
         <button class="btn btn-sm btn-clean btn-icon" title="{{ __('Delete') }}"> 
             <span class="svg-icon svg-icon-md">
@@ -54,4 +50,4 @@
             </span> 
         </button>
     </form>
-</span> --}}
+</span>

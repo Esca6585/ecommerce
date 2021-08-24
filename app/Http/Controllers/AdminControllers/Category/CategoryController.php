@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\AdminControllers\Category;
 
-use App\Models\Category;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\DataTables\CategoryDataTable;
+
 
 class CategoryController extends Controller
 {
@@ -17,9 +18,9 @@ class CategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(CategoryDataTable $dataTable)
     {
-        return view('admin-panel.category.category');
+        return $dataTable->render('admin-panel.category.category');
     }
 
     /**
