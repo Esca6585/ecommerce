@@ -17,6 +17,7 @@ Route::group([
         Route::get('/get-data/{modelName}/{routeName}', [App\Http\Controllers\AdminControllers\Table\TableController::class, 'getData'])->name('admin.getdata');
         
         Route::resources([
+            'category/allcategory' => App\Http\Controllers\AdminControllers\Category\CategoryController::class,
             'category/parentcategory' => App\Http\Controllers\AdminControllers\Category\CategoryController::class,
             'category/subcategory' => App\Http\Controllers\AdminControllers\Category\CategoryController::class,
         ]);

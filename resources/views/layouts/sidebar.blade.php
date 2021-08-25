@@ -44,6 +44,14 @@
                                 <span class="menu-text">{{ __('Categories') }}</span>
                             </span>
                         </li>
+                        <li class="menu-item {{ Request::is('*/admin/category/allcategory*') ? 'menu-item-active' : '' }}" aria-haspopup="true">
+                            <a href="{{ route('allcategory.index', app()->getlocale() ) }}" class="menu-link">
+                                <i class="menu-bullet menu-bullet-dot">
+                                    <span></span>
+                                </i>
+                                <span class="menu-text">{{ __('All Categories') }}</span>
+                            </a>
+                        </li>
                         <li class="menu-item {{ Request::is('*/admin/category/parentcategory*') ? 'menu-item-active' : '' }}" aria-haspopup="true">
                             <a href="{{ route('parentcategory.index', app()->getlocale() ) }}" class="menu-link">
                                 <i class="menu-bullet menu-bullet-dot">

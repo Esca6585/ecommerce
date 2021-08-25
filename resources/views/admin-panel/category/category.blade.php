@@ -100,7 +100,7 @@
             <!--begin::Wrapper-->
             <div class="d-flex flex-column flex-row-fluid wrapper" id="kt_wrapper">
                 <!--begin::Header-->
-                    @include('layouts.header')
+                @include('layouts.header')
                 <!--end::Header-->
                 <!--begin::Content-->
                 <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
@@ -236,32 +236,68 @@
                             <!--begin::Card-->
                             <div class="card card-custom">
                                 <div class="card-header flex-wrap py-5">
-									<div class="card-title">
-										<h3 class="card-label">Paginations
-										<span class="d-block text-muted pt-2 font-size-sm">extended pagination options</span></h3>
-									</div>
-									<div class="card-toolbar">
-										<!--begin::Button-->
-										<a href="#" class="btn btn-primary font-weight-bolder">
-										<span class="svg-icon svg-icon-md">
-											<!--begin::Svg Icon | path:assets/media/svg/icons/Design/Flatten.svg-->
-											<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
-												<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-													<rect x="0" y="0" width="24" height="24"></rect>
-													<circle fill="#000000" cx="9" cy="15" r="6"></circle>
-													<path d="M8.8012943,7.00241953 C9.83837775,5.20768121 11.7781543,4 14,4 C17.3137085,4 20,6.6862915 20,10 C20,12.2218457 18.7923188,14.1616223 16.9975805,15.1987057 C16.9991904,15.1326658 17,15.0664274 17,15 C17,10.581722 13.418278,7 9,7 C8.93357256,7 8.86733422,7.00080962 8.8012943,7.00241953 Z" fill="#000000" opacity="0.3"></path>
-												</g>
-											</svg>
-											<!--end::Svg Icon-->
-										</span>New Record</a>
-										<!--end::Button-->
-									</div>
-								</div>
+                                    <div class="card-title">
+                                        <h3 class="card-label">Paginations
+                                            <span class="d-block text-muted pt-2 font-size-sm">extended pagination
+                                                options</span></h3>
+                                    </div>
+                                    <div class="card-toolbar">
+                                        <!--begin::Button-->
+                                        <a href="#" class="btn btn-primary font-weight-bolder">
+                                            <span class="svg-icon svg-icon-md">
+                                                <!--begin::Svg Icon | path:assets/media/svg/icons/Design/Flatten.svg-->
+                                                <svg xmlns="http://www.w3.org/2000/svg"
+                                                    xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
+                                                    height="24px" viewBox="0 0 24 24" version="1.1">
+                                                    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                        <rect x="0" y="0" width="24" height="24"></rect>
+                                                        <circle fill="#000000" cx="9" cy="15" r="6"></circle>
+                                                        <path
+                                                            d="M8.8012943,7.00241953 C9.83837775,5.20768121 11.7781543,4 14,4 C17.3137085,4 20,6.6862915 20,10 C20,12.2218457 18.7923188,14.1616223 16.9975805,15.1987057 C16.9991904,15.1326658 17,15.0664274 17,15 C17,10.581722 13.418278,7 9,7 C8.93357256,7 8.86733422,7.00080962 8.8012943,7.00241953 Z"
+                                                            fill="#000000" opacity="0.3"></path>
+                                                    </g>
+                                                </svg>
+                                                <!--end::Svg Icon-->
+                                            </span>New Record</a>
+                                        <!--end::Button-->
+                                    </div>
+                                </div>
                                 <div class="card-body">
                                     <!--begin: Datatable-->
 
-                                    {!! $dataTable->table() !!}
-
+                                    <table class="table table-separate table-head-custom table-checkable"
+                                        id="kt_datatable">
+                                        <thead>
+                                            <tr>
+                                                <th>ID</th>
+                                                @foreach (Config::get('languages') as $lang => $language)
+                                                <th>{{ __('Name') }} ({{ $language['name'] }})</th>
+                                                @endforeach
+                                                <th>icon-{{ __('name') }}</th>
+                                                <th>icon-{{ __('img') }}</th>
+                                                <th>{{ __('Parent Category') }} ID</th>
+                                                <th>Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($categories as $category)
+                                            <tr>
+                                                <td>{{ $loop->iteration }}</td>
+                                                <td>{{ $category->name_tm }}</td>
+                                                <td>{{ $category->name_en }}</td>
+                                                <td>{{ $category->name_ru }}</td>
+                                                <td>{{ $category->icon_name }}</td>
+                                                <td>{{ $category->icon_img }}</td>
+                                                <td><a
+                                                        href="{{ $category->parent ? route( Request::segment(4) . '.show', [ app()->getlocale(), $category->parent_id ]) : route( Request::segment(4) . '.show', [ app()->getlocale(), $category->id ]) }}">{{ $category->parent ? $category->parent->{ 'name_' . app()->getlocale() } : __('Parent Category') }}</a>
+                                                </td>
+                                                <td>@include('layouts.action')</td>
+                                            </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                    
+                                    {{ $categories->links('layouts.page') }}
                                     <!--end: Datatable-->
                                 </div>
                             </div>
@@ -273,7 +309,7 @@
                 </div>
                 <!--end::Content-->
                 <!--begin::Footer-->
-					@include('layouts.footer')
+                @include('layouts.footer')
                 <!--end::Footer-->
             </div>
             <!--end::Wrapper-->
@@ -282,7 +318,7 @@
     </div>
     <!--end::Main-->
     <!-- begin::User Panel-->
-        @include('layouts.admin-profile')
+    @include('layouts.admin-profile')
     <!-- end::User Panel-->
     <!--begin::Quick Cart-->
     <div id="kt_quick_cart" class="offcanvas offcanvas-right p-10">
@@ -1399,11 +1435,13 @@
     <script src="{{ asset('metronic-template/v7/assets/js/scripts.bundle.js') }}"></script>
     <script src="{{ asset('metronic-template/v7/assets/js/ajax/jquery-3.6.0.min.js') }}"></script>
     <script src="{{ asset('metronic-template/v7/assets/js/ajax/jquery.dataTables.min.js') }}"></script>
-    
-    <script src="{{ asset('metronic-template/v7/assets/plugins/custom/datatables/datatables.bundle.js') }}"></script>
+
+    {{-- <script src="{{ asset('metronic-template/v7/assets/plugins/custom/datatables/datatables.bundle.js') }}">
+    </script>
     <script src="{{ asset('metronic-template/v7/assets/js/pages/crud/datatables/basic/paginations.js') }}"></script>
-    
-    {!! $dataTable->scripts() !!}
+    --}}
+
+
 
 </body>
 <!--end::Body-->

@@ -43,10 +43,9 @@
     <!--end::Global Javascript Bundle-->
     
 	<!--begin::jQuery-->
-	<script src="{{ asset('/metronic-template/v8/assets/js/ajax/jquery-3.6.0.min.js') }}"></script>
-	<script src="{{ asset('/metronic-template/v8/assets/js/ajax/changeLanguage.js') }}"></script>
+	<script src="{{ asset('/metronic-template/v7/assets/js/ajax/jquery-3.6.0.min.js') }}"></script>
+	<script src="{{ asset('/metronic-template/v7/assets/js/ajax/changeLanguage.js') }}"></script>
     <!--begin::jQuery-->
-
 
 </html>
 

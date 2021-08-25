@@ -39,3 +39,19 @@ $("#changeLanguage").on('change',function(e){
     }
 
 });
+
+$("#changeLang").on('change',function(e){
+    console.log('clicked #changeLang id');
+
+    var language = $(this).val();
+
+    if(language == 'ru') {
+        window.location.pathname = '/ru/admin';
+    }
+    else if(language == 'en') {
+        window.location.pathname = '/en/{!! Request::segment(1) !!}';
+    }
+    else {
+        window.location.pathname = '/tm/{!! Request::segment(1) !!}';
+    }
+});
