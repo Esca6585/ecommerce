@@ -18,8 +18,13 @@ class CategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        if($request->ajax()){
+            $categories = Category::paginate(5);
+            return view('admin-panel.category.category-table', compact('categories'))->render();
+        }
+
         $categories = Category::paginate(5);
 
         return view('admin-panel.category.category', compact('categories'));

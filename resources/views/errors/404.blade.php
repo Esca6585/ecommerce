@@ -21,7 +21,7 @@
                 <!--begin::Wrapper-->
                 <div class="pt-lg-10">
                     <!--begin::Logo-->
-                    <h1 class="fw-bolder fs-4x text-gray-800 mb-10">Page Not Found</h1>
+                    <h1 class="fw-bolder fs-4x text-gray-800 mb-10">{{ __('Page Not Found') }}</h1>
                     <!--end::Logo-->
                     <!--begin::Message-->
                     <div class="fw-bold fs-3 text-muted mb-15">The page you looked not found!
@@ -29,7 +29,7 @@
                     <!--end::Message-->
                     <!--begin::Action-->
                     <div class="text-center">
-                        <a href="{{ url('/') }}" class="btn btn-lg btn-primary fw-bolder">Go to homepage</a>
+                        <a href="{{ url('/') }}" class="btn btn-lg btn-primary fw-bolder">{{ __('Go to homepage') }}</a>
                     </div>
                     <!--end::Action-->
                 </div>

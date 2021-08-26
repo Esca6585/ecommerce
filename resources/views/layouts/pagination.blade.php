@@ -1,24 +1,30 @@
 @if ($paginator->hasPages())
-    <nav>
+    <div class="dataTables_paginate paging_full_numbers" id="kt_datatable_paginate">
         <ul class="pagination">
             {{-- Previous Page Link --}}
             @if ($paginator->onFirstPage())
-                <li class="page-item disabled" aria-disabled="true" aria-label="@lang('pagination.previous')">
-                    <span class="page-link" aria-hidden="true">&lsaquo;</span>
+                <li class="paginate_button page-item first disabled" id="kt_datatable_first">
+                    <a href="#" aria-controls="kt_datatable" data-dt-idx="0" tabindex="0" class="page-link">
+                        <i class="ki ki-double-arrow-back"></i>
+                    </a>
                 </li>
             @else
-                <li class="page-item">
-                    <a class="page-link" href="{{ $paginator->previousPageUrl() }}" rel="prev" aria-label="@lang('pagination.previous')">&lsaquo;</a>
+                <li class="paginate_button page-item previous" id="kt_datatable_previous">
+                    <a href="{{ $paginator->previousPageUrl() }}" aria-controls="kt_datatable" data-dt-idx="1" tabindex="0" class="page-link">
+                        <i class="ki ki-arrow-back"></i>
+                    </a>
                 </li>
             @endif
-
+            
             {{-- Pagination Elements --}}
             @foreach ($elements as $element)
                 {{-- "Three Dots" Separator --}}
                 @if (is_string($element))
-                    <li class="page-item disabled" aria-disabled="true"><span class="page-link">{{ $element }}</span></li>
+                    <li class="paginate_button page-item active">
+                        <a href="#" aria-controls="kt_datatable" data-dt-idx="2" tabindex="0" class="page-link">{{ $element }}</a>
+                    </li>
                 @endif
-
+                
                 {{-- Array Of Links --}}
                 @if (is_array($element))
                     @foreach ($element as $page => $url)
@@ -33,15 +39,18 @@
 
             {{-- Next Page Link --}}
             @if ($paginator->hasMorePages())
-                <li class="page-item">
-                    <a class="page-link" href="{{ $paginator->nextPageUrl() }}" rel="next" aria-label="@lang('pagination.next')">&rsaquo;</a>
+                <li class="paginate_button page-item next" id="kt_datatable_next">
+                    <a href="{{ $paginator->nextPageUrl() }}" aria-controls="kt_datatable" data-dt-idx="7" tabindex="0" class="page-link">
+                        <i class="ki ki-arrow-next"></i>
+                    </a>
                 </li>
             @else
-                <li class="page-item disabled" aria-disabled="true" aria-label="@lang('pagination.next')">
-                    <span class="page-link" aria-hidden="true">&rsaquo;</span>
+                <li class="paginate_button page-item last disabled" id="kt_datatable_last">
+                    <a href="#" aria-controls="kt_datatable" data-dt-idx="8" tabindex="0" class="page-link">
+                        <i class="ki ki-double-arrow-next"></i>
+                    </a>
                 </li>
             @endif
         </ul>
-    </nav>
+    </div>
 @endif
-

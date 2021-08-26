@@ -22,6 +22,14 @@
                         <div class="menu-submenu menu-submenu-classic menu-submenu-left">
                             <ul class="menu-subnav">
                                 <li class="menu-item" aria-haspopup="true">
+                                    <a href="{{ route('allcategory.index', app()->getlocale() ) }}" class="menu-link">
+                                        <i class="menu-bullet menu-bullet-dot">
+                                            <span></span>
+                                        </i>
+                                        <span class="menu-text">{{ __('All Categories') }}</span>
+                                    </a>
+                                </li>
+                                <li class="menu-item" aria-haspopup="true">
                                     <a href="{{ route('parentcategory.index', app()->getlocale() ) }}" class="menu-link">
                                         <i class="menu-bullet menu-bullet-dot">
                                             <span></span>

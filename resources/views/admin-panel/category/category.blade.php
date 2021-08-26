@@ -264,40 +264,51 @@
                                 </div>
                                 <div class="card-body">
                                     <!--begin: Datatable-->
-
-                                    <table class="table table-separate table-head-custom table-checkable"
-                                        id="kt_datatable">
-                                        <thead>
-                                            <tr>
-                                                <th>ID</th>
-                                                @foreach (Config::get('languages') as $lang => $language)
-                                                <th>{{ __('Name') }} ({{ $language['name'] }})</th>
+                                    <div id="datatable">
+                                        <table class="table table-separate table-head-custom table-checkable">
+                                            <thead>
+                                                <tr>
+                                                    <th>ID</th>
+                                                    @foreach (Config::get('languages') as $lang => $language)
+                                                    <th>{{ __('Name') }} ({{ $language['name'] }})</th>
+                                                    @endforeach
+                                                    <th>icon-{{ __('name') }}</th>
+                                                    <th>icon-{{ __('img') }}</th>
+                                                    <th>{{ __('Parent Category') }} ID</th>
+                                                    <th>Actions</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach ($categories as $category)
+                                                <tr id="datatable">
+                                                    <td>{{ $loop->iteration }}</td>
+                                                    <td>{{ $category->name_tm }}</td>
+                                                    <td>{{ $category->name_en }}</td>
+                                                    <td>{{ $category->name_ru }}</td>
+                                                    <td>{{ $category->icon_name }}</td>
+                                                    <td>{{ $category->icon_img }}</td>
+                                                    <td>
+                                                        <a href="{{ $category->parent ? route( Request::segment(4) . '.show', [ app()->getlocale(), $category->parent_id ]) : route( Request::segment(4) . '.show', [ app()->getlocale(), $category->id ]) }}"
+                                                            class="{{ $category->parent ? 'text-warning' : 'text-primary' }}">
+                                                            {{ $category->parent ? $category->parent->{ 'name_' . app()->getlocale() } : __('Parent Category') }}
+                                                        </a>
+                                                    </td>
+                                                    <td>@include('layouts.action')</td>
+                                                </tr>
                                                 @endforeach
-                                                <th>icon-{{ __('name') }}</th>
-                                                <th>icon-{{ __('img') }}</th>
-                                                <th>{{ __('Parent Category') }} ID</th>
-                                                <th>Actions</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            @foreach ($categories as $category)
-                                            <tr>
-                                                <td>{{ $loop->iteration }}</td>
-                                                <td>{{ $category->name_tm }}</td>
-                                                <td>{{ $category->name_en }}</td>
-                                                <td>{{ $category->name_ru }}</td>
-                                                <td>{{ $category->icon_name }}</td>
-                                                <td>{{ $category->icon_img }}</td>
-                                                <td><a
-                                                        href="{{ $category->parent ? route( Request::segment(4) . '.show', [ app()->getlocale(), $category->parent_id ]) : route( Request::segment(4) . '.show', [ app()->getlocale(), $category->id ]) }}">{{ $category->parent ? $category->parent->{ 'name_' . app()->getlocale() } : __('Parent Category') }}</a>
-                                                </td>
-                                                <td>@include('layouts.action')</td>
-                                            </tr>
-                                            @endforeach
-                                        </tbody>
-                                    </table>
-                                    
-                                    {{ $categories->links('layouts.page') }}
+                                            </tbody>
+                                        </table>
+                                        
+                                        <div class="d-flex justify-content-between">
+                                            <div>
+                                                Showing 1 to 10 of 50 entries
+                                            </div>
+                                            <div>
+                                                {{ $categories->links('layouts.pagination') }}
+                                            </div>
+                                        </div>
+                                    </div>
+
                                     <!--end: Datatable-->
                                 </div>
                             </div>
@@ -1434,14 +1445,34 @@
     <script src="{{ asset('metronic-template/v7/assets/plugins/custom/prismjs/prismjs.bundle.js') }}"></script>
     <script src="{{ asset('metronic-template/v7/assets/js/scripts.bundle.js') }}"></script>
     <script src="{{ asset('metronic-template/v7/assets/js/ajax/jquery-3.6.0.min.js') }}"></script>
-    <script src="{{ asset('metronic-template/v7/assets/js/ajax/jquery.dataTables.min.js') }}"></script>
 
+    {{-- <script src="{{ asset('metronic-template/v7/assets/js/ajax/jquery.dataTables.min.js') }}"></script> --}}
     {{-- <script src="{{ asset('metronic-template/v7/assets/plugins/custom/datatables/datatables.bundle.js') }}">
+    </script> --}}
+    {{-- <script src="{{ asset('metronic-template/v7/assets/js/pages/crud/datatables/basic/paginations.js') }}">
+    </script> --}}
+
+    <script>
+        $(document).ready(function () {
+            $(document).on('click', '.page-link', function (event) {
+                event.preventDefault();
+                var page = $(this).attr('href').split('page=')[1];
+                getMoreData(page);
+            });
+        });
+
+        function getMoreData(page) {
+            $.ajax({
+                type: "GET",
+                url: "{{ route('allcategory.index', app()->getlocale() ) }}" + "?page=" + page,
+                success: function (data) {
+                    console.log(data);
+                    $('#datatable').html(data);
+                }
+            });
+        }
+
     </script>
-    <script src="{{ asset('metronic-template/v7/assets/js/pages/crud/datatables/basic/paginations.js') }}"></script>
-    --}}
-
-
 
 </body>
 <!--end::Body-->

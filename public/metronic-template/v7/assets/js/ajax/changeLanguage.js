@@ -41,17 +41,15 @@ $("#changeLanguage").on('change',function(e){
 });
 
 $("#changeLang").on('change',function(e){
-    console.log('clicked #changeLang id');
-
     var language = $(this).val();
 
     if(language == 'ru') {
-        window.location.pathname = '/ru/admin';
+        window.location.pathname = '/ru/page-not-found/404';
     }
     else if(language == 'en') {
-        window.location.pathname = '/en/{!! Request::segment(1) !!}';
+        window.location.pathname = '/en/page-not-found/404';
     }
     else {
-        window.location.pathname = '/tm/{!! Request::segment(1) !!}';
+        window.location.pathname = '/tm/page-not-found/404';
     }
 });
