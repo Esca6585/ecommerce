@@ -14,6 +14,8 @@ Route::group([
     
     Route::prefix('admin')->group(function(){
         Route::get('/dashboard', [App\Http\Controllers\AdminControllers\Dashboard\DashboardController::class, 'index'])->name('admin.dashboard');
+
+        Route::get('/category/getdata/{pagination}', [App\Http\Controllers\AdminControllers\Category\CategoryController::class, 'getData'])->name('category.getdata');
         
         Route::resources([
             'category/allcategory' => App\Http\Controllers\AdminControllers\Category\CategoryController::class,

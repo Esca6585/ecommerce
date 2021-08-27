@@ -31,11 +31,8 @@
             @endforeach
         </tbody>
     </table>
-    
-    <div class="d-flex justify-content-between">
-        <div>
-            Showing 1 to 5 of 50 entries
-        </div>
+    {{-- {{ dump($categories) }} --}}
+    <div class="d-flex justify-content-end">
         <div>
             {{ $categories->links('layouts.pagination') }}
         </div>

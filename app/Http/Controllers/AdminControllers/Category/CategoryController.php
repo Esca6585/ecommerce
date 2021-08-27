@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 
 use App\Models\Category;
 
+
 class CategoryController extends Controller
 {
     public function __construct()
@@ -18,14 +19,38 @@ class CategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index(Request $request, $lang, $pagination = 10)
     {
-        if($request->ajax()){
-            $categories = Category::paginate(5);
-            return view('admin-panel.category.category-table', compact('categories'))->render();
+        $route = request()->segment(4);
+        
+        // dump($request->search);
+
+        if($request->pagination) {
+            $pagination = (int)$request->pagination;
         }
 
-        $categories = Category::paginate(5);
+        if($route == 'allcategory'){
+            $categories = Category::paginate($pagination);
+        } else if($route == 'parentcategory'){
+            $categories = Category::whereNull('parent_id')->paginate($pagination);
+        } else if($route == 'subcategory'){
+            $categories = Category::whereNotNull('parent_id')->paginate($pagination);
+        }
+
+        if(request()->ajax()){
+            if($request->search) {
+                $searchQuery = trim($request->query('search'));
+                
+                $requestData = ['name_tm', 'name_en', 'name_ru', 'slug', 'icon_name', 'icon_img'];
+    
+                $categories = Category::where(function($q) use($requestData, $searchQuery) {
+                                        foreach ($requestData as $field)
+                                        $q->orWhere($field, 'like', "%{$searchQuery}%");
+                                })->paginate($pagination);    
+            }
+            
+            return view('admin-panel.category.category-table', compact('categories'))->render();
+        }
 
         return view('admin-panel.category.category', compact('categories'));
     }
