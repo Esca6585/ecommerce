@@ -62,7 +62,9 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view('admin-panel.category.category-form');
+        $categories = Category::paginate(1);
+
+        return view('admin-panel.category.category-form', compact('categories'));
     }
 
     /**

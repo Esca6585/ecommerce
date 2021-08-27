@@ -9,7 +9,7 @@
                 <th>icon-{{ __('name') }}</th>
                 <th>icon-{{ __('img') }}</th>
                 <th>{{ __('Parent Category') }} ID</th>
-                <th>Actions</th>
+                <th>{{ __('Actions') }}</th>
             </tr>
         </thead>
         <tbody>

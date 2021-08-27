@@ -8,20 +8,20 @@
             <div id="kt_header_menu" class="header-menu header-menu-mobile header-menu-layout-default">
                 <!--begin::Header Nav-->
                 <ul class="menu-nav">
-                    <li class="menu-item menu-item-open menu-item-here menu-item-submenu menu-item-rel menu-item-open menu-item-here menu-item-active">
-                        <a href="{{ route('admin.dashboard', app()->getlocale() ) }}" class="menu-link menu-toggle">
+                    <li class="menu-item {{ Request::is('*/admin/dashboard') ? 'menu-item-active' : '' }}">
+                        <a href="{{ route('admin.dashboard', app()->getlocale() ) }}" class="menu-link">
                             <span class="menu-text">{{ __('Dashboard') }}</span>
                             <i class="menu-arrow"></i>
                         </a>
                     </li>
-                    <li class="menu-item menu-item-submenu menu-item-rel" data-menu-toggle="click" aria-haspopup="true">
+                    <li class="menu-item menu-item-submenu menu-item-rel {{ Request::is('*/admin/category/*') ? 'menu-item-active' : '' }}" data-menu-toggle="click" aria-haspopup="true">
                         <a href="#{{ __('Categories') }}" class="menu-link menu-toggle">
                             <span class="menu-text">{{ __('Categories') }}</span>
                             <i class="menu-arrow"></i>
                         </a>
                         <div class="menu-submenu menu-submenu-classic menu-submenu-left">
                             <ul class="menu-subnav">
-                                <li class="menu-item" aria-haspopup="true">
+                                <li class="menu-item {{ Request::is('*/admin/category/allcategory*') ? 'menu-item-active' : '' }}" aria-haspopup="true">
                                     <a href="{{ route('allcategory.index', app()->getlocale() ) }}" class="menu-link">
                                         <i class="menu-bullet menu-bullet-dot">
                                             <span></span>
@@ -29,7 +29,7 @@
                                         <span class="menu-text">{{ __('All Categories') }}</span>
                                     </a>
                                 </li>
-                                <li class="menu-item" aria-haspopup="true">
+                                <li class="menu-item {{ Request::is('*/admin/category/parentcategory*') ? 'menu-item-active' : '' }}" aria-haspopup="true">
                                     <a href="{{ route('parentcategory.index', app()->getlocale() ) }}" class="menu-link">
                                         <i class="menu-bullet menu-bullet-dot">
                                             <span></span>
@@ -37,7 +37,7 @@
                                         <span class="menu-text">{{ __('Parent Category') }}</span>
                                     </a>
                                 </li>
-                                <li class="menu-item" aria-haspopup="true">
+                                <li class="menu-item {{ Request::is('*/admin/category/subcategory*') ? 'menu-item-active' : '' }}" aria-haspopup="true">
                                     <a href="{{ route('subcategory.index', app()->getlocale() ) }}" class="menu-link">
                                         <i class="menu-bullet menu-bullet-dot">
                                             <span></span>
@@ -96,7 +96,7 @@
                                         </span>
                                     </span>
                                 </div>
-                                <input type="text" class="form-control" placeholder="Search..." />
+                                <input type="text" class="form-control" placeholder="{{ __('Search') }}..." />
                                 <div class="input-group-append">
                                     <span class="input-group-text">
                                         <i class="quick-search-close ki ki-close icon-sm text-muted"></i>
