@@ -1,7 +1,10 @@
+# Laravel Ecommerce
 
+![Screenshot from 2021-09-18 12-25-16](https://user-images.githubusercontent.com/64286632/133880308-56729f44-6207-4085-81c6-4c957e5c2486.png)
 
+![Screenshot from 2021-09-18 12-25-22](https://user-images.githubusercontent.com/64286632/133880309-7a502379-dbbd-4677-a836-8e27813ed1c1.png)
 
-## Laravel Ecommerce
+![Screenshot from 2021-09-18 12-25-30](https://user-images.githubusercontent.com/64286632/133880310-4570e061-28a3-4f37-861a-35c88c9dff87.png)
 
 1. Run `composer install`
 
