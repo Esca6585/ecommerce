@@ -1,7 +1,7 @@
 
 
 
-## Laravel Authenticate Turkmen English Russian Localization Metronic template project
+## Laravel Ecommerce
 
 1. Run `composer install`
 
