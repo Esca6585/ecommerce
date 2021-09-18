@@ -31,15 +31,10 @@
 		<!--end::Layout Themes-->
 		<link rel="shortcut icon" href="{{ asset('metronic-template/v7/assets/media/logos/favicon.ico') }}" />
 
-		<style>
-			.odd {
-				background: var(--light);
-			}
+		<!-- begin::Admin Pagination CSS -->
+		<link rel="stylesheet" href="{{ asset('metronic-template/v7/assets/css/admin-pagination.css') }}">
+		<!-- end::Admin Pagination CSS -->
 
-			.even {
-				background: var(--white);
-			}
-		</style>
 	</head>
 	<!--end::Head-->
 	<!--begin::Body-->

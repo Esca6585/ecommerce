@@ -1,4 +1,4 @@
-$(document).on('click', '.page-link', function (event) {
+$(document).on('click', '.admin-page-link', function (event) {
     event.preventDefault();
     var page = $(this).attr('href').split('page=')[1];
     var pagination = $("#datatable_length").val();
