@@ -60,11 +60,9 @@ class CategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Category $category)
     {
-        $categories = Category::paginate(1);
-
-        return view('admin-panel.category.category-form', compact('categories'));
+        return view('admin-panel.category.category-form', compact('category'));
     }
 
     /**

@@ -6,8 +6,7 @@
                 <?php $__currentLoopData = Config::get('languages'); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $lang => $language): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                 <th><?php echo e(__('Name')); ?> (<?php echo e($language['name']); ?>)</th>
                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                <th>icon-<?php echo e(__('name')); ?></th>
-                <th>icon-<?php echo e(__('img')); ?></th>
+                <th>svg</th>
                 <th><?php echo e(__('Parent Category')); ?> ID</th>
                 <th><?php echo e(__('Actions')); ?></th>
             </tr>
@@ -19,8 +18,7 @@
                 <td><?php echo e($category->name_tm); ?></td>
                 <td><?php echo e($category->name_en); ?></td>
                 <td><?php echo e($category->name_ru); ?></td>
-                <td><?php echo e($category->icon_name); ?></td>
-                <td><?php echo e($category->icon_img); ?></td>
+                <td><?php echo e($category->svg); ?></td>
                 <td>
                     <a href="<?php echo e($category->parent ? route( Request::segment(4) . '.show', [ app()->getlocale(), $category->parent_id ]) : route( Request::segment(4) . '.show', [ app()->getlocale(), $category->id ])); ?>" class="<?php echo e($category->parent ? 'text-warning' : 'text-primary'); ?>">
                         <?php echo e($category->parent ? $category->parent->{ 'name_' . app()->getlocale() } : __('Parent Category')); ?>

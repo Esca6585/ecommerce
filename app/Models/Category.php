@@ -13,9 +13,7 @@ class Category extends Model
         'name_tm',
         'name_en',
         'name_ru',
-        'slug',
-        'icon_name',
-        'icon_img',
+        'svg',
         'parent_id',
     ];
 

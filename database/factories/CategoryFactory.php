@@ -25,9 +25,7 @@ class CategoryFactory extends Factory
             'name_tm' => $this->faker->word(),
             'name_ru' => $this->faker->word(),
             'name_en' => $this->faker->word(),
-            'slug' => $this->faker->slug(),
-            'icon_name' => $this->faker->word(),
-            'icon_img' => $this->faker->word(),
+            'svg' => 'svg',
             'parent_id' => null,
         ];
     }

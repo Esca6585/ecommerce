@@ -163,95 +163,308 @@
                         <div class="container">
                             <!--begin::Card-->
                             <div class="card card-custom">
-                                <div class="card-header flex-wrap py-5">
-                                    <div class="card-title">
-                                        <h3 class="card-label"><?php echo e(__('Categories')); ?>
+                                <div class="card-header">
+                                    <h3 class="card-title">
+                                        <?php echo e(__( ucfirst( request()->segment(count(request()->segments())) ) )); ?>
 
-                                            <span class="d-block text-muted pt-2 font-size-sm">
-                                                <?php if(Request::is('*/admin/category/allcategory*')): ?>
-                                                    <?php echo e(__('All Categories')); ?>
+                                    </h3>
 
-                                                <?php elseif(Request::is('*/admin/category/parentcategory*')): ?>
-                                                    <?php echo e(__('Parent Category')); ?>
-
-                                                <?php elseif(Request::is('*/admin/category/subcategory*')): ?>
-                                                    <?php echo e(__('Sub Category')); ?>
-
-                                                <?php endif; ?>    
-                                            </span>
-                                        </h3>
-                                    </div>
-                                    <div class="card-toolbar">
-                                        <!--begin::Button-->
-                                        <a href="<?php echo e(route(Request::segment(4) . '.create', app()->getlocale() )); ?>" class="btn btn-primary font-weight-bolder">
-                                            <span class="svg-icon svg-icon-md">
-                                                <svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                                                    <!-- Generator: Sketch 50.2 (55047) - http://www.bohemiancoding.com/sketch -->
-                                                    <title>Stockholm-icons / Code / Plus</title>
-                                                    <desc>Created with Sketch.</desc>
-                                                    <defs></defs>
-                                                    <g id="Stockholm-icons-/-Code-/-Plus" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                                                        <rect id="bound" x="0" y="0" width="24" height="24"></rect>
-                                                        <circle id="Oval-5" fill="#000000" opacity="0.3" cx="12" cy="12" r="10"></circle>
-                                                        <path d="M11,11 L11,7 C11,6.44771525 11.4477153,6 12,6 C12.5522847,6 13,6.44771525 13,7 L13,11 L17,11 C17.5522847,11 18,11.4477153 18,12 C18,12.5522847 17.5522847,13 17,13 L13,13 L13,17 C13,17.5522847 12.5522847,18 12,18 C11.4477153,18 11,17.5522847 11,17 L11,13 L7,13 C6.44771525,13 6,12.5522847 6,12 C6,11.4477153 6.44771525,11 7,11 L11,11 Z" id="Combined-Shape" fill="#000000"></path>
-                                                    </g>
-                                                </svg>
-                                            </span><?php echo e(__('Create')); ?></a>
-                                        <!--end::Button-->
-                                    </div>
                                 </div>
-                                <div class="card-body">
-                                    <div class="d-flex justify-content-between">
-                                        <div class="dataTables_length" id="kt_datatable_length">
-                                            <label>
-                                                <select id="datatable_length" name="datatable_length" aria-controls="kt_datatable" class="custom-select custom-select-sm form-control form-control-sm">
-                                                    <option value="5">5</option>
-                                                    <option value="10" selected>10</option>
-                                                    <option value="15">15</option>
-                                                    <option value="20">20</option>
-                                                    <option value="25">25</option>
-                                                    <option value="50">50</option>
-                                                    <option value="100">100</option>
-                                                </select>
-                                            </label>
-                                        </div>
-                                        <div class="quick-search quick-search-dropdown" id="kt_quick_search_dropdown">
-                                            <!--begin:Form-->
-                                            <form method="get" class="quick-search-form">
-                                                <div class="input-group">
-                                                    <div class="input-group-prepend">
-                                                        <span class="input-group-text">
-                                                            <span class="svg-icon svg-icon-lg">
-                                                                <!--begin::Svg Icon | path:assets/media/svg/icons/General/Search.svg-->
-                                                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
-                                                                    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                                                                        <rect x="0" y="0" width="24" height="24" />
-                                                                        <path d="M14.2928932,16.7071068 C13.9023689,16.3165825 13.9023689,15.6834175 14.2928932,15.2928932 C14.6834175,14.9023689 15.3165825,14.9023689 15.7071068,15.2928932 L19.7071068,19.2928932 C20.0976311,19.6834175 20.0976311,20.3165825 19.7071068,20.7071068 C19.3165825,21.0976311 18.6834175,21.0976311 18.2928932,20.7071068 L14.2928932,16.7071068 Z" fill="#000000" fill-rule="nonzero" opacity="0.3" />
-                                                                        <path d="M11,16 C13.7614237,16 16,13.7614237 16,11 C16,8.23857625 13.7614237,6 11,6 C8.23857625,6 6,8.23857625 6,11 C6,13.7614237 8.23857625,16 11,16 Z M11,18 C7.13400675,18 4,14.8659932 4,11 C4,7.13400675 7.13400675,4 11,4 C14.8659932,4 18,7.13400675 18,11 C18,14.8659932 14.8659932,18 11,18 Z" fill="#000000" fill-rule="nonzero" />
-                                                                    </g>
-                                                                </svg>
-                                                                <!--end::Svg Icon-->
+                                <!--begin::Form-->
+                                <?php if($category->id): ?>
+                                <form
+                                    action="<?php echo e(route(Request::segment(4) . '.update', [app()->getlocale(), $category->id ] )); ?>"
+                                    method="post" enctype="multipart/form-data">
+                                    <?php echo csrf_field(); ?>
+                                    <?php echo method_field('PUT'); ?>
+                                    <?php else: ?>
+                                    <form action="<?php echo e(route(Request::segment(4) . '.store', app()->getlocale() )); ?>"
+                                        method="post" enctype="multipart/form-data">
+                                        <?php echo csrf_field(); ?>
+                                        <?php endif; ?>
+
+                                        <div class="card-body">
+                                            <div class="container">
+                                                <div class="row">
+                                                    <?php $__currentLoopData = Config::get('languages'); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $lang => $language): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                    <div class="col-4">
+                                                        <div class="form-group">
+                                                            <label><?php echo e(__('Name')); ?> (<?php echo e($language['name']); ?>)</label>
+
+                                                            <input type="text"
+                                                                class="form-control <?php $__errorArgs = ['name_' . $lang ];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>"
+                                                                name="name_<?php echo e($lang); ?>"
+                                                                placeholder="<?php echo e(__('Name')); ?> (<?php echo e($language['name']); ?>)..."
+                                                                value="<?php echo e($category->{'name_' . $lang }); ?><?php echo e(request()->segment(count(request()->segments())) == 'create' ? old('name_' . $lang) : ''); ?>" />
+
+                                                            <?php $__errorArgs = ['name_' . $lang ];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                                            <div class="fv-plugins-message-container invalid-feedback">
+                                                                <div data-field="email" data-validator="notEmpty">
+                                                                    <?php echo e($message); ?>
+
+                                                                </div>
+                                                            </div>
+                                                            <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
+                                                        </div>
+
+                                                    </div>
+                                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+
+                                                    <div class="col-3">
+                                                        <div class="form-group">
+                                                            <label><?php echo e(__('Price')); ?></label>
+
+                                                            <input type="text"
+                                                                class="form-control <?php $__errorArgs = ['price'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>"
+                                                                name="price" placeholder="<?php echo e(__('Price')); ?>..."
+                                                                value="<?php echo e($category->price); ?><?php echo e(request()->segment(count(request()->segments())) == 'create' ? old('price') : ''); ?>" />
+                                                            <?php $__errorArgs = ['price'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                                            <div class="fv-plugins-message-container invalid-feedback">
+                                                                <div data-field="email" data-validator="notEmpty">
+                                                                    <?php echo e($message); ?>
+
+                                                                </div>
+                                                            </div>
+                                                            <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-3">
+                                                        <div class="form-group">
+                                                            <label><?php echo e(__('Discount')); ?> %</label>
+
+                                                            <input type="text"
+                                                                class="form-control <?php $__errorArgs = ['discount'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>"
+                                                                name="discount" placeholder="<?php echo e(__('Discount')); ?> % ..."
+                                                                value="<?php echo e($category->discount ?? 0); ?>" />
+
+                                                            <?php $__errorArgs = ['discount'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                                            <div class="fv-plugins-message-container invalid-feedback">
+                                                                <div data-field="email" data-validator="notEmpty">
+                                                                    <?php echo e($message); ?>
+
+                                                                </div>
+                                                            </div>
+                                                            <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-3">
+                                                        <div class="form-group">
+                                                            <label><?php echo e(__('Sale Type')); ?></label>
+
+                                                            <select name="sale_type" id=""
+                                                                class="form-control <?php $__errorArgs = ['sale_type'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>">
+                                                                <option value=""
+                                                                    <?php echo e($category->sale_type ? 'selected' : ''); ?>>--
+                                                                    <?php echo e(__('unselected')); ?> --</option>
+                                                                <option value="New"
+                                                                    <?php echo e($category->sale_type ? 'selected' : ''); ?>>
+                                                                    <?php echo e(__('New')); ?></option>
+                                                            </select>
+                                                            <?php $__errorArgs = ['sale_type'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                                            <div class="fv-plugins-message-container invalid-feedback">
+                                                                <div data-field="email" data-validator="notEmpty">
+                                                                    <?php echo e($message); ?>
+
+                                                                </div>
+                                                            </div>
+                                                            <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-3">
+                                                        <div class="form-group">
+                                                            <label><?php echo e(__('Img')); ?></label>
+
+                                                            <input type="file" name="images[]" id=""
+                                                                class="form-control <?php $__errorArgs = ['images'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>"
+                                                                multiple>
+                                                            <?php $__errorArgs = ['images'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                                            <div class="fv-plugins-message-container invalid-feedback">
+                                                                <div data-field="email" data-validator="notEmpty">
+                                                                    <?php echo e($message); ?>
+
+                                                                </div>
+                                                            </div>
+                                                            <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
+                                                        </div>
+                                                    </div>
+
+                                                    <?php if($category->images): ?>
+                                                    <?php $__currentLoopData = $category->images; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $image): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                    <div class="col m-5">
+                                                        <div class="image-input image-input-outline"
+                                                            id="kt_image_<?php echo e($key); ?>"
+                                                            data-images-count="<?php echo e(count($category->images)); ?>"
+                                                            style="background-image: url(<?php echo e(asset('metronic-template/v7/assets/media/svg/icons/Navigation/Close.svg')); ?>)">
+                                                            <div class="image-input-wrapper"
+                                                                style="background-image: url(<?php echo e(asset($image->thumb)); ?>)">
+                                                            </div>
+
+                                                            <label
+                                                                class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow"
+                                                                data-action="change" data-toggle="tooltip" title=""
+                                                                data-original-title="Change avatar">
+                                                                <i class="fa fa-pen icon-sm text-muted"></i>
+                                                                <input type="file" name="profile_avatar"
+                                                                    accept=".png, .jpg, .jpeg" />
+
+                                                                <input type="hidden" name="profile_avatar_remove" />
+                                                            </label>
+
+                                                            <span
+                                                                class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow"
+                                                                data-action="cancel" data-toggle="tooltip"
+                                                                title="Cancel avatar">
+                                                                <i class="ki ki-bold-close icon-xs text-muted"></i>
                                                             </span>
-                                                        </span>
-                                                    </div>
-                                                    <input type="search" class="form-control" id="datatable_search" placeholder="<?php echo e(__('Search')); ?>..." aria-controls="kt_datatable">
 
-                                                    <div class="input-group-append">
-                                                        <span class="input-group-text">
-                                                            <i class="quick-search-close ki ki-close icon-sm text-muted"></i>
-                                                        </span>
+                                                            <span
+                                                                class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow"
+                                                                data-action="remove" data-toggle="tooltip"
+                                                                title="Remove avatar">
+                                                                <i class="ki ki-bold-close icon-xs text-muted"></i>
+                                                            </span>
+                                                        </div>
                                                     </div>
+                                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                                    <?php endif; ?>
+
+
                                                 </div>
-                                            </form>
-                                            <!--end::Form-->
+                                            </div>
                                         </div>
-                                    </div>
 
-                                    <!--begin: Datatable-->
-                                    <?php echo $__env->make('admin-panel.category.category-table', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
-                                    <!--end: Datatable-->
-                                </div>
+                                        <div class="card-footer d-flex justify-content-between">
+                                            <a href="<?php echo e(route(Request::segment(4) . '.index', app()->getlocale() )); ?>"
+                                                class="btn btn-sm btn-clean btn-icon mr-2">
+                                                <span class="svg-icon svg-icon-xl">
+                                                    <svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1"
+                                                        xmlns="http://www.w3.org/2000/svg">
+                                                        <path
+                                                            d="M8.42034438,20 L21,20 C22.1045695,20 23,19.1045695 23,18 L23,6 C23,4.8954305 22.1045695,4 21,4 L8.42034438,4 C8.15668432,4 7.90369297,4.10412727 7.71642146,4.28972363 L0.653241109,11.2897236 C0.260966303,11.6784895 0.25812177,12.3116481 0.646887666,12.7039229 C0.648995955,12.7060502 0.651113791,12.7081681 0.653241109,12.7102764 L7.71642146,19.7102764 C7.90369297,19.8958727 8.15668432,20 8.42034438,20 Z"
+                                                            id="Combined-Shape" fill="#000000" opacity="0.3"></path>
+                                                        <path
+                                                            d="M12.5857864,12 L11.1715729,10.5857864 C10.7810486,10.1952621 10.7810486,9.56209717 11.1715729,9.17157288 C11.5620972,8.78104858 12.1952621,8.78104858 12.5857864,9.17157288 L14,10.5857864 L15.4142136,9.17157288 C15.8047379,8.78104858 16.4379028,8.78104858 16.8284271,9.17157288 C17.2189514,9.56209717 17.2189514,10.1952621 16.8284271,10.5857864 L15.4142136,12 L16.8284271,13.4142136 C17.2189514,13.8047379 17.2189514,14.4379028 16.8284271,14.8284271 C16.4379028,15.2189514 15.8047379,15.2189514 15.4142136,14.8284271 L14,13.4142136 L12.5857864,14.8284271 C12.1952621,15.2189514 11.5620972,15.2189514 11.1715729,14.8284271 C10.7810486,14.4379028 10.7810486,13.8047379 11.1715729,13.4142136 L12.5857864,12 Z"
+                                                            id="Combined-Shape" fill="#000000"></path>
+                                                    </svg>
+                                                </span>
+                                            </a>
+                                            <button type="submit" class="btn btn-sm btn-clean btn-icon mr-2"
+                                                title="<?php echo e($category->id ? __('Edit') : __('Create')); ?>">
+                                                <span class="svg-icon svg-icon-xl">
+                                                    <?php if($category->id): ?>
+                                                    <span class="svg-icon svg-icon-md">
+                                                        <svg xmlns="http://www.w3.org/2000/svg"
+                                                            xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
+                                                            height="24px" viewBox="0 0 24 24" version="1.1">
+                                                            <g stroke="none" stroke-width="1" fill="none"
+                                                                fill-rule="evenodd">
+                                                                <rect x="0" y="0" width="24" height="24"></rect>
+                                                                <path
+                                                                    d="M8,17.9148182 L8,5.96685884 C8,5.56391781 8.16211443,5.17792052 8.44982609,4.89581508 L10.965708,2.42895648 C11.5426798,1.86322723 12.4640974,1.85620921 
+                                                            13.0496196,2.41308426 L15.5337377,4.77566479 C15.8314604,5.0588212 16,5.45170806 16,5.86258077 L16,17.9148182 C16,18.7432453 15.3284271,19.4148182 14.5,19.4148182 
+                                                            L9.5,19.4148182 C8.67157288,19.4148182 8,18.7432453 8,17.9148182 Z"
+                                                                    fill="#000000" fill-rule="nonzero"
+                                                                    transform="translate(12.000000, 10.707409) rotate(-135.000000) translate(-12.000000, -10.707409) ">
+                                                                </path>
+                                                                <rect fill="#000000" opacity="0.3" x="5" y="20"
+                                                                    width="15" height="2" rx="1"></rect>
+                                                            </g>
+                                                        </svg>
+                                                    </span>
+                                                    <?php else: ?>
+                                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                                        xmlns="http://www.w3.org/2000/svg">
+                                                        <path opacity="0.25" fill-rule="evenodd" clip-rule="evenodd"
+                                                            d="M6.54184 2.36899C4.34504 2.65912 2.65912 4.34504 2.36899 6.54184C2.16953 8.05208 2 9.94127 2 12C2 14.0587 2.16953 15.9479 2.36899 17.4582C2.65912 19.655 4.34504 21.3409 6.54184 21.631C8.05208 21.8305 9.94127 22 12 22C14.0587 22 15.9479 21.8305 17.4582 21.631C19.655 21.3409 21.3409 19.655 21.631 17.4582C21.8305 15.9479 22 14.0587 22 12C22 9.94127 21.8305 8.05208 21.631 6.54184C21.3409 4.34504 19.655 2.65912 17.4582 2.36899C15.9479 2.16953 14.0587 2 12 2C9.94127 2 8.05208 2.16953 6.54184 2.36899Z"
+                                                            fill="#12131A" />
+                                                        <path fill-rule="evenodd" clip-rule="evenodd"
+                                                            d="M12 17C12.5523 17 13 16.5523 13 16V13H16C16.5523 13 17 12.5523 17 12C17 11.4477 16.5523 11 16 11H13V8C13 7.44772 12.5523 7 12 7C11.4477 7 11 7.44772 11 8V11H8C7.44772 11 7 11.4477 7 12C7 12.5523 7.44771 13 8 13H11V16C11 16.5523 11.4477 17 12 17Z"
+                                                            fill="#12131A" />
+                                                    </svg>
+                                                    <?php endif; ?>
+                                                </span>
+                                            </button>
+
+                                        </div>
+                                    </form>
+                                    <!--end::Form-->
+
                             </div>
+
+
                             <!--end::Card-->
                         </div>
                         <!--end::Container-->
@@ -1391,4 +1604,4 @@
 <!--end::Body-->
 <?php $__env->stopSection(); ?>
 
-<?php echo $__env->make('layouts.admin-template-app', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /home/ubuntu/Documents/domains/ecommerce/resources/views/admin-panel/category/category.blade.php ENDPATH**/ ?>
+<?php echo $__env->make('layouts.admin-template-app', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /home/ubuntu/Documents/domains/ecommerce/resources/views/admin-panel/category/category-form.blade.php ENDPATH**/ ?>

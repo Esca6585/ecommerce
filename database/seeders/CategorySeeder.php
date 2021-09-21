@@ -20,9 +20,7 @@ class CategorySeeder extends Seeder
             'name_tm' => 'Kategoriýa',
             'name_ru' => 'Category',
             'name_en' => 'Категория',
-            'icon_name' => 'fa fa-icon fa-' . Str::random(5),
-            'icon_img' => 'img-' . Str::random(5),
-            'slug' => 'category-' . Str::random(5),
+            'svg' => 'svg',
             'parent_id' => 1,
         ]);
     }
