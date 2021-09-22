@@ -20,7 +20,7 @@
                     <span class="menu-text">{{ __('Dashboard') }}</span>
                 </a>
             </li>
-            <li class="menu-item menu-item-submenu {{ Request::is('*/admin/category/*') ? 'menu-item-open' : '' }} " aria-haspopup="true" data-menu-toggle="hover">
+            <li class="menu-item menu-item-submenu {{ Request::is('*/admin/*/category*') ? 'menu-item-open' : '' }} " aria-haspopup="true" data-menu-toggle="hover">
                 <a href="javascript:;" class="menu-link menu-toggle">
                     <span class="svg-icon menu-icon">
                         <!--begin::Svg Icon | path:assets/media/svg/icons/Layout/Layout-4-blocks.svg-->
@@ -39,33 +39,28 @@
                 <div class="menu-submenu">
                     <i class="menu-arrow"></i>
                     <ul class="menu-subnav">
-                        <li class="menu-item menu-item-parent" aria-haspopup="true">
-                            <span class="menu-link">
-                                <span class="menu-text">{{ __('Categories') }}</span>
-                            </span>
-                        </li>
-                        <li class="menu-item {{ Request::is('*/admin/category/allcategory*') ? 'menu-item-active' : '' }}" aria-haspopup="true">
-                            <a href="{{ route('allcategory.index', app()->getlocale() ) }}" class="menu-link">
+                        <li class="menu-item {{ Request::is('*/admin/all/category*') ? 'menu-item-active' : '' }}" aria-haspopup="true">
+                            <a href="{{ route('category.index', [ app()->getlocale(), 'all' ] ) }}" class="menu-link">
                                 <i class="menu-bullet menu-bullet-dot">
                                     <span></span>
                                 </i>
                                 <span class="menu-text">{{ __('All Categories') }}</span>
                             </a>
                         </li>
-                        <li class="menu-item {{ Request::is('*/admin/category/parentcategory*') ? 'menu-item-active' : '' }}" aria-haspopup="true">
-                            <a href="{{ route('parentcategory.index', app()->getlocale() ) }}" class="menu-link">
+                        <li class="menu-item {{ Request::is('*/admin/parent/category*') ? 'menu-item-active' : '' }}" aria-haspopup="true">
+                            <a href="{{ route('category.index', [ app()->getlocale(), 'parent' ] ) }}" class="menu-link">
                                 <i class="menu-bullet menu-bullet-dot">
                                     <span></span>
                                 </i>
-                                <span class="menu-text">{{ __('Parent Category') }}</span>
+                                <span class="menu-text">{{ __('Parent Categories') }}</span>
                             </a>
                         </li>
-                        <li class="menu-item {{ Request::is('*/admin/category/subcategory*') ? 'menu-item-active' : '' }}" aria-haspopup="true">
-                            <a href="{{ route('subcategory.index', app()->getlocale() ) }}" class="menu-link">
+                        <li class="menu-item {{ Request::is('*/admin/sub/category*') ? 'menu-item-active' : '' }}" aria-haspopup="true">
+                            <a href="{{ route('category.index', [ app()->getlocale(), 'sub' ] ) }}" class="menu-link">
                                 <i class="menu-bullet menu-bullet-dot">
                                     <span></span>
                                 </i>
-                                <span class="menu-text">{{ __('Sub Category') }}</span>
+                                <span class="menu-text">{{ __('Sub Categories') }}</span>
                             </a>
                         </li>
                     </ul>

@@ -12,8 +12,8 @@ class DashboardController extends Controller
         $this->middleware('auth:admin');
     }
 
-    public function index()
+    public function index($categoryType)
     {
-        return view('admin-panel.dashboard.dashboard');
+        return view('admin-panel.dashboard.dashboard', compact('categoryType'));
     }
 }

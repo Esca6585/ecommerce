@@ -14,35 +14,35 @@
                             <i class="menu-arrow"></i>
                         </a>
                     </li>
-                    <li class="menu-item menu-item-submenu menu-item-rel <?php echo e(Request::is('*/admin/category/*') ? 'menu-item-active' : ''); ?>" data-menu-toggle="click" aria-haspopup="true">
+                    <li class="menu-item menu-item-submenu menu-item-rel <?php echo e(Request::is('*/admin/*/category') ? 'menu-item-active' : ''); ?>" data-menu-toggle="click" aria-haspopup="true">
                         <a href="#<?php echo e(__('Categories')); ?>" class="menu-link menu-toggle">
                             <span class="menu-text"><?php echo e(__('Categories')); ?></span>
                             <i class="menu-arrow"></i>
                         </a>
                         <div class="menu-submenu menu-submenu-classic menu-submenu-left">
                             <ul class="menu-subnav">
-                                <li class="menu-item <?php echo e(Request::is('*/admin/category/allcategory*') ? 'menu-item-active' : ''); ?>" aria-haspopup="true">
-                                    <a href="<?php echo e(route('allcategory.index', app()->getlocale() )); ?>" class="menu-link">
+                                <li class="menu-item <?php echo e(Request::is('*/admin/all/category') ? 'menu-item-active' : ''); ?>" aria-haspopup="true">
+                                    <a href="<?php echo e(route('category.index', [ app()->getlocale(), 'all' ] )); ?>" class="menu-link">
                                         <i class="menu-bullet menu-bullet-dot">
                                             <span></span>
                                         </i>
                                         <span class="menu-text"><?php echo e(__('All Categories')); ?></span>
                                     </a>
                                 </li>
-                                <li class="menu-item <?php echo e(Request::is('*/admin/category/parentcategory*') ? 'menu-item-active' : ''); ?>" aria-haspopup="true">
-                                    <a href="<?php echo e(route('parentcategory.index', app()->getlocale() )); ?>" class="menu-link">
+                                <li class="menu-item <?php echo e(Request::is('*/admin/parent/category') ? 'menu-item-active' : ''); ?>" aria-haspopup="true">
+                                    <a href="<?php echo e(route('category.index', [ app()->getlocale(), 'parent' ] )); ?>" class="menu-link">
                                         <i class="menu-bullet menu-bullet-dot">
                                             <span></span>
                                         </i>
-                                        <span class="menu-text"><?php echo e(__('Parent Category')); ?></span>
+                                        <span class="menu-text"><?php echo e(__('Parent Categories')); ?></span>
                                     </a>
                                 </li>
-                                <li class="menu-item <?php echo e(Request::is('*/admin/category/subcategory*') ? 'menu-item-active' : ''); ?>" aria-haspopup="true">
-                                    <a href="<?php echo e(route('subcategory.index', app()->getlocale() )); ?>" class="menu-link">
+                                <li class="menu-item <?php echo e(Request::is('*/admin/sub/category') ? 'menu-item-active' : ''); ?>" aria-haspopup="true">
+                                    <a href="<?php echo e(route('category.index', [ app()->getlocale(), 'sub' ] )); ?>" class="menu-link">
                                         <i class="menu-bullet menu-bullet-dot">
                                             <span></span>
                                         </i>
-                                        <span class="menu-text"><?php echo e(__('Sub Category')); ?></span>
+                                        <span class="menu-text"><?php echo e(__('Sub Categories')); ?></span>
                                     </a>
                                 </li>
                             </ul>
@@ -135,7 +135,7 @@
                         <?php $__currentLoopData = Config::get('languages'); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $lang => $language): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                             <!--begin::Item-->
                             <li class="navi-item">
-                                <a href="<?php echo e(route(Route::currentRouteName(), $lang )); ?>" class="navi-link">
+                                <a href="<?php echo e(route(Route::currentRouteName(), [$lang, $categoryType ?? '', $category->id ?? '' ] )); ?>" class="navi-link">
                                     <span class="symbol symbol-20 mr-3">
                                         <img src="<?php echo e(asset('metronic-template/v7/assets/media/svg/flags/' . $language['icon'] )); ?>" alt="<?php echo e($language['icon']); ?>" />
                                     </span>

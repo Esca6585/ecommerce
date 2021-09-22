@@ -20,16 +20,15 @@
                 <td>{{ $category->name_ru }}</td>
                 <td>{{ $category->svg }}</td>
                 <td>
-                    <a href="{{ $category->parent ? route( Request::segment(4) . '.show', [ app()->getlocale(), $category->parent_id ]) : route( Request::segment(4) . '.show', [ app()->getlocale(), $category->id ]) }}" class="{{ $category->parent ? 'text-warning' : 'text-primary' }}">
+                    <a href="{{ route(Request::segment(4) . '.show', [ app()->getlocale(), $categoryType, $category->parent ? $category->parent->id : $category->id ] ) }}" class="{{ $category->parent ? 'text-warning' : 'text-primary' }}">
                         {{ $category->parent ? $category->parent->{ 'name_' . app()->getlocale() } : __('Parent Category') }}
                     </a>
                 </td>
-                <td>@include('layouts.action')</td>
+                <td>@include('admin-panel.category.category-action', ['categoryType' => $categoryType, 'id' => $category->id ])</td>
             </tr>
             @endforeach
         </tbody>
     </table>
-    {{-- {{ dump($categories) }} --}}
     <div class="d-flex justify-content-end">
         <div>
             {{ $categories->links('layouts.pagination') }}

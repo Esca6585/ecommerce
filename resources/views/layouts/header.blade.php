@@ -14,35 +14,35 @@
                             <i class="menu-arrow"></i>
                         </a>
                     </li>
-                    <li class="menu-item menu-item-submenu menu-item-rel {{ Request::is('*/admin/category/*') ? 'menu-item-active' : '' }}" data-menu-toggle="click" aria-haspopup="true">
+                    <li class="menu-item menu-item-submenu menu-item-rel {{ Request::is('*/admin/*/category') ? 'menu-item-active' : '' }}" data-menu-toggle="click" aria-haspopup="true">
                         <a href="#{{ __('Categories') }}" class="menu-link menu-toggle">
                             <span class="menu-text">{{ __('Categories') }}</span>
                             <i class="menu-arrow"></i>
                         </a>
                         <div class="menu-submenu menu-submenu-classic menu-submenu-left">
                             <ul class="menu-subnav">
-                                <li class="menu-item {{ Request::is('*/admin/category/allcategory*') ? 'menu-item-active' : '' }}" aria-haspopup="true">
-                                    <a href="{{ route('allcategory.index', app()->getlocale() ) }}" class="menu-link">
+                                <li class="menu-item {{ Request::is('*/admin/all/category') ? 'menu-item-active' : '' }}" aria-haspopup="true">
+                                    <a href="{{ route('category.index', [ app()->getlocale(), 'all' ] ) }}" class="menu-link">
                                         <i class="menu-bullet menu-bullet-dot">
                                             <span></span>
                                         </i>
                                         <span class="menu-text">{{ __('All Categories') }}</span>
                                     </a>
                                 </li>
-                                <li class="menu-item {{ Request::is('*/admin/category/parentcategory*') ? 'menu-item-active' : '' }}" aria-haspopup="true">
-                                    <a href="{{ route('parentcategory.index', app()->getlocale() ) }}" class="menu-link">
+                                <li class="menu-item {{ Request::is('*/admin/parent/category') ? 'menu-item-active' : '' }}" aria-haspopup="true">
+                                    <a href="{{ route('category.index', [ app()->getlocale(), 'parent' ] ) }}" class="menu-link">
                                         <i class="menu-bullet menu-bullet-dot">
                                             <span></span>
                                         </i>
-                                        <span class="menu-text">{{ __('Parent Category') }}</span>
+                                        <span class="menu-text">{{ __('Parent Categories') }}</span>
                                     </a>
                                 </li>
-                                <li class="menu-item {{ Request::is('*/admin/category/subcategory*') ? 'menu-item-active' : '' }}" aria-haspopup="true">
-                                    <a href="{{ route('subcategory.index', app()->getlocale() ) }}" class="menu-link">
+                                <li class="menu-item {{ Request::is('*/admin/sub/category') ? 'menu-item-active' : '' }}" aria-haspopup="true">
+                                    <a href="{{ route('category.index', [ app()->getlocale(), 'sub' ] ) }}" class="menu-link">
                                         <i class="menu-bullet menu-bullet-dot">
                                             <span></span>
                                         </i>
-                                        <span class="menu-text">{{ __('Sub Category') }}</span>
+                                        <span class="menu-text">{{ __('Sub Categories') }}</span>
                                     </a>
                                 </li>
                             </ul>
@@ -135,7 +135,7 @@
                         @foreach (Config::get('languages') as $lang => $language)
                             <!--begin::Item-->
                             <li class="navi-item">
-                                <a href="{{ route(Route::currentRouteName(), $lang ) }}" class="navi-link">
+                                <a href="{{ route(Route::currentRouteName(), [$lang, $categoryType ?? '', $category->id ?? '' ] ) }}" class="navi-link">
                                     <span class="symbol symbol-20 mr-3">
                                         <img src="{{ asset('metronic-template/v7/assets/media/svg/flags/' . $language['icon'] ) }}" alt="{{ $language['icon'] }}" />
                                     </span>

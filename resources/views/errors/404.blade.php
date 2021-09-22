@@ -40,7 +40,7 @@
 				<div class="d-flex flex-center flex-column-auto p-16">
 					<!--begin::Links-->
 					<div class="d-flex align-items-center fw-bold fs-6">
-						<select class="form-select" id="changeLang">
+						<select class="form-select" id="changeLanguage">
 							@foreach (Config::get('languages') as $lang => $language)
 								<option value="{{ $lang }}" {{ Request::segment(1) == $lang ? 'selected' : '' }}>{{ $language['name'] }}</option>
 							@endforeach

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\AdminControllers\Category;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
+use App\Http\Requests\CategoryRequest;
 use App\Models\Category;
 
 
@@ -19,40 +20,36 @@ class CategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request, $lang, $pagination = 10)
+    public function index(Request $request, $lang, $categoryType, $pagination = 10)
     {
-        $route = request()->segment(4);
-        
-        // dump($request->search);
-
         if($request->pagination) {
             $pagination = (int)$request->pagination;
         }
 
-        if($route == 'allcategory'){
-            $categories = Category::paginate($pagination);
-        } else if($route == 'parentcategory'){
-            $categories = Category::whereNull('parent_id')->paginate($pagination);
-        } else if($route == 'subcategory'){
-            $categories = Category::whereNotNull('parent_id')->paginate($pagination);
+        if($categoryType == 'all'){
+            $categories = Category::orderBy('id')->paginate($pagination);
+        } else if($categoryType == 'parent'){
+            $categories = Category::whereNull('parent_id')->orderBy('id')->paginate($pagination);
+        } else if($categoryType == 'sub'){
+            $categories = Category::whereNotNull('parent_id')->orderBy('id')->paginate($pagination);
         }
-
+        
         if(request()->ajax()){
             if($request->search) {
                 $searchQuery = trim($request->query('search'));
                 
-                $requestData = ['name_tm', 'name_en', 'name_ru', 'slug', 'icon_name', 'icon_img'];
+                $requestData = ['name_tm', 'name_en', 'name_ru', 'svg'];
     
                 $categories = Category::where(function($q) use($requestData, $searchQuery) {
                                         foreach ($requestData as $field)
                                         $q->orWhere($field, 'like', "%{$searchQuery}%");
-                                })->paginate($pagination);    
+                                })->paginate($pagination);
             }
             
-            return view('admin-panel.category.category-table', compact('categories'))->render();
+            return view('admin-panel.category.category-table', compact('categories', 'categoryType'))->render();
         }
 
-        return view('admin-panel.category.category', compact('categories'));
+        return view('admin-panel.category.category', compact('categories', 'categoryType'));
     }
 
     /**
@@ -60,9 +57,11 @@ class CategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Category $category)
+    public function create($lang, $categoryType, Category $category)
     {
-        return view('admin-panel.category.category-form', compact('category'));
+        $parentCategories = Category::whereNull('parent_id')->orderBy('id')->get();
+
+        return view('admin-panel.category.category-form', compact('category', 'categoryType', 'parentCategories'));
     }
 
     /**
@@ -71,7 +70,7 @@ class CategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CategoryRequest $request)
     {
         //
     }
@@ -82,9 +81,9 @@ class CategoryController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function show(Category $category)
+    public function show($lang, $categoryType, Category $category)
     {
-        //
+        return view('admin-panel.category.category-show', compact('category', 'categoryType'));
     }
 
     /**
@@ -93,9 +92,11 @@ class CategoryController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function edit(Category $category)
+    public function edit($lang, $categoryType, Category $category)
     {
-        //
+        $parentCategories = Category::whereNull('parent_id')->orderBy('id')->get();
+
+        return view('admin-panel.category.category-form', compact('category', 'categoryType', 'parentCategories'));
     }
 
     /**
@@ -105,7 +106,7 @@ class CategoryController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Category $category)
+    public function update(CategoryRequest $request, Category $category)
     {
         //
     }

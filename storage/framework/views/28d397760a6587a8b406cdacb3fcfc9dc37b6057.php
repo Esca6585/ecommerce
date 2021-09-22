@@ -41,7 +41,7 @@
 				<div class="d-flex flex-center flex-column-auto p-16">
 					<!--begin::Links-->
 					<div class="d-flex align-items-center fw-bold fs-6">
-						<select class="form-select" id="changeLang">
+						<select class="form-select" id="changeLanguage">
 							<?php $__currentLoopData = Config::get('languages'); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $lang => $language): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
 								<option value="<?php echo e($lang); ?>" <?php echo e(Request::segment(1) == $lang ? 'selected' : ''); ?>><?php echo e($language['name']); ?></option>
 							<?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>

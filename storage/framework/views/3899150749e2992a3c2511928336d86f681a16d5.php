@@ -20,17 +20,16 @@
                 <td><?php echo e($category->name_ru); ?></td>
                 <td><?php echo e($category->svg); ?></td>
                 <td>
-                    <a href="<?php echo e($category->parent ? route( Request::segment(4) . '.show', [ app()->getlocale(), $category->parent_id ]) : route( Request::segment(4) . '.show', [ app()->getlocale(), $category->id ])); ?>" class="<?php echo e($category->parent ? 'text-warning' : 'text-primary'); ?>">
+                    <a href="<?php echo e(route(Request::segment(4) . '.show', [ app()->getlocale(), $categoryType, $category->parent ? $category->parent->id : $category->id ] )); ?>" class="<?php echo e($category->parent ? 'text-warning' : 'text-primary'); ?>">
                         <?php echo e($category->parent ? $category->parent->{ 'name_' . app()->getlocale() } : __('Parent Category')); ?>
 
                     </a>
                 </td>
-                <td><?php echo $__env->make('layouts.action', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?></td>
+                <td><?php echo $__env->make('admin-panel.category.category-action', ['categoryType' => $categoryType, 'id' => $category->id ], \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?></td>
             </tr>
             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
         </tbody>
     </table>
-    
     <div class="d-flex justify-content-end">
         <div>
             <?php echo e($categories->links('layouts.pagination')); ?>

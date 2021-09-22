@@ -18,9 +18,7 @@ Route::group([
         Route::get('/category/getdata/{pagination}', [App\Http\Controllers\AdminControllers\Category\CategoryController::class, 'getData'])->name('category.getdata');
         
         Route::resources([
-            'category/allcategory' => App\Http\Controllers\AdminControllers\Category\CategoryController::class,
-            'category/parentcategory' => App\Http\Controllers\AdminControllers\Category\CategoryController::class,
-            'category/subcategory' => App\Http\Controllers\AdminControllers\Category\CategoryController::class,
+            '/{categoryType}/category' => App\Http\Controllers\AdminControllers\Category\CategoryController::class,
         ]);
     });
 });
