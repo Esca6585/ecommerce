@@ -30,7 +30,7 @@ var KTTreeview = function () {
             },
             "types" : {
                 "default" : {
-                    "icon" : "fa fa-folder text-warning"
+                    "icon" : "fa fa-list text-primary"
                 },
                 "file" : {
                     "icon" : "fa fa-file  text-warning"

@@ -5,8 +5,34 @@
 
 <?php $__env->stopSection(); ?>
 
-<?php $__env->startSection('body'); ?>
+<?php $__env->startSection('style'); ?>
+<!--begin::Fonts-->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" />
+<!--end::Fonts-->
+<!--begin::Page Vendors Styles(used by this page)-->
+<link href="<?php echo e(asset('metronic-template/v7/assets/plugins/custom/fullcalendar/fullcalendar.bundle.css')); ?>"
+    rel="stylesheet" type="text/css" />
+<!--end::Page Vendors Styles-->
+<!--begin::Global Theme Styles(used by all pages)-->
+<link href="<?php echo e(asset('metronic-template/v7/assets/plugins/global/plugins.bundle.css')); ?>" rel="stylesheet"
+    type="text/css" />
+<link href="<?php echo e(asset('metronic-template/v7/assets/plugins/custom/prismjs/prismjs.bundle.css')); ?>" rel="stylesheet"
+    type="text/css" />
+<link href="<?php echo e(asset('metronic-template/v7/assets/css/style.bundle.css')); ?>" rel="stylesheet" type="text/css" />
+<!--end::Global Theme Styles-->
+<!--begin::Layout Themes(used by all pages)-->
+<link href="<?php echo e(asset('metronic-template/v7/assets/css/themes/layout/header/base/light.css')); ?>" rel="stylesheet"
+    type="text/css" />
+<link href="<?php echo e(asset('metronic-template/v7/assets/css/themes/layout/header/menu/light.css')); ?>" rel="stylesheet"
+    type="text/css" />
+<link href="<?php echo e(asset('metronic-template/v7/assets/css/themes/layout/brand/dark.css')); ?>" rel="stylesheet"
+    type="text/css" />
+<link href="<?php echo e(asset('metronic-template/v7/assets/css/themes/layout/aside/dark.css')); ?>" rel="stylesheet"
+    type="text/css" />
 
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('body'); ?>
 <!--begin::Body-->
 
 <body id="kt_body"
@@ -162,7 +188,8 @@
                                     <?php echo csrf_field(); ?>
                                     <?php echo method_field('PUT'); ?>
                                     <?php else: ?>
-                                    <form action="<?php echo e(route(Request::segment(4) . '.store', [ app()->getlocale(), $categoryType ] )); ?>"
+                                    <form
+                                        action="<?php echo e(route(Request::segment(4) . '.store', [ app()->getlocale(), $categoryType ] )); ?>"
                                         method="post">
                                         <?php echo csrf_field(); ?>
                                         <?php endif; ?>
@@ -186,7 +213,7 @@ endif;
 unset($__errorArgs, $__bag); ?>"
                                                                 name="name_<?php echo e($lang); ?>"
                                                                 placeholder="<?php echo e(__('Name')); ?> (<?php echo e($language['name']); ?>)..."
-                                                                value="<?php echo e($category->{ 'name_' . $lang } ?? ''); ?>" />
+                                                                value="<?php echo e($category->{ 'name_' . $lang } ?? ''); ?><?php echo e(request()->segment(count(request()->segments())) == 'create' ? old('name_' . $lang) : ''); ?>" />
 
                                                             <?php $__errorArgs = ['name_' . $lang ];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
@@ -222,7 +249,7 @@ if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>"
                                                                 name="svg" placeholder="SVG..."
-                                                                value="<?php echo e($category->svg ?? ''); ?>" />
+                                                                value="<?php echo e($category->svg ?? ''); ?><?php echo e(request()->segment(count(request()->segments())) == 'create' ? old('svg') : ''); ?>" />
                                                             <?php $__errorArgs = ['svg'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -244,53 +271,35 @@ unset($__errorArgs, $__bag); ?>
                                                     <div class="col-4">
                                                         <div class="form-group">
                                                             <label><?php echo e(__('Parent Category')); ?></label>
+                                                            <?php echo e($category->id ? 'selected=selected' : ''); ?>
 
-                                                            <select name="parent_id" id=""
-                                                                class="form-control <?php $__errorArgs = ['sale_type'];
-$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
-if ($__bag->has($__errorArgs[0])) :
-if (isset($message)) { $__messageOriginal = $message; }
-$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
-if (isset($__messageOriginal)) { $message = $__messageOriginal; }
-endif;
-unset($__errorArgs, $__bag); ?>">
-                                                                <option value="<?php echo e($parentCategory->id ?? ''); ?>"
-                                                                    <?php echo e($category->parent ? '' : 'selected=selected'); ?>>
-                                                                    -- <?php echo e(__('unselected')); ?> -- </option>
-
+                                                            
+                                                            <select class="form-control" id="exampleSelect1">
+                                                                <option value="" selected>_____<?php echo e(__('unselected')); ?>_____
+                                                                </option>
                                                                 <?php $__currentLoopData = $parentCategories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $parentCategory): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                                                <?php if($category->parent): ?>
-                                                                <option value="<?php echo e($parentCategory->id ?? ''); ?>"
-                                                                    <?php echo e(($parentCategory->id == $category->parent->id) ? 'selected=selected' : ''); ?>>
-                                                                    <?php echo e($parentCategory->{ 'name_' . app()->getlocale() } ?? ''); ?>
-
-                                                                </option>
-                                                                <?php else: ?>
-                                                                <option value="<?php echo e($parentCategory->id ?? ''); ?>">
-                                                                    <?php echo e($parentCategory->{ 'name_' . app()->getlocale() } ?? ''); ?>
-
-                                                                </option>
-                                                                <?php endif; ?>
+                                                                <optgroup
+                                                                    label="<?php echo e($parentCategory->{ 'name_' . app()->getlocale() }); ?>">
+                                                                    <option value="<?php echo e($parentCategory->id); ?>" <?php echo e($category->parent_id == $parentCategory->id ? 'selected=selected' : ''); ?> >
+                                                                        <?php echo e($parentCategory->{ 'name_' . app()->getlocale() }); ?> - (<?php echo e(__('Parent Category')); ?>)
+                                                                    </option>
+                                                                    <?php $__currentLoopData = $parentCategory->children; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $child): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                                    <option value="<?php echo e($child->id); ?>" <?php echo e($category->parent_id == $child->id ? 'selected=selected' : ''); ?> >
+                                                                        * <?php echo e($child->{ 'name_' . app()->getlocale() }); ?> -- (<?php echo e(__('Sub Category')); ?>)
+                                                                    </option>
+                                                                        <?php $__currentLoopData = $child->children; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $subchild): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                                        <option value="<?php echo e($subchild->id); ?>" <?php echo e($category->parent_id == $subchild->id ? 'selected=selected' : ''); ?> > 
+                                                                            ** <?php echo e($subchild->{ 'name_' . app()->getlocale() }); ?> --- (2-<?php echo e(__('Sub Category')); ?>)
+                                                                        </option>
+                                                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                                                </optgroup>
                                                                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                                             </select>
 
-                                                            <?php $__errorArgs = ['parent_id'];
-$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
-if ($__bag->has($__errorArgs[0])) :
-if (isset($message)) { $__messageOriginal = $message; }
-$message = $__bag->first($__errorArgs[0]); ?>
-                                                            <div class="fv-plugins-message-container invalid-feedback">
-                                                                <div data-field="email" data-validator="notEmpty">
-                                                                    <?php echo e($message); ?>
-
-                                                                </div>
-                                                            </div>
-                                                            <?php unset($message);
-if (isset($__messageOriginal)) { $message = $__messageOriginal; }
-endif;
-unset($__errorArgs, $__bag); ?>
                                                         </div>
                                                     </div>
+
                                                 </div>
                                             </div>
                                         </div>
@@ -444,11 +453,13 @@ unset($__errorArgs, $__bag); ?>
         };
 
     </script>
+
+    <script src="<?php echo e(asset('metronic-template/v7/assets/js/ajax/jquery-3.6.0.min.js')); ?>"></script>
+    <script src="<?php echo e(asset('metronic-template/v7/assets/js/ajax/getdata.js')); ?>"></script>
+
     <script src="<?php echo e(asset('metronic-template/v7/assets/plugins/global/plugins.bundle.js')); ?>"></script>
     <script src="<?php echo e(asset('metronic-template/v7/assets/plugins/custom/prismjs/prismjs.bundle.js')); ?>"></script>
     <script src="<?php echo e(asset('metronic-template/v7/assets/js/scripts.bundle.js')); ?>"></script>
-    <script src="<?php echo e(asset('metronic-template/v7/assets/js/ajax/jquery-3.6.0.min.js')); ?>"></script>
-    <script src="<?php echo e(asset('metronic-template/v7/assets/js/ajax/getdata.js')); ?>"></script>
 
 </body>
 <!--end::Body-->

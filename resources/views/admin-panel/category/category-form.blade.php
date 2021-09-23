@@ -4,8 +4,34 @@
 {{ __('Dashboard') }}
 @endsection
 
-@section('body')
+@section('style')
+<!--begin::Fonts-->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" />
+<!--end::Fonts-->
+<!--begin::Page Vendors Styles(used by this page)-->
+<link href="{{ asset('metronic-template/v7/assets/plugins/custom/fullcalendar/fullcalendar.bundle.css') }}"
+    rel="stylesheet" type="text/css" />
+<!--end::Page Vendors Styles-->
+<!--begin::Global Theme Styles(used by all pages)-->
+<link href="{{ asset('metronic-template/v7/assets/plugins/global/plugins.bundle.css') }}" rel="stylesheet"
+    type="text/css" />
+<link href="{{ asset('metronic-template/v7/assets/plugins/custom/prismjs/prismjs.bundle.css') }}" rel="stylesheet"
+    type="text/css" />
+<link href="{{ asset('metronic-template/v7/assets/css/style.bundle.css') }}" rel="stylesheet" type="text/css" />
+<!--end::Global Theme Styles-->
+<!--begin::Layout Themes(used by all pages)-->
+<link href="{{ asset('metronic-template/v7/assets/css/themes/layout/header/base/light.css') }}" rel="stylesheet"
+    type="text/css" />
+<link href="{{ asset('metronic-template/v7/assets/css/themes/layout/header/menu/light.css') }}" rel="stylesheet"
+    type="text/css" />
+<link href="{{ asset('metronic-template/v7/assets/css/themes/layout/brand/dark.css') }}" rel="stylesheet"
+    type="text/css" />
+<link href="{{ asset('metronic-template/v7/assets/css/themes/layout/aside/dark.css') }}" rel="stylesheet"
+    type="text/css" />
 
+@endsection
+
+@section('body')
 <!--begin::Body-->
 
 <body id="kt_body"
@@ -160,7 +186,8 @@
                                     @csrf
                                     @method('PUT')
                                     @else
-                                    <form action="{{ route(Request::segment(4) . '.store', [ app()->getlocale(), $categoryType ] ) }}"
+                                    <form
+                                        action="{{ route(Request::segment(4) . '.store', [ app()->getlocale(), $categoryType ] ) }}"
                                         method="post">
                                         @csrf
                                         @endif
@@ -177,7 +204,7 @@
                                                                 class="form-control @error('name_' . $lang ) is-invalid @enderror"
                                                                 name="name_{{ $lang }}"
                                                                 placeholder="{{ __('Name') }} ({{ $language['name'] }})..."
-                                                                value="{{ $category->{ 'name_' . $lang } ?? '' }}" />
+                                                                value="{{ $category->{ 'name_' . $lang } ?? '' }}{{ request()->segment(count(request()->segments())) == 'create' ? old('name_' . $lang) : '' }}" />
 
                                                             @error('name_' . $lang )
                                                             <div class="fv-plugins-message-container invalid-feedback">
@@ -198,7 +225,7 @@
                                                             <input type="text"
                                                                 class="form-control @error('svg') is-invalid @enderror"
                                                                 name="svg" placeholder="SVG..."
-                                                                value="{{ $category->svg ?? '' }}" />
+                                                                value="{{ $category->svg ?? '' }}{{ request()->segment(count(request()->segments())) == 'create' ? old('svg') : '' }}" />
                                                             @error('svg')
                                                             <div class="fv-plugins-message-container invalid-feedback">
                                                                 <div data-field="email" data-validator="notEmpty">
@@ -212,36 +239,34 @@
                                                     <div class="col-4">
                                                         <div class="form-group">
                                                             <label>{{ __('Parent Category') }}</label>
-
-                                                            <select name="parent_id" id=""
-                                                                class="form-control @error('sale_type') is-invalid @enderror">
-                                                                <option value="{{ $parentCategory->id ?? '' }}"
-                                                                    {{ $category->parent ? '' : 'selected=selected' }}>
-                                                                    -- {{ __('unselected') }} -- </option>
-
+                                                            {{ $category->id ? 'selected=selected' : '' }}
+                                                            
+                                                            <select class="form-control" id="exampleSelect1">
+                                                                <option value="" selected>_____{{ __('unselected') }}_____
+                                                                </option>
                                                                 @foreach($parentCategories as $parentCategory)
-                                                                @if($category->parent)
-                                                                <option value="{{ $parentCategory->id ?? '' }}"
-                                                                    {{ ($parentCategory->id == $category->parent->id) ? 'selected=selected' : '' }}>
-                                                                    {{ $parentCategory->{ 'name_' . app()->getlocale() } ?? '' }}
-                                                                </option>
-                                                                @else
-                                                                <option value="{{ $parentCategory->id ?? '' }}">
-                                                                    {{ $parentCategory->{ 'name_' . app()->getlocale() } ?? '' }}
-                                                                </option>
-                                                                @endif
+                                                                <optgroup
+                                                                    label="{{ $parentCategory->{ 'name_' . app()->getlocale() } }}">
+                                                                    <option value="{{ $parentCategory->id }}" {{ $category->parent_id == $parentCategory->id ? 'selected=selected' : '' }} >
+                                                                        {{ $parentCategory->{ 'name_' . app()->getlocale() } }} - ({{ __('Parent Category') }})
+                                                                    </option>
+                                                                    @foreach($parentCategory->children as $child)
+                                                                    <option value="{{ $child->id }}" {{ $category->parent_id == $child->id ? 'selected=selected' : '' }} >
+                                                                        * {{ $child->{ 'name_' . app()->getlocale() } }} -- ({{ __('Sub Category') }})
+                                                                    </option>
+                                                                        @foreach($child->children as $subchild)
+                                                                        <option value="{{ $subchild->id }}" {{ $category->parent_id == $subchild->id ? 'selected=selected' : '' }} > 
+                                                                            ** {{ $subchild->{ 'name_' . app()->getlocale() } }} --- (2-{{ __('Sub Category') }})
+                                                                        </option>
+                                                                        @endforeach
+                                                                    @endforeach
+                                                                </optgroup>
                                                                 @endforeach
                                                             </select>
 
-                                                            @error('parent_id')
-                                                            <div class="fv-plugins-message-container invalid-feedback">
-                                                                <div data-field="email" data-validator="notEmpty">
-                                                                    {{ $message }}
-                                                                </div>
-                                                            </div>
-                                                            @enderror
                                                         </div>
                                                     </div>
+
                                                 </div>
                                             </div>
                                         </div>
@@ -394,11 +419,13 @@
         };
 
     </script>
+
+    <script src="{{ asset('metronic-template/v7/assets/js/ajax/jquery-3.6.0.min.js') }}"></script>
+    <script src="{{ asset('metronic-template/v7/assets/js/ajax/getdata.js') }}"></script>
+
     <script src="{{ asset('metronic-template/v7/assets/plugins/global/plugins.bundle.js') }}"></script>
     <script src="{{ asset('metronic-template/v7/assets/plugins/custom/prismjs/prismjs.bundle.js') }}"></script>
     <script src="{{ asset('metronic-template/v7/assets/js/scripts.bundle.js') }}"></script>
-    <script src="{{ asset('metronic-template/v7/assets/js/ajax/jquery-3.6.0.min.js') }}"></script>
-    <script src="{{ asset('metronic-template/v7/assets/js/ajax/getdata.js') }}"></script>
 
 </body>
 <!--end::Body-->

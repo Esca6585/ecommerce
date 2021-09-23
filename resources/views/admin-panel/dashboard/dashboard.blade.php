@@ -4,6 +4,25 @@
     {{ __('Dashboard') }}
 @endsection
 
+@section('style')
+<!--begin::Global Theme Styles(used by all pages)-->
+<link href="{{ asset('metronic-template/v7/assets/plugins/global/plugins.bundle.css') }}" rel="stylesheet"
+    type="text/css" />
+<link href="{{ asset('metronic-template/v7/assets/plugins/custom/prismjs/prismjs.bundle.css') }}" rel="stylesheet"
+    type="text/css" />
+<link href="{{ asset('metronic-template/v7/assets/css/style.bundle.css') }}" rel="stylesheet" type="text/css" />
+<!--end::Global Theme Styles-->
+<!--begin::Layout Themes(used by all pages)-->
+<link href="{{ asset('metronic-template/v7/assets/css/themes/layout/header/base/light.css') }}" rel="stylesheet"
+    type="text/css" />
+<link href="{{ asset('metronic-template/v7/assets/css/themes/layout/header/menu/light.css') }}" rel="stylesheet"
+    type="text/css" />
+<link href="{{ asset('metronic-template/v7/assets/css/themes/layout/brand/dark.css') }}" rel="stylesheet"
+    type="text/css" />
+<link href="{{ asset('metronic-template/v7/assets/css/themes/layout/aside/dark.css') }}" rel="stylesheet"
+    type="text/css" />
+@endsection
+
 @section('body')
 <!--begin::Body-->
 <body id="kt_body" class="header-fixed header-mobile-fixed subheader-enabled subheader-fixed aside-enabled aside-fixed aside-minimize-hoverable page-loading">

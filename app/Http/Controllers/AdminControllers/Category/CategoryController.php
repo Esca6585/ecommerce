@@ -32,7 +32,7 @@ class CategoryController extends Controller
             $categories = Category::whereNull('parent_id')->orderBy('id')->paginate($pagination);
         } else if($categoryType == 'sub'){
             $categories = Category::whereNotNull('parent_id')->orderBy('id')->paginate($pagination);
-        }
+        } 
         
         if(request()->ajax()){
             if($request->search) {
