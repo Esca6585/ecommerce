@@ -30,21 +30,19 @@
     <!--begin::Header Mobile-->
     <div id="kt_header_mobile" class="header-mobile align-items-center header-mobile-fixed">
         <!--begin::Logo-->
-        <a href="index.html" class="brand-logo">
-            <img alt="metronic-template/v7/assets/media/logos/logo-light.png" src="{{ asset('metronic-template/v7/assets/media/logos/logo-light.png') }}" />
-        </a>
-        <!--end::Logo-->
+        @include('layouts.logo')
+                    <!--end::Logo-->
         <!--begin::Toolbar-->
         <div class="d-flex align-items-center">
             <!--begin::Aside Mobile Toggle-->
-            <button class="btn p-0 burger-icon burger-icon-left" id="kt_aside_mobile_toggle">
+            <button class="btn p-0 burger-icon" id="kt_aside_mobile_toggle">
                 <span></span>
             </button>
             <!--end::Aside Mobile Toggle-->
             <!--begin::Header Menu Mobile Toggle-->
-            <button class="btn p-0 burger-icon ml-4" id="kt_header_mobile_toggle">
+            <!-- <button class="btn p-0 burger-icon ml-4" id="kt_header_mobile_toggle">
                 <span></span>
-            </button>
+            </button> -->
             <!--end::Header Menu Mobile Toggle-->
             <!--begin::Topbar Mobile Toggle-->
             <button class="btn btn-hover-text-primary p-0 ml-2" id="kt_header_mobile_topbar_toggle">
@@ -73,9 +71,7 @@
                 <!--begin::Brand-->
                 <div class="brand flex-column-auto" id="kt_brand">
                     <!--begin::Logo-->
-                    <a href="index.html" class="brand-logo">
-                        <img alt="metronic-template/v7/assets/media/logos/logo-light.png" src="{{ asset('metronic-template/v7/assets/media/logos/logo-light.png') }}" />
-                    </a>
+                    @include('layouts.logo')
                     <!--end::Logo-->
                     <!--begin::Toggle-->
                     <button class="brand-toggle btn btn-sm px-0" id="kt_aside_toggle">
