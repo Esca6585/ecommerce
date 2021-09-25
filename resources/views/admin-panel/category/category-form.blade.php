@@ -283,10 +283,10 @@
 
                                             <button type="submit"
                                                 title="{{ $category->id ? __('Edit') : __('Create') }}"
-                                                class="btn btn-primary font-weight-bolder">
+                                                class="btn {{ $category->id ? 'btn-warning' : 'btn-primary' }} font-weight-bolder">
                                                 <span class="svg-icon svg-icon-md">
                                                     @if($category->id)
-                                                    <span class="svg-icon svg-icon-md">
+                                                    <span class="svg-icon svg-icon-md {{ $category->id ? 'svg-icon-dark' : '' }}">
                                                         <svg xmlns="http://www.w3.org/2000/svg"
                                                             xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
                                                             height="24px" viewBox="0 0 24 24" version="1.1">
@@ -325,7 +325,9 @@
                                                     </svg>
                                                     @endif
                                                 </span>
-                                                {{ $category->id ? __('Edit') : __('Create') }}
+                                                <span class="{{ $category->id ? 'text-dark' : '' }}">
+                                                    {{ $category->id ? __('Edit') : __('Create') }}
+                                                </span>
                                             </button>
                                         </div>
                                     </form>
