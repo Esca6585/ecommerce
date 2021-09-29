@@ -265,6 +265,11 @@
                                             <!--end::Form-->
                                         </div>
                                     </div>
+
+                                    <!--begin::Alert-->
+                                    @include('layouts.alert')
+                                    <!--end::Alert-->
+
                                     <!--begin: Datatable-->
                                     @include('admin-panel.category.category-table')
                                     <!--end: Datatable-->

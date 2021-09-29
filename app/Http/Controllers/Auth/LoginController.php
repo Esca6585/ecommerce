@@ -96,21 +96,22 @@ class LoginController extends Controller
 
     public function userFindOrCreate($provider_user, $provider_name){
         $user = User::where('provider_id', $provider_user->id)->OrWhere('email', $provider_user->getEmail())->first();
-        
+        $names = explode(' ', $provider_user->getName());
+
         if(!$user){
             $user = new User;
 
-            $user->first_name = $provider_user->getName();
-            $user->last_name = $provider_user->getNickname();
-            $user->email = $provider_user->getEmail();
+            $user->first_name = ucfirst($names[0]);
+            $user->last_name = ucfirst($names[1]);
+            $user->email = mb_strtolower($provider_user->getEmail());
             $user->provider_id = $provider_user->getid();
             $user->provider_name = $provider_name;
             $user->save();
         } else {
             $user = User::where('email', $provider_user->getEmail())->first();
             
-            $user->first_name = $provider_user->getName();
-            $user->last_name = $provider_user->getNickname();
+            $user->first_name = ucfirst($names[0]);
+            $user->last_name = ucfirst($names[1]);
             $user->provider_id = $provider_user->getid();
             $user->provider_name = $provider_name;
             $user->update();

@@ -176,13 +176,13 @@
                                 @if($category->id)
                                 <form
                                     action="{{ route(Request::segment(4) . '.update', [ app()->getlocale(), $categoryType, $category->id ] ) }}"
-                                    method="post">
+                                    method="post" enctype="multipart/form-data">
                                     @csrf
                                     @method('PUT')
                                     @else
                                     <form
                                         action="{{ route(Request::segment(4) . '.store', [ app()->getlocale(), $categoryType ] ) }}"
-                                        method="post">
+                                        method="post" enctype="multipart/form-data">
                                         @csrf
                                         @endif
 
@@ -214,13 +214,13 @@
 
                                                     <div class="col-4">
                                                         <div class="form-group">
-                                                            <label>SVG</label>
+                                                            <label>{{ __('Img') }}</label>
 
-                                                            <input type="text"
+                                                            <input type="file"
                                                                 class="form-control @error('svg') is-invalid @enderror"
-                                                                name="svg" placeholder="SVG..."
-                                                                value="{{ $category->svg ?? '' }}{{ request()->segment(count(request()->segments())) == 'create' ? old('svg') : '' }}" />
-                                                            @error('svg')
+                                                                name="img" placeholder="{{ __('Img') }}..."
+                                                                />
+                                                            @error('img')
                                                             <div class="fv-plugins-message-container invalid-feedback">
                                                                 <div data-field="email" data-validator="notEmpty">
                                                                     {{ $message }}
@@ -235,7 +235,7 @@
                                                             <label>{{ __('Parent Category') }}</label>
                                                             {{ $category->id ? 'selected=selected' : '' }}
                                                             
-                                                            <select class="form-control" id="exampleSelect1">
+                                                            <select class="form-control" id="exampleSelect1" name="parent_id">
                                                                 <option value="" selected>_____{{ __('unselected') }}_____
                                                                 </option>
                                                                 @foreach($parentCategories as $parentCategory)

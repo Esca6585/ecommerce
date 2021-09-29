@@ -17,6 +17,10 @@ class Category extends Model
         'parent_id',
     ];
 
+    protected $casts = [
+        'img' => 'object'
+    ];
+
     public function parent()
     {
         return $this->belongsTo(Category::class, 'parent_id', 'id');

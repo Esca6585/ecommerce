@@ -58,3 +58,6 @@ function getSearchData(search, pagination){
         }
     });
 }
+
+$("#alert-message").delay(2000).fadeOut(1000); // change 5000 to number of seconds in milliseconds
+

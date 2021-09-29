@@ -1,5 +1,5 @@
 <span class="dtr-data d-flex">
-    <a href="{{ route(Request::segment(4) . '.show', [ app()->getlocale(), $categoryType, $id ] ) }}"
+    <a href="{{ route(Request::segment(4) . '.show', [ app()->getlocale(), $categoryType, $category->id ] ) }}"
         class="btn btn-sm btn-clean btn-icon mr-2" title="{{ __('View') }}">
         <span class="svg-icon svg-icon-xl svg-icon-primary">
             <svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg"
@@ -17,7 +17,7 @@
             </svg>
         </span>
     </a>
-    <a href="{{ route(Request::segment(4) . '.edit', [ app()->getlocale(), $categoryType, $id ] ) }}"
+    <a href="{{ route(Request::segment(4) . '.edit', [ app()->getlocale(), $categoryType, $category->id ] ) }}"
         class="btn btn-sm btn-clean btn-icon mr-2 " title="{{ __('Edit') }}">
         <span class="svg-icon svg-icon-md svg-icon-warning">
             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
@@ -35,38 +35,14 @@
             </svg>
         </span>
     </a>
-    <form action="{{ route(Request::segment(4) . '.destroy', [ app()->getlocale(), $categoryType, $id ] ) }}" method="post">
+
+    <form action="{{ route(Request::segment(4) . '.destroy', [ app()->getlocale(), $categoryType, $category->id ] ) }}"
+        method="post">
         @method('delete')
         @csrf
 
-        <div class="example-preview">
-            <!--begin::Modal-->
-            <div class="modal fade" id="exampleModalSizeSm" tabindex="-1" aria-labelledby="exampleModalSizeSm"
-                style="display: none;" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">{{ __('Warning') }}</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <i aria-hidden="true" class="ki ki-close"></i>
-                            </button>
-                        </div>
-                        <div class="modal-body">{{ __('Are you sure you want to delete this resource?') }}</div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary font-weight-bold"
-                                data-dismiss="modal">{{ __('Close') }}</button>
-
-                            <button type="submit" class="btn btn-light-danger font-weight-bold">{{ __('Delete') }}</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!--end::Modal-->
-        </div>
-        
-
         <button type="button" class="btn btn-sm btn-clean btn-icon" title="{{ __('Delete') }}" data-toggle="modal"
-            data-target="#exampleModalSizeSm">
+            data-target="#exampleModalSizeSm-{{$category->id}}">
             <span class="svg-icon svg-icon-md svg-icon-danger">
                 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
                     height="24px" viewBox="0 0 24 24" version="1.1">
@@ -85,5 +61,32 @@
                 </svg>
             </span>
         </button>
+
+        <div class="example-preview">
+            <!--begin::Modal-->
+            <div class="modal fade" id="exampleModalSizeSm-{{$category->id}}" tabindex="-1" aria-labelledby="exampleModalSizeSm-{{$category->id}}"
+                style="display: none;" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">{{ __('Warning') }}</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <i aria-hidden="true" class="ki ki-close"></i>
+                            </button>
+                        </div>
+                        <div class="modal-body">{{ __('Are you sure you want to delete this resource?') }}</div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary font-weight-bold"
+                                data-dismiss="modal">{{ __('Close') }}</button>
+
+                            <button type="submit"
+                                class="btn btn-light-danger font-weight-bold">{{ __('Delete') }}</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--end::Modal-->
+        </div>
+
     </form>
 </span>

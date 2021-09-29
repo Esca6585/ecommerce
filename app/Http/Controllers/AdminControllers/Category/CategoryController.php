@@ -7,7 +7,8 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests\CategoryRequest;
 use App\Models\Category;
-
+use Image;
+use Str;
 
 class CategoryController extends Controller
 {
@@ -27,11 +28,11 @@ class CategoryController extends Controller
         }
 
         if($categoryType == 'all'){
-            $categories = Category::orderBy('id')->paginate($pagination);
+            $categories = Category::orderByDesc('id')->paginate($pagination);
         } else if($categoryType == 'parent'){
-            $categories = Category::whereNull('parent_id')->orderBy('id')->paginate($pagination);
+            $categories = Category::whereNull('parent_id')->orderByDesc('id')->paginate($pagination);
         } else if($categoryType == 'sub'){
-            $categories = Category::whereNotNull('parent_id')->orderBy('id')->paginate($pagination);
+            $categories = Category::whereNotNull('parent_id')->orderByDesc('id')->paginate($pagination);
         } 
         
         if(request()->ajax()){
@@ -70,9 +71,48 @@ class CategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CategoryRequest $request)
+    public function store($lang, $categoryType, CategoryRequest $request)
     {
-        //
+        if($request->file('img')){
+            $img = $request->file('img');
+            
+            $date = date("d-m-Y H-i-s");
+            
+            $fileRandName = Str::random(10);
+            $fileExt = $img->getClientOriginalExtension();
+
+            $fileName = $fileRandName . '.' . $fileExt;
+            
+            $path = 'assets/category/' . Str::slug($request->name_tm . '-' . $date ) . '/';
+
+            $img->move($path, $fileName);
+
+            $imageFit = Image::make($path . $fileName)->fit(20, 20);
+
+            $imageFitName = $fileRandName . '-20x20.' . $fileExt;
+        
+            $imageFit->save($path . $imageFitName , 80);
+            
+            $original = $path . $fileName;
+            $thumb = $path . $imageFitName;
+
+            $imgArray[] = [
+                'thumb' => $thumb,
+                'original' => $original
+            ];
+        }
+        
+        $category = new Category;
+        
+        $category->name_tm = $request->name_tm;
+        $category->name_en = $request->name_en;
+        $category->name_ru = $request->name_ru;
+        $category->parent_id = $request->parent_id;
+        $category->img = $imgArray ?? null;
+        
+        $category->save();
+        
+        return redirect()->route('category.index', [ app()->getlocale(), $categoryType ])->with('success-create', 'The resource was created!');
     }
 
     /**
@@ -106,9 +146,50 @@ class CategoryController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function update(CategoryRequest $request, Category $category)
+    public function update($lang, $categoryType, CategoryRequest $request, Category $category)
     {
-        //
+        if($request->file('img')){
+            
+            $this->deleteFolder($category);
+
+            $img = $request->file('img');
+            
+            $date = date("d-m-Y H-i-s");
+            
+            $fileRandName = Str::random(10);
+            $fileExt = $img->getClientOriginalExtension();
+
+            $fileName = $fileRandName . '.' . $fileExt;
+            
+            $path = 'assets/category/' . Str::slug($request->name_tm . '-' . $date .'-updated' ) . '/';
+
+            $img->move($path, $fileName);
+
+            $imageFit = Image::make($path . $fileName)->fit(20, 20);
+
+            $imageFitName = $fileRandName . '-20x20.' . $fileExt;
+        
+            $imageFit->save($path . $imageFitName , 80);
+            
+            $original = $path . $fileName;
+            $thumb = $path . $imageFitName;
+
+            $imgArray[] = [
+                'thumb' => $thumb,
+                'original' => $original
+            ];
+
+            $category->img = $imgArray;
+        }
+        
+        $category->name_tm = $request->name_tm;
+        $category->name_en = $request->name_en;
+        $category->name_ru = $request->name_ru;
+        $category->parent_id = $request->parent_id;
+        
+        $category->update();
+        
+        return redirect()->route('category.index', [ app()->getlocale(), $categoryType ])->with('success-update', 'The resource was updated!');
     }
 
     /**
@@ -117,8 +198,23 @@ class CategoryController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Category $category)
+    public function destroy($lang, $categoryType, Category $category)
     {
-        //
+        $this->deleteFolder($category);
+
+        $category->delete();
+
+        return redirect()->route('category.index', [ app()->getlocale(), $categoryType ])->with('success-delete', 'The resource was deleted!');
+    }
+
+    public function deleteFolder($category)
+    {
+        if($category->img){
+            $folder = explode('/', $category->img->thumb);
+
+            if($folder[2] != 'category-seeder'){
+                \File::deleteDirectory($folder[0] . '/' . $folder[1] . '/' . $folder[2]);
+            }
+        }
     }
 }
