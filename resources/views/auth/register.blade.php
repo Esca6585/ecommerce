@@ -20,6 +20,16 @@
 					<!--end::Logo-->
 					<!--begin::Wrapper-->
 					<div class="w-lg-600px bg-body rounded shadow-sm p-10 p-lg-15 mx-auto">
+						
+						
+						<div class="flash-message">
+							@foreach(['success', 'info', 'warning', 'danger'] as $message)
+								@if(Session::has('alert-' . $message))
+									<p class="alert alert-{{ $message }}">{{ Session::get('alert-', $message) }} <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a></p>
+								@endif
+							@endforeach
+						</div>
+
 						<!--begin::Form-->
 						<form action="{{ route('register', app()->getlocale() ) }}" method="POST" class="form w-100" >
 						

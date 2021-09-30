@@ -33,6 +33,23 @@ Route::group([
     Route::get('login/google', [App\Http\Controllers\Auth\LoginController::class, 'redirectToGoogle'])->name('login.google');
     Route::get('login/google/callback', [App\Http\Controllers\Auth\LoginController::class, 'handleGoogleCallback']);
     
+    Route::get('email/test', function(){
+        $rand = mt_rand(100000, 999999);
+        $data = [
+            'name' => 'Esca Meredoff', 
+            'verification_code' => $rand,
+            'strRand' => strval($rand),
+        ];
+
+        return view('mail.register-email', compact('data'));
+    });
+    Route::get('email/verify', [App\Http\Controllers\Auth\LoginController::class, 'emailVerifyForm'])->name('emailVerifyForm ');
+    Route::post('/email/verify/code', [App\Http\Controllers\Auth\LoginController::class, 'emailVerifyCode'])->name('verification.send');
+
+    Route::middleware(['auth', 'verified', 'throttle:6,1'])->group(function () {
+        Route::get('email/resend', [App\Http\Controllers\Auth\LoginController::class, 'emailResend'])->name('verification.resend');
+    });
+    
 });
 
 require __DIR__ . '/admin-routes/auth/admin-auth-route.php';

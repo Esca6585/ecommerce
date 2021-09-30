@@ -5,9 +5,12 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
+use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Mail;
+
 
 class RegisterController extends Controller
 {
@@ -60,16 +63,28 @@ class RegisterController extends Controller
     /**
      * Create a new user instance after a valid registration.
      *
-     * @param  array  $data
+     * @param  Request  $request
      * @return \App\Models\User
      */
-    protected function create(array $data)
+    protected function Register(Request $request)
     {
-        return User::create([
-            'first_name' => ucfirst($data['first_name']),
-            'last_name' => ucfirst($data['last_name']),
-            'email' => mb_strtolower($data['email']),
-            'password' => Hash::make($data['password']),
-        ]);
+        $user = new User();
+
+        $user->first_name = ucfirst($request->first_name);
+        $user->last_name = ucfirst($request->last_name);
+        $user->email = mb_strtolower($request->email);
+        $user->password = Hash::make($request->password);
+        $user->verification_code = mt_rand(100000, 999999);
+        
+        $user->save();
+
+        $sendEmail = $request->email;
+
+        if($user){
+            MailController::sendRegisterEmail($user->name, $user->email, $user->verification_code);
+            return view('auth.verify', compact('sendEmail'));
+        }
+
+        return redirect()->back()->with(session()->flash('alert-danger', 'Something went wrong!'));
     }
 }

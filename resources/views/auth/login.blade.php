@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-    <!--begin::Main-->
+    	<!--begin::Main-->
 		<div class="d-flex flex-column flex-root">
 			<!--begin::Authentication - Sign-in -->
 			<div class="d-flex flex-column flex-column-fluid bgi-position-y-bottom position-x-center bgi-no-repeat bgi-size-contain bgi-attachment-fixed" style="background-image: url({{ asset('metronic-template/v8/assets/media/illustrations/development-hd.png') }})">

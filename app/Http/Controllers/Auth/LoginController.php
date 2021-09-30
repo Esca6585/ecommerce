@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
 use Auth;
 use App\Models\User;
 
@@ -118,5 +119,32 @@ class LoginController extends Controller
         }
 
         return $user;
+    }
+
+    public function emailVerifyForm()
+    {
+        $sendEmail = 'esca656585@gmail.com';
+
+        return view('auth.verify', compact('sendEmail'));
+    }
+
+    public function emailVerifyCode(Request $request)
+    {
+        $checkVerify = 0;
+
+        foreach($request->verification_code as $code){
+            $checkVerify *= 10;
+            $checkVerify += $code;
+        }
+
+        dump($checkVerify);
+
+        dd($request->verification_code);
+    }
+
+    
+    public function emailResend()
+    {
+        dd('emailResend');
     }
 }
