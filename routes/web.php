@@ -23,7 +23,7 @@ Route::group([
         return view('user-panel.index');
     });
     
-    Auth::routes();
+    Auth::routes(['verify' => true]);
     
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
@@ -36,6 +36,7 @@ Route::group([
     Route::get('email/test', function(){
         $rand = mt_rand(100000, 999999);
         $data = [
+            'email' => 'esca656585@gmail.com',
             'name' => 'Esca Meredoff', 
             'verification_code' => $rand,
             'strRand' => strval($rand),
@@ -43,12 +44,10 @@ Route::group([
 
         return view('mail.register-email', compact('data'));
     });
-    Route::get('email/verify', [App\Http\Controllers\Auth\LoginController::class, 'emailVerifyForm'])->name('emailVerifyForm ');
-    Route::post('/email/verify/code', [App\Http\Controllers\Auth\LoginController::class, 'emailVerifyCode'])->name('verification.send');
 
-    Route::middleware(['auth', 'verified', 'throttle:6,1'])->group(function () {
-        Route::get('email/resend', [App\Http\Controllers\Auth\LoginController::class, 'emailResend'])->name('verification.resend');
-    });
+    Route::get('email/verify', [App\Http\Controllers\Auth\LoginController::class, 'emailVerifyForm'])->name('emailVerifyForm ');
+    Route::get('/email/verify/code', [App\Http\Controllers\Auth\LoginController::class, 'emailVerifyCode'])->name('verification.send');
+    Route::get('email/resend', [App\Http\Controllers\Auth\LoginController::class, 'emailResend'])->name('verification.resend');
     
 });
 

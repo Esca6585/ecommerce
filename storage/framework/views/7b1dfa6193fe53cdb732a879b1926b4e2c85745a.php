@@ -1,39 +1,40 @@
-@extends('layouts.admin-template-app')
 
-@section('title')
-{{ __( ucfirst(Request::segment(3)) . ' Categories') }}
-@endsection
 
-@section('style')
+<?php $__env->startSection('title'); ?>
+<?php echo e(__( ucfirst(Request::segment(3)) . ' Categories')); ?>
+
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('style'); ?>
 <!--begin::Fonts-->
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" />
 <!--end::Fonts-->
 <!--begin::Page Vendors Styles(used by this page)-->
-<link href="{{ asset('metronic-template/v7/assets/plugins/custom/fullcalendar/fullcalendar.bundle.css') }}"
+<link href="<?php echo e(asset('metronic-template/v7/assets/plugins/custom/fullcalendar/fullcalendar.bundle.css')); ?>"
     rel="stylesheet" type="text/css" />
 <!--end::Page Vendors Styles-->
 <!--begin::Global Theme Styles(used by all pages)-->
-<link href="{{ asset('metronic-template/v7/assets/plugins/global/plugins.bundle.css') }}" rel="stylesheet"
+<link href="<?php echo e(asset('metronic-template/v7/assets/plugins/global/plugins.bundle.css')); ?>" rel="stylesheet"
     type="text/css" />
-<link href="{{ asset('metronic-template/v7/assets/plugins/custom/prismjs/prismjs.bundle.css') }}" rel="stylesheet"
+<link href="<?php echo e(asset('metronic-template/v7/assets/plugins/custom/prismjs/prismjs.bundle.css')); ?>" rel="stylesheet"
     type="text/css" />
-<link href="{{ asset('metronic-template/v7/assets/css/style.bundle.css') }}" rel="stylesheet" type="text/css" />
+<link href="<?php echo e(asset('metronic-template/v7/assets/css/style.bundle.css')); ?>" rel="stylesheet" type="text/css" />
 <!--end::Global Theme Styles-->
 <!--begin::Layout Themes(used by all pages)-->
-<link href="{{ asset('metronic-template/v7/assets/css/themes/layout/header/base/light.css') }}" rel="stylesheet"
+<link href="<?php echo e(asset('metronic-template/v7/assets/css/themes/layout/header/base/light.css')); ?>" rel="stylesheet"
     type="text/css" />
-<link href="{{ asset('metronic-template/v7/assets/css/themes/layout/header/menu/light.css') }}" rel="stylesheet"
+<link href="<?php echo e(asset('metronic-template/v7/assets/css/themes/layout/header/menu/light.css')); ?>" rel="stylesheet"
     type="text/css" />
-<link href="{{ asset('metronic-template/v7/assets/css/themes/layout/brand/dark.css') }}" rel="stylesheet"
+<link href="<?php echo e(asset('metronic-template/v7/assets/css/themes/layout/brand/dark.css')); ?>" rel="stylesheet"
     type="text/css" />
-<link href="{{ asset('metronic-template/v7/assets/css/themes/layout/aside/dark.css') }}" rel="stylesheet"
+<link href="<?php echo e(asset('metronic-template/v7/assets/css/themes/layout/aside/dark.css')); ?>" rel="stylesheet"
     type="text/css" />
 
-<link rel="stylesheet" href="{{ asset('metronic-template/v7/assets/css/admin-pagination.css') }}">
+<link rel="stylesheet" href="<?php echo e(asset('metronic-template/v7/assets/css/admin-pagination.css')); ?>">
 
-@endsection
+<?php $__env->stopSection(); ?>
 
-@section('body')
+<?php $__env->startSection('body'); ?>
 
 <!--begin::Body-->
 
@@ -43,7 +44,7 @@
     <!--begin::Header Mobile-->
     <div id="kt_header_mobile" class="header-mobile align-items-center header-mobile-fixed">
         <!--begin::Logo-->
-        @include('layouts.logo')
+        <?php echo $__env->make('layouts.logo', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
         <!--end::Logo-->
         <!--begin::Toolbar-->
         <div class="d-flex align-items-center">
@@ -89,7 +90,7 @@
                 <!--begin::Brand-->
                 <div class="brand flex-column-auto" id="kt_brand">
                     <!--begin::Logo-->
-                    @include('layouts.logo')
+                    <?php echo $__env->make('layouts.logo', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
                     <!--end::Logo-->
                     <!--begin::Toggle-->
                     <button class="brand-toggle btn btn-sm px-0" id="kt_aside_toggle">
@@ -116,14 +117,14 @@
                 </div>
                 <!--end::Brand-->
                 <!--begin::Aside Menu-->
-                @include('layouts.sidebar')
+                <?php echo $__env->make('layouts.sidebar', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
                 <!--end::Aside Menu-->
             </div>
             <!--end::Aside-->
             <!--begin::Wrapper-->
             <div class="d-flex flex-column flex-row-fluid wrapper" id="kt_wrapper">
                 <!--begin::Header-->
-                @include('layouts.header')
+                <?php echo $__env->make('layouts.header', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
                 <!--end::Header-->
                 <!--begin::Content-->
                 <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
@@ -144,14 +145,15 @@
                                     <ul
                                         class="breadcrumb breadcrumb-transparent breadcrumb-dot font-weight-bold p-0 my-2 font-size-sm">
                                         <li class="breadcrumb-item text-muted">
-                                            <a href="{{ route('category.index', [ app()->getlocale(), 'all' ]) }}"
-                                                class="text-muted">{{ __('Categories') }}</a>
+                                            <a href="<?php echo e(route('category.index', [ app()->getlocale(), 'all' ])); ?>"
+                                                class="text-muted"><?php echo e(__('Categories')); ?></a>
                                         </li>
 
                                         <li class="breadcrumb-item text-muted">
-                                            <a href="{{ route('category.index', [ app()->getlocale(), $categoryType ]) }}"
+                                            <a href="<?php echo e(route('category.index', [ app()->getlocale(), $categoryType ])); ?>"
                                                 class="text-muted">
-                                                {{ __( ucfirst(Request::segment(3)) . ' Categories') }}
+                                                <?php echo e(__( ucfirst(Request::segment(3)) . ' Categories')); ?>
+
                                             </a>
                                         </li>
                                     </ul>
@@ -171,15 +173,17 @@
                             <div class="card card-custom">
                                 <div class="card-header flex-wrap py-5">
                                     <div class="card-title">
-                                        <h3 class="card-label">{{ __('Categories') }}
+                                        <h3 class="card-label"><?php echo e(__('Categories')); ?>
+
                                             <span class="d-block text-muted pt-2 font-size-sm">
-                                                {{ __( ucfirst(Request::segment(3)) . ' Categories') }}
+                                                <?php echo e(__( ucfirst(Request::segment(3)) . ' Categories')); ?>
+
                                             </span>
                                         </h3>
                                     </div>
                                     <div class="card-toolbar">
                                         <!--begin::Button-->
-                                        <a href="{{ route(Request::segment(4) . '.create', [app()->getlocale(), $categoryType ] ) }}"
+                                        <a href="<?php echo e(route(Request::segment(4) . '.create', [app()->getlocale(), $categoryType ] )); ?>"
                                             class="btn btn-primary font-weight-bolder">
                                             <span class="svg-icon svg-icon-md">
                                                 <svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1"
@@ -200,7 +204,8 @@
                                                     </g>
                                                 </svg>
                                             </span>
-                                            {{ __('Create') }}
+                                            <?php echo e(__('Create')); ?>
+
                                         </a>
                                         <!--end::Button-->
                                     </div>
@@ -251,7 +256,7 @@
                                                         </span>
                                                     </div>
                                                     <input type="search" class="form-control" id="datatable_search"
-                                                        placeholder="{{ __('Search') }}..."
+                                                        placeholder="<?php echo e(__('Search')); ?>..."
                                                         aria-controls="kt_datatable">
 
                                                     <div class="input-group-append">
@@ -267,11 +272,11 @@
                                     </div>
 
                                     <!--begin::Alert-->
-                                    @include('layouts.alert')
+                                    <?php echo $__env->make('layouts.alert', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
                                     <!--end::Alert-->
 
                                     <!--begin: Datatable-->
-                                    @include('admin-panel.category.category-table')
+                                    <?php echo $__env->make('admin-panel.category.category-table', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
                                     <!--end: Datatable-->
                                 </div>
                             </div>
@@ -283,7 +288,7 @@
                 </div>
                 <!--end::Content-->
                 <!--begin::Footer-->
-                @include('layouts.footer')
+                <?php echo $__env->make('layouts.footer', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
                 <!--end::Footer-->
             </div>
             <!--end::Wrapper-->
@@ -292,7 +297,7 @@
     </div>
     <!--end::Main-->
     <!-- begin::User Panel-->
-    @include('layouts.admin-profile')
+    <?php echo $__env->make('layouts.admin-profile', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
     <!-- end::User Panel-->
 
     <!--begin::Global Config(global config for global JS scripts)-->
@@ -358,12 +363,14 @@
 
     </script>
     
-    <script src="{{ asset('metronic-template/v7/assets/plugins/global/plugins.bundle.js') }}"></script>
-    <script src="{{ asset('metronic-template/v7/assets/plugins/custom/prismjs/prismjs.bundle.js') }}"></script>
-    <script src="{{ asset('metronic-template/v7/assets/js/scripts.bundle.js') }}"></script>
-    <script src="{{ asset('metronic-template/v7/assets/js/ajax/jquery-3.6.0.min.js') }}"></script>
-    <script src="{{ asset('metronic-template/v7/assets/js/ajax/getdata.js') }}"></script>
+    <script src="<?php echo e(asset('metronic-template/v7/assets/plugins/global/plugins.bundle.js')); ?>"></script>
+    <script src="<?php echo e(asset('metronic-template/v7/assets/plugins/custom/prismjs/prismjs.bundle.js')); ?>"></script>
+    <script src="<?php echo e(asset('metronic-template/v7/assets/js/scripts.bundle.js')); ?>"></script>
+    <script src="<?php echo e(asset('metronic-template/v7/assets/js/ajax/jquery-3.6.0.min.js')); ?>"></script>
+    <script src="<?php echo e(asset('metronic-template/v7/assets/js/ajax/getdata.js')); ?>"></script>
 
 </body>
 <!--end::Body-->
-@endsection
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layouts.admin-template-app', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /home/ubuntu/Documents/domains/ecommerce/resources/views/admin-panel/category/category.blade.php ENDPATH**/ ?>

@@ -20,16 +20,6 @@
 					<!--end::Logo-->
 					<!--begin::Wrapper-->
 					<div class="w-lg-600px bg-body rounded shadow-sm p-10 p-lg-15 mx-auto">
-						
-						
-						<div class="flash-message">
-							@foreach(['success', 'info', 'warning', 'danger'] as $message)
-								@if(Session::has('alert-' . $message))
-									<p class="alert alert-{{ $message }}">{{ Session::get('alert-', $message) }} <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a></p>
-								@endif
-							@endforeach
-						</div>
-
 						<!--begin::Form-->
 						<form action="{{ route('register', app()->getlocale() ) }}" method="POST" class="form w-100" >
 						
@@ -67,7 +57,7 @@
 								<!--begin::Col-->
 								<div class="col-xl-6">
 									<label class="form-label fw-bolder text-dark fs-6">{{ __('First Name') }}</label>
-									<input class="form-control form-control-lg form-control-solid @error('first_name') is-invalid @enderror" type="text" placeholder="{{ __('First Name') }}" name="first_name" autocomplete="on" required />
+									<input class="form-control form-control-lg form-control-solid @error('first_name') is-invalid @enderror" type="text" placeholder="{{ __('First Name') }}" name="first_name" autocomplete="on" required value="{{ old('first_name') }}" />
 
 									@error('first_name')
 										<div class="fv-plugins-message-container invalid-feedback">
@@ -79,7 +69,7 @@
 								<!--begin::Col-->
 								<div class="col-xl-6">
 									<label class="form-label fw-bolder text-dark fs-6">{{ __('Last Name') }}</label>
-									<input class="form-control form-control-lg form-control-solid @error('last_name') is-invalid @enderror" type="text" placeholder="{{ __('Last Name') }}" name="last_name" autocomplete="on" required />
+									<input class="form-control form-control-lg form-control-solid @error('last_name') is-invalid @enderror" type="text" placeholder="{{ __('Last Name') }}" name="last_name" autocomplete="on" required value="{{ old('last_name') }}" />
 
 									@error('last_name')
 										<div class="fv-plugins-message-container invalid-feedback">
@@ -93,7 +83,7 @@
 							<!--begin::Input group-->
 							<div class="fv-row mb-7">
 								<label class="form-label fw-bolder text-dark fs-6">{{ __('Email Address') }}</label>
-								<input class="form-control form-control-lg form-control-solid @error('email') is-invalid @enderror" type="email" placeholder="{{ __('Email Address') }}" name="email" autocomplete="on" required />
+								<input class="form-control form-control-lg form-control-solid @error('email') is-invalid @enderror" type="email" placeholder="{{ __('Email Address') }}" name="email" autocomplete="on" required value="{{ old('email') }}" />
 								
 								@error('email')
 									<div class="fv-plugins-message-container invalid-feedback">
@@ -111,7 +101,7 @@
 									<!--end::Label-->
 									<!--begin::Input wrapper-->
 									<div class="position-relative mb-3">
-										<input class="form-control form-control-lg form-control-solid " type="password" placeholder="{{ __('Password') }}" name="password" autocomplete="on" required />
+										<input class="form-control form-control-lg form-control-solid " type="password" placeholder="{{ __('Password') }}" name="password" autocomplete="on" required value="{{ old('password') }}" />
 										<span class="btn btn-sm btn-icon position-absolute translate-middle top-50 end-0 me-n2" data-kt-password-meter-control="visibility">
 											<i class="bi bi-eye-slash fs-2 @error('password') text-danger @enderror"></i>
 											<i class="bi bi-eye fs-2 d-none @error('password') text-danger @enderror"></i>

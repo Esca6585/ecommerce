@@ -9,8 +9,8 @@ use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use App\Http\Requests\UserRequest;
 use Mail;
-
 
 class RegisterController extends Controller
 {
@@ -66,7 +66,7 @@ class RegisterController extends Controller
      * @param  Request  $request
      * @return \App\Models\User
      */
-    protected function Register(Request $request)
+    protected function Register(UserRequest $request)
     {
         $user = new User();
 
@@ -81,7 +81,7 @@ class RegisterController extends Controller
         $sendEmail = $request->email;
 
         if($user){
-            MailController::sendRegisterEmail($user->name, $user->email, $user->verification_code);
+            MailController::sendRegisterEmail($user->first_name, $user->email, $user->verification_code);
             return view('auth.verify', compact('sendEmail'));
         }
 

@@ -23,8 +23,7 @@ Verify Your Email Address
 					<!--begin::Wrapper-->
 					<div class="w-lg-600px bg-body rounded shadow-sm p-10 p-lg-15 mx-auto">
 						<!--begin::Form-->
-						<form action="<?php echo e(route('verification.send', [app()->getlocale()])); ?>" method="post" class="form w-100 mb-10" >
-							<?php echo csrf_field(); ?>
+						<form action="<?php echo e(route('verification.send', [app()->getlocale()])); ?>" method="get" class="form w-100 mb-10" >
 							<!--begin::Icon-->
 							<div class="text-center mb-10">
 								<img alt="Logo" class="mh-125px" src="<?php echo e(asset('metronic-template/v8/assets/media/svg/misc/open-mail.svg')); ?>" />
@@ -44,31 +43,16 @@ Verify Your Email Address
 							<!--begin::Section-->
 							<div class="mb-10 px-md-10">
 								<!--begin::Label-->
-								<div class="fw-bolder text-center text-muted fs-6 mb-5 ms-1">6 sany tassyklama koduňyzy giriziň</div>
+								<div class="fw-bolder text-center text-muted fs-4 mb-5 ms-1">Mail içine girip tassyklama düwmesine basyň</div>
 								<!--end::Label-->
-								<!--begin::Input group-->
-								<div class="d-flex flex-wrap flex-stack">
-									<?php for($i=0; $i<6; $i++): ?> <input type="text"
-                                        class="form-control form-control-solid h-60px w-60px fs-2qx text-center border-primary border-hover mx-1 my-2"
-                                        value="" name="verification_code[]">
-                                    <?php endfor; ?>
-								</div>
-								<!--begin::Input group-->
 							</div>
 							<!--end::Section-->
-							<!--begin::Submit-->
-							<div class="d-flex flex-center">
-								<button type="submit" class="btn btn-lg btn-primary fw-bolder">
-									<span class="indicator-label">Tassyklaň</span>
-								</button>
-							</div>
-							<!--end::Submit-->
 						</form>
 						<!--end::Form-->
 						<!--begin::Notice-->
 						<div class="text-center fw-bold fs-5">
-							<span class="text-muted me-1">Didn’t get the code ?</span>
-							<a href="#" class="link-primary fw-bolder fs-5 me-1"><?php echo e(__('Resend')); ?></a>
+							<span class="text-muted me-1">Kod almadyňyzmy ?</span>
+							<a href="<?php echo e(route('verification.resend', app()->getlocale() )); ?>" class="link-primary fw-bolder fs-5 me-1">Gaýtadan ugrat</a>
 						</div>
 						<!--end::Notice-->
 					</div>
@@ -108,7 +92,6 @@ Verify Your Email Address
 		<!--end::Main-->
 	</body>
 	<!--end::Body-->
-
 <?php $__env->stopSection(); ?>
 
 <?php echo $__env->make('layouts.app', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /home/ubuntu/Documents/domains/ecommerce/resources/views/auth/verify.blade.php ENDPATH**/ ?>

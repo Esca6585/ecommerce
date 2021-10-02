@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Auth;
 use App\Models\User;
+use Carbon\Carbon;
 
 use Socialite;
 
@@ -121,25 +122,36 @@ class LoginController extends Controller
         return $user;
     }
 
-    public function emailVerifyForm()
+    public function emailVerifyForm(Request $request)
     {
-        $sendEmail = 'esca656585@gmail.com';
+        $sendEmail = $request->email;
 
         return view('auth.verify', compact('sendEmail'));
     }
 
     public function emailVerifyCode(Request $request)
     {
-        $checkVerify = 0;
+        dump($request->verification_code);
+        dump($request->email);
+        dump(Auth::user());
+        
+        if($request->token == '$2y$10$ZCIoHNMOCTDOnhNXS2oCp'){
+            $user = User::where('email', $request->email)->first();
+            
+            dump($user->created_at);
+            dump(Carbon::parse($user->created_at)->format('Y-m-d H:i:s'));
 
-        foreach($request->verification_code as $code){
-            $checkVerify *= 10;
-            $checkVerify += $code;
+            if($user->created_at < Carbon::now()->addMinutes(5)){
+                
+            }
+            $user->email_verified_at = Carbon::now();
+            $user->is_verified = 1;
+
+            $user->update();
+
+            dump($user);
+
         }
-
-        dump($checkVerify);
-
-        dd($request->verification_code);
     }
 
     

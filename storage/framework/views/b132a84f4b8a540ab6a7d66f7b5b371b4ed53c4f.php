@@ -21,16 +21,6 @@
 					<!--end::Logo-->
 					<!--begin::Wrapper-->
 					<div class="w-lg-600px bg-body rounded shadow-sm p-10 p-lg-15 mx-auto">
-						
-						
-						<div class="flash-message">
-							<?php $__currentLoopData = ['success', 'info', 'warning', 'danger']; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $message): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-								<?php if(Session::has('alert-' . $message)): ?>
-									<p class="alert alert-<?php echo e($message); ?>"><?php echo e(Session::get('alert-', $message)); ?> <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a></p>
-								<?php endif; ?>
-							<?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-						</div>
-
 						<!--begin::Form-->
 						<form action="<?php echo e(route('register', app()->getlocale() )); ?>" method="POST" class="form w-100" >
 						
@@ -78,7 +68,7 @@ if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
-unset($__errorArgs, $__bag); ?>" type="text" placeholder="<?php echo e(__('First Name')); ?>" name="first_name" autocomplete="on" required />
+unset($__errorArgs, $__bag); ?>" type="text" placeholder="<?php echo e(__('First Name')); ?>" name="first_name" autocomplete="on" required value="<?php echo e(old('first_name')); ?>" />
 
 									<?php $__errorArgs = ['first_name'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
@@ -104,7 +94,7 @@ if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
-unset($__errorArgs, $__bag); ?>" type="text" placeholder="<?php echo e(__('Last Name')); ?>" name="last_name" autocomplete="on" required />
+unset($__errorArgs, $__bag); ?>" type="text" placeholder="<?php echo e(__('Last Name')); ?>" name="last_name" autocomplete="on" required value="<?php echo e(old('last_name')); ?>" />
 
 									<?php $__errorArgs = ['last_name'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
@@ -132,7 +122,7 @@ if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
-unset($__errorArgs, $__bag); ?>" type="email" placeholder="<?php echo e(__('Email Address')); ?>" name="email" autocomplete="on" required />
+unset($__errorArgs, $__bag); ?>" type="email" placeholder="<?php echo e(__('Email Address')); ?>" name="email" autocomplete="on" required value="<?php echo e(old('email')); ?>" />
 								
 								<?php $__errorArgs = ['email'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
@@ -157,7 +147,7 @@ unset($__errorArgs, $__bag); ?>
 									<!--end::Label-->
 									<!--begin::Input wrapper-->
 									<div class="position-relative mb-3">
-										<input class="form-control form-control-lg form-control-solid " type="password" placeholder="<?php echo e(__('Password')); ?>" name="password" autocomplete="on" required />
+										<input class="form-control form-control-lg form-control-solid " type="password" placeholder="<?php echo e(__('Password')); ?>" name="password" autocomplete="on" required value="<?php echo e(old('password')); ?>" />
 										<span class="btn btn-sm btn-icon position-absolute translate-middle top-50 end-0 me-n2" data-kt-password-meter-control="visibility">
 											<i class="bi bi-eye-slash fs-2 <?php $__errorArgs = ['password'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');

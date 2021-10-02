@@ -12,8 +12,10 @@ class MailController extends Controller
     public static function sendRegisterEmail($name, $email, $verification_code)
     {
         $rand = mt_rand(100000, 999999);
+
         $data = [
-            'name' => $name, 
+            'name' => $name,
+            'email' => $email,
             'verification_code' => $rand,
             'strRand' => strval($rand),
         ];
