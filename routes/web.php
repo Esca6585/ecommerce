@@ -15,6 +15,12 @@ use Illuminate\Support\Facades\Route;
 
 Route::redirect('/', config('app.locale'));
 
+Route::redirect('/login', config('app.locale') . '/login' )->name('login');
+
+Route::get('email/verify', [App\Http\Controllers\Auth\VerificationController::class, 'show'])->name('verification.notice');
+Route::get('email/verify/{id}/{hash}', [App\Http\Controllers\Auth\VerificationController::class, 'verify'])->name('verification.verify');
+Route::post('email/resend', [App\Http\Controllers\Auth\VerificationController::class, 'resend'])->name('verification.resend');
+
 Route::group([
     'prefix' => '{locale}',
     'where' => ['locale' => '[a-z]{2}'],
@@ -23,8 +29,8 @@ Route::group([
         return view('user-panel.index');
     });
     
-    Auth::routes(['verify' => true]);
-    
+    Auth::routes();
+
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
     
     Route::get('login/github', [App\Http\Controllers\Auth\LoginController::class, 'redirectToGithub'])->name('login.github');
@@ -34,6 +40,7 @@ Route::group([
     Route::get('login/google/callback', [App\Http\Controllers\Auth\LoginController::class, 'handleGoogleCallback']);
     
 });
+
 
 require __DIR__ . '/admin-routes/auth/admin-auth-route.php';
 require __DIR__ . '/admin-routes/panel/admin-panel-route.php';
