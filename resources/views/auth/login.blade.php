@@ -57,7 +57,7 @@
 									<label class="form-label fw-bolder text-dark fs-6 mb-0">{{ __('Password') }}</label>
 									<!--end::Label-->
 									<!--begin::Link-->
-									<a href="#forgot_password" class="link-primary fs-6 fw-bolder">{{ __('Forgot Your Password?') }}</a>
+									<a href="{{ route('password.request', app()->getlocale() ) }}" class="link-primary fs-6 fw-bolder">{{ __('Forgot Your Password?') }}</a>
 									<!--end::Link-->
 								</div>
 								<!--end::Wrapper-->

@@ -23,9 +23,6 @@ class CreateUsersTable extends Migration
 
             $table->timestamp('email_verified_at')->nullable();
             
-            $table->string('verification_code')->nullable();
-            $table->integer('is_verified')->default(0);
-
             $table->string('provider_id')->nullable();
             $table->string('provider_name')->nullable();
             

@@ -34,15 +34,4 @@ class AdminLoginController extends Controller
         // If unsuccessful, then redirect back to the login with the form data
         return redirect()->back()->withInput($request->only('email', 'remember'));
     }
-
-    protected function credentials(Request $request)
-    {
-        return $request->only($this->username(), 'password');
-    }
-
-    public function username()
-    {
-        return 'username';
-    }
-
 }

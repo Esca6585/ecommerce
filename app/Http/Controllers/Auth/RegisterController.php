@@ -5,12 +5,9 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
-use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
-use App\Http\Requests\UserRequest;
-use Mail;
 
 class RegisterController extends Controller
 {
@@ -53,38 +50,26 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'first_name' => 'required|string|max:255',
-            'last_name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:6|confirmed',
+            'first_name' => ['required', 'string', 'min:3', 'max:255'],
+            'last_name' => ['required', 'string', 'min:3', 'max:255'],
+            'email' => ['required', 'string', 'email', 'min:3', 'max:255', 'unique:users'],
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
     }
 
     /**
      * Create a new user instance after a valid registration.
      *
-     * @param  Request  $request
+     * @param  array  $data
      * @return \App\Models\User
      */
-    protected function Register(UserRequest $request)
+    protected function create(array $data)
     {
-        $user = new User();
-
-        $user->first_name = ucfirst($request->first_name);
-        $user->last_name = ucfirst($request->last_name);
-        $user->email = mb_strtolower($request->email);
-        $user->password = Hash::make($request->password);
-        $user->verification_code = mt_rand(100000, 999999);
-        
-        $user->save();
-
-        $sendEmail = $request->email;
-
-        if($user){
-            MailController::sendRegisterEmail($user->first_name, $user->email, $user->verification_code);
-            return view('auth.verify', compact('sendEmail'));
-        }
-
-        return redirect()->back()->with(session()->flash('alert-danger', 'Something went wrong!'));
+        return User::create([
+            'first_name' => $data['first_name'],
+            'last_name' => $data['last_name'],
+            'email' => $data['email'],
+            'password' => Hash::make($data['password']),
+        ]);
     }
 }
