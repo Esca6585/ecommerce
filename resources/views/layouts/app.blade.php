@@ -20,6 +20,9 @@
 		<link href="{{ asset('metronic-template/v8/assets/plugins/global/plugins.bundle.css') }}" rel="stylesheet" type="text/css" />
 		<link href="{{ asset('metronic-template/v8/assets/css/style.bundle.css') }}" rel="stylesheet" type="text/css" />
 		<!--end::Global Stylesheets Bundle-->
+
+		<link rel="stylesheet" href="{{ asset('metronic-template/v7/assets/css/admin-pagination.css') }}">
+
 	</head>
 	<!--end::Head-->
 	<!--begin::Body-->
@@ -46,6 +49,8 @@
 	<script src="{{ asset('/metronic-template/v7/assets/js/ajax/jquery-3.6.0.min.js') }}"></script>
 	<script src="{{ asset('/metronic-template/v7/assets/js/ajax/changeLanguage.js') }}"></script>
     <!--begin::jQuery-->
+
+	<script src="{{ asset('metronic-template/v7/assets/js/ajax/getdata.js') }}"></script>
 
 </html>
 
