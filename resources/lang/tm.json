@@ -455,5 +455,9 @@
     "Copyright": "Awtorlyk hukugy",
     "Message": "Habar",
     "Get in Touch": "Habarlaşyp dur",
-    "a high-quality product without a fragrance": "hoşboý ys berijisiz ýokary hilli önüm"
+    "a high-quality product without a fragrance": "hoşboý ys berijisiz ýokary hilli önüm",
+    "Verify Email Address": "E-poçta salgysyny barlaň",
+    "Please click the button below to verify your email address.": "E-poçta salgyňyzy barlamak üçin aşakdaky düwmä basyň.",
+    "If you did not create an account, no further action is required.": "Hasap açmadyk bolsaňyz, mundan başga çäre görülmeli däl.",
+    "If you're having trouble clicking the :actionText button, copy and paste the URL below into your web browser": "Eger ':actionText' düwmesine basmakda kynçylyk çekýän bolsaňyz, aşakdaky URL-ni web brauzeriňize göçüriň:"
 }

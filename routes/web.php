@@ -15,7 +15,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::redirect('/', config('app.locale'));
 
-Route::redirect('/login', config('app.locale') . '/login' )->name('login');
+Route::get('/login', function(){
+    return redirect()->route('login', app()->getlocale());
+} )->name('login');
 
 Route::get('email/verify', [App\Http\Controllers\Auth\VerificationController::class, 'show'])->name('verification.notice');
 Route::get('email/verify/{id}/{hash}', [App\Http\Controllers\Auth\VerificationController::class, 'verify'])->name('verification.verify');
