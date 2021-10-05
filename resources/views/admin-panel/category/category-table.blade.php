@@ -7,7 +7,7 @@
                 <th>{{ __('Name') }} ({{ $language['name'] }})</th>
                 @endforeach
                 <th>{{ __('Img') }}</th>
-                <th>{{ __('Parent Category') }} ID</th>
+                <th>{{ __('Category') }} ID</th>
                 <th>{{ __('Actions') }}</th>
             </tr>
         </thead>

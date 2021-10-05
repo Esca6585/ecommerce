@@ -30,9 +30,9 @@ class CategoryController extends Controller
         if($categoryType == 'all'){
             $categories = Category::orderByDesc('id')->paginate($pagination);
         } else if($categoryType == 'parent'){
-            $categories = Category::whereNull('parent_id')->orderByDesc('id')->paginate($pagination);
+            $categories = Category::whereNull('category_id')->orderByDesc('id')->paginate($pagination);
         } else if($categoryType == 'sub'){
-            $categories = Category::whereNotNull('parent_id')->orderByDesc('id')->paginate($pagination);
+            $categories = Category::whereNotNull('category_id')->orderByDesc('id')->paginate($pagination);
         } 
         
         if(request()->ajax()){
@@ -60,9 +60,9 @@ class CategoryController extends Controller
      */
     public function create($lang, $categoryType, Category $category)
     {
-        $parentCategories = Category::whereNull('parent_id')->orderBy('id')->get();
+        $categories = Category::whereNull('category_id')->with('childrenCategories')->get();
 
-        return view('admin-panel.category.category-form', compact('category', 'categoryType', 'parentCategories'));
+        return view('admin-panel.category.category-form', compact('category', 'categoryType', 'categories'));
     }
 
     /**
@@ -107,7 +107,7 @@ class CategoryController extends Controller
         $category->name_tm = $request->name_tm;
         $category->name_en = $request->name_en;
         $category->name_ru = $request->name_ru;
-        $category->parent_id = $request->parent_id;
+        $category->category_id = $request->category_id;
         $category->img = $imgArray ?? null;
         
         $category->save();
@@ -134,7 +134,7 @@ class CategoryController extends Controller
      */
     public function edit($lang, $categoryType, Category $category)
     {
-        $parentCategories = Category::whereNull('parent_id')->orderBy('id')->get();
+        $parentCategories = Category::whereNull('category_id')->orderBy('id')->get();
 
         return view('admin-panel.category.category-form', compact('category', 'categoryType', 'parentCategories'));
     }
@@ -185,7 +185,7 @@ class CategoryController extends Controller
         $category->name_tm = $request->name_tm;
         $category->name_en = $request->name_en;
         $category->name_ru = $request->name_ru;
-        $category->parent_id = $request->parent_id;
+        $category->category_id = $request->category_id;
         
         $category->update();
         

@@ -14,7 +14,7 @@ class Category extends Model
         'name_en',
         'name_ru',
         'svg',
-        'parent_id',
+        'category_id',
     ];
 
     protected $casts = [
@@ -23,25 +23,16 @@ class Category extends Model
 
     public function parent()
     {
-        return $this->belongsTo(Category::class, 'parent_id', 'id');
+        return $this->belongsTo(Category::class);
     }
 
-    public function children()
+    public function categories()
     {
-        return $this->hasMany(Category::class, 'parent_id', 'id');
+        return $this->hasMany(Category::class);
     }
 
-    public function getDepth($parent_id) {
-
-        $category= Category::find($parent_id);
- 
-        if ($category) {
-            if ($category->parent_id == 0) {
-                return $category->category_name;
-            } else {
-                return self::getDepth($category->parent_id);
-            }
-        }
- 
-     }
+    public function childrenCategories()
+    {
+        return $this->hasMany(Category::class)->with('categories');
+    }
 }

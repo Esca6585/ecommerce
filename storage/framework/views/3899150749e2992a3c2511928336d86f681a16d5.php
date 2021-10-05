@@ -7,7 +7,7 @@
                 <th><?php echo e(__('Name')); ?> (<?php echo e($language['name']); ?>)</th>
                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                 <th><?php echo e(__('Img')); ?></th>
-                <th><?php echo e(__('Parent Category')); ?> ID</th>
+                <th><?php echo e(__('Category')); ?> ID</th>
                 <th><?php echo e(__('Actions')); ?></th>
             </tr>
         </thead>

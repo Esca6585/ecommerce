@@ -232,30 +232,10 @@
 
                                                     <div class="col-4">
                                                         <div class="form-group">
-                                                            <label>{{ __('Parent Category') }}</label>
-                                                            {{ $category->id ? 'selected=selected' : '' }}
-                                                            
-                                                            <select class="form-control" id="exampleSelect1" name="parent_id">
-                                                                <option value="" selected>_____{{ __('unselected') }}_____
+                                                            <label>{{ __('Category') }}</label>
+                                                            <select class="form-control" id="exampleSelect1" name="category_id">
+                                                                <option value="" {{ $category->id ? 'selected=selected' : '' }}>_____{{ __('unselected') }}_____
                                                                 </option>
-                                                                @foreach($parentCategories as $parentCategory)
-                                                                <optgroup
-                                                                    label="{{ $parentCategory->{ 'name_' . app()->getlocale() } }}">
-                                                                    <option value="{{ $parentCategory->id }}" {{ $category->parent_id == $parentCategory->id ? 'selected=selected' : '' }} >
-                                                                        {{ $parentCategory->{ 'name_' . app()->getlocale() } }} - ({{ __('Parent Category') }})
-                                                                    </option>
-                                                                    @foreach($parentCategory->children as $child)
-                                                                    <option value="{{ $child->id }}" {{ $category->parent_id == $child->id ? 'selected=selected' : '' }} >
-                                                                        * {{ $child->{ 'name_' . app()->getlocale() } }} -- ({{ __('Sub Category') }})
-                                                                    </option>
-                                                                        @foreach($child->children as $subchild)
-                                                                        <option value="{{ $subchild->id }}" {{ $category->parent_id == $subchild->id ? 'selected=selected' : '' }} > 
-                                                                            ** {{ $subchild->{ 'name_' . app()->getlocale() } }} --- (2-{{ __('Sub Category') }})
-                                                                        </option>
-                                                                        @endforeach
-                                                                    @endforeach
-                                                                </optgroup>
-                                                                @endforeach
                                                             </select>
 
                                                         </div>

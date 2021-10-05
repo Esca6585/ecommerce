@@ -26,7 +26,7 @@ class CategoryFactory extends Factory
             'name_ru' => $this->faker->word(),
             'name_en' => $this->faker->word(),
             'svg' => 'svg',
-            'parent_id' => null,
+            'category_id' => null,
         ];
     }
 }

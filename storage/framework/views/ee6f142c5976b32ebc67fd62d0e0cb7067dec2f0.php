@@ -264,31 +264,10 @@ unset($__errorArgs, $__bag); ?>
 
                                                     <div class="col-4">
                                                         <div class="form-group">
-                                                            <label><?php echo e(__('Parent Category')); ?></label>
-                                                            <?php echo e($category->id ? 'selected=selected' : ''); ?>
-
-                                                            
-                                                            <select class="form-control" id="exampleSelect1" name="parent_id">
-                                                                <option value="" selected>_____<?php echo e(__('unselected')); ?>_____
+                                                            <label><?php echo e(__('Category')); ?></label>
+                                                            <select class="form-control" id="exampleSelect1" name="category_id">
+                                                                <option value="" <?php echo e($category->id ? 'selected=selected' : ''); ?>>_____<?php echo e(__('unselected')); ?>_____
                                                                 </option>
-                                                                <?php $__currentLoopData = $parentCategories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $parentCategory): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                                                <optgroup
-                                                                    label="<?php echo e($parentCategory->{ 'name_' . app()->getlocale() }); ?>">
-                                                                    <option value="<?php echo e($parentCategory->id); ?>" <?php echo e($category->parent_id == $parentCategory->id ? 'selected=selected' : ''); ?> >
-                                                                        <?php echo e($parentCategory->{ 'name_' . app()->getlocale() }); ?> - (<?php echo e(__('Parent Category')); ?>)
-                                                                    </option>
-                                                                    <?php $__currentLoopData = $parentCategory->children; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $child): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                                                    <option value="<?php echo e($child->id); ?>" <?php echo e($category->parent_id == $child->id ? 'selected=selected' : ''); ?> >
-                                                                        * <?php echo e($child->{ 'name_' . app()->getlocale() }); ?> -- (<?php echo e(__('Sub Category')); ?>)
-                                                                    </option>
-                                                                        <?php $__currentLoopData = $child->children; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $subchild): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                                                        <option value="<?php echo e($subchild->id); ?>" <?php echo e($category->parent_id == $subchild->id ? 'selected=selected' : ''); ?> > 
-                                                                            ** <?php echo e($subchild->{ 'name_' . app()->getlocale() }); ?> --- (2-<?php echo e(__('Sub Category')); ?>)
-                                                                        </option>
-                                                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                                                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                                                                </optgroup>
-                                                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                                             </select>
 
                                                         </div>

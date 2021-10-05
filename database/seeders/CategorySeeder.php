@@ -23,7 +23,7 @@ class CategorySeeder extends Seeder
                 'name_en' => 'Foodstuffs',
                 'name_ru' => 'Продовольственные товары',
                 'img' => ['thumb' => 'assets/category/category-seeder/grocery-1.png',   'original' => 'assets/category/category-seeder/grocery-2.png'],
-                'parent_id' => null,
+                'category_id' => null,
             ],
                 // id=2
             [
@@ -31,7 +31,7 @@ class CategorySeeder extends Seeder
                 'name_en' => 'Beauty and care',
                 'name_ru' => 'Красота и уход',
                 'img' => ['thumb' => 'assets/category/category-seeder/cosmetics-1.png',   'original' => 'assets/category/category-seeder/cosmetics-2.png'],
-                'parent_id' => null,
+                'category_id' => null,
             ],
                 // id=3
             [
@@ -39,7 +39,7 @@ class CategorySeeder extends Seeder
                 'name_en' => 'Household chemicals',
                 'name_ru' => 'Бытовая химия',
                 'img' => ['thumb' => 'assets/category/category-seeder/shampoo-1.png',   'original' => 'assets/category/category-seeder/shampoo-2.png'],
-                'parent_id' => null,
+                'category_id' => null,
             ],
                 // id=4
             [
@@ -47,7 +47,7 @@ class CategorySeeder extends Seeder
                 'name_en' => 'For children and mothers',
                 'name_ru' => 'Для детей и мам',
                 'img' => ['thumb' => 'assets/category/category-seeder/baby-boy-1.png',   'original' => 'assets/category/category-seeder/baby-boy-2.png'],
-                'parent_id' => null,
+                'category_id' => null,
             ],
                 // id=5
             [
@@ -55,7 +55,7 @@ class CategorySeeder extends Seeder
                 'name_en' => 'Electronics',
                 'name_ru' => 'Электроника',
                 'img' => ['thumb' => 'assets/category/category-seeder/electronics-1.png',   'original' => 'assets/category/category-seeder/electronics-1.png'],
-                'parent_id' => null,
+                'category_id' => null,
             ],
                 // id=6
             [
@@ -63,7 +63,7 @@ class CategorySeeder extends Seeder
                 'name_en' => 'Household appliances',
                 'name_ru' => 'Бытовая техника',
                 'img' => ['thumb' => 'assets/category/category-seeder/house-appliances-1.png',   'original' => 'assets/category/category-seeder/house-appliances-2.png'],
-                'parent_id' => null,
+                'category_id' => null,
             ],
                 // id=7
             [
@@ -71,7 +71,7 @@ class CategorySeeder extends Seeder
                 'name_en' => 'A house and a garden',
                 'name_ru' => 'Дом и сад',
                 'img' => ['thumb' => 'assets/category/category-seeder/home-decor-1.png',   'original' => 'assets/category/category-seeder/home-decor-1.png'],
-                'parent_id' => null,
+                'category_id' => null,
             ],
                 // id=8
             [
@@ -79,7 +79,7 @@ class CategorySeeder extends Seeder
                 'name_en' => 'Car and motor',
                 'name_ru' => 'Автомобиль и мотор',
                 'img' => ['thumb' => 'assets/category/category-seeder/car-1.png',   'original' => 'assets/category/category-seeder/car-1.png'],
-                'parent_id' => null,
+                'category_id' => null,
             ],
                 // id=9
             [
@@ -87,7 +87,7 @@ class CategorySeeder extends Seeder
                 'name_en' => 'Computers and networks',
                 'name_ru' => 'Компьютеры и сети',
                 'img' => ['thumb' => 'assets/category/category-seeder/macbook-1.png',   'original' => 'assets/category/category-seeder/macbook-2.png'],
-                'parent_id' => null,
+                'category_id' => null,
             ],
                 // id=10
             [
@@ -95,7 +95,7 @@ class CategorySeeder extends Seeder
                 'name_en' => 'Other',
                 'name_ru' => 'Другие',
                 'img' => ['thumb' => 'assets/category/category-seeder/other-1.png',   'original' => 'assets/category/category-seeder/other-2.png'],
-                'parent_id' => null,
+                'category_id' => null,
             ],
         ];
 
@@ -107,7 +107,7 @@ class CategorySeeder extends Seeder
                 'name_en' => 'Fruits and vegetables',
                 'name_ru' => 'Фрукты и овощи',
                 'img' => null,
-                'parent_id' => 1,
+                'category_id' => 1,
             ],
                 // id=12
             [
@@ -115,7 +115,7 @@ class CategorySeeder extends Seeder
                 'name_en' => 'Meat and sausages',
                 'name_ru' => 'Мясные и колбасные изделия',
                 'img' => null,
-                'parent_id' => 1,
+                'category_id' => 1,
             ],
                 // id=13
             [
@@ -123,7 +123,7 @@ class CategorySeeder extends Seeder
                 'name_en' => 'Grocery',
                 'name_ru' => 'Бакалея',
                 'img' => null,
-                'parent_id' => 1,
+                'category_id' => 1,
             ],
                 // id=14
             [
@@ -131,7 +131,7 @@ class CategorySeeder extends Seeder
                 'name_en' => 'Bread and pastries',
                 'name_ru' => 'Хлеб и выпечка',
                 'img' => null,
-                'parent_id' => 1,
+                'category_id' => 1,
             ],
                 // id=15
             [
@@ -139,7 +139,7 @@ class CategorySeeder extends Seeder
                 'name_en' => 'Breakfast',
                 'name_ru' => 'Завтраки',
                 'img' => null,
-                'parent_id' => 1,
+                'category_id' => 1,
             ],
                 // id=16
             [
@@ -147,7 +147,7 @@ class CategorySeeder extends Seeder
                 'name_en' => 'Tea, coffee, hot drinks',
                 'name_ru' => 'Чай, кофе, горячие напитки',
                 'img' => null,
-                'parent_id' => 1,
+                'category_id' => 1,
             ],
                 // id=17
             [
@@ -155,7 +155,7 @@ class CategorySeeder extends Seeder
                 'name_en' => 'Kitchen, Culinary',
                 'name_ru' => 'Кухня, Кулинария',
                 'img' => null,
-                'parent_id' => 1,
+                'category_id' => 1,
             ],
                 // id=18
             [
@@ -163,7 +163,7 @@ class CategorySeeder extends Seeder
                 'name_en' => 'Canned food',
                 'name_ru' => 'Консервы',
                 'img' => null,
-                'parent_id' => 1,
+                'category_id' => 1,
             ],
                 // id=19
             [
@@ -171,7 +171,7 @@ class CategorySeeder extends Seeder
                 'name_en' => 'Ketchup, mayonnaise, sauce',
                 'name_ru' => 'Кетчуп, майонез, соус',
                 'img' => null,
-                'parent_id' => 1,
+                'category_id' => 1,
             ],
                 // id=20
             [
@@ -179,7 +179,7 @@ class CategorySeeder extends Seeder
                 'name_en' => 'Vegetable oil, vinegar',
                 'name_ru' => 'Масло растительное, уксус',
                 'img' => null,
-                'parent_id' => 1,
+                'category_id' => 1,
             ],
                 // id=21
             [
@@ -187,7 +187,7 @@ class CategorySeeder extends Seeder
                 'name_en' => 'Fast food',
                 'name_ru' => 'Обеды быстрого приготовления',
                 'img' => null,
-                'parent_id' => 1,
+                'category_id' => 1,
             ],
                 // id=22
             [
@@ -195,7 +195,7 @@ class CategorySeeder extends Seeder
                 'name_en' => 'Non-alcoholic beverages',
                 'name_ru' => 'Безалкогольные напитки',
                 'img' => null,
-                'parent_id' => 1,
+                'category_id' => 1,
             ],
                 // id=23
             [
@@ -203,7 +203,7 @@ class CategorySeeder extends Seeder
                 'name_en' => 'Cookies, crackers, waffles',
                 'name_ru' => 'Печенье, крекеры, вафли',
                 'img' => null,
-                'parent_id' => 1,
+                'category_id' => 1,
             ],
                 // id=24
             [
@@ -211,7 +211,7 @@ class CategorySeeder extends Seeder
                 'name_en' => 'Chocolate, sweets',
                 'name_ru' => 'Шоколад, конфеты, сладости',
                 'img' => null,
-                'parent_id' => 1,
+                'category_id' => 1,
             ],
                 // id=25
             [
@@ -219,7 +219,7 @@ class CategorySeeder extends Seeder
                 'name_en' => 'Other',
                 'name_ru' => 'Орехи, сухофрукты',
                 'img' => null,
-                'parent_id' => 1,
+                'category_id' => 1,
             ],
                 // id=26
             [
@@ -227,7 +227,7 @@ class CategorySeeder extends Seeder
                 'name_en' => 'Cakes, biscuits',
                 'name_ru' => 'Торты, бисквиты',
                 'img' => null,
-                'parent_id' => 1,
+                'category_id' => 1,
             ],
                 // id=27
             [
@@ -235,7 +235,7 @@ class CategorySeeder extends Seeder
                 'name_en' => 'Chips, croutons',
                 'name_ru' => 'Чипсы, сухарики',
                 'img' => null,
-                'parent_id' => 1,
+                'category_id' => 1,
             ],
                 // id=28
             [
@@ -243,7 +243,7 @@ class CategorySeeder extends Seeder
                 'name_en' => 'Dessert sauces, jam, honey',
                 'name_ru' => 'Десертные соусы, варенье, мед',
                 'img' => null,
-                'parent_id' => 1,
+                'category_id' => 1,
             ],
             // <-- end:: Azyk harytlar (Parent Category) id=1 -->
             
@@ -254,7 +254,7 @@ class CategorySeeder extends Seeder
                 'name_en' => 'Body care, perfumery',
                 'name_ru' => 'Уход за телом, парфюмерия',
                 'img' => null,
-                'parent_id' => 2,
+                'category_id' => 2,
             ],
                 // id=30
             [
@@ -262,7 +262,7 @@ class CategorySeeder extends Seeder
                 'name_en' => 'Oral care',
                 'name_ru' => 'Уход за полостью рта',
                 'img' => null,
-                'parent_id' => 2,
+                'category_id' => 2,
             ],
                 // id=31
             [
@@ -270,7 +270,7 @@ class CategorySeeder extends Seeder
                 'name_en' => 'Feminine hygiene items',
                 'name_ru' => 'Предметы женской гигиены',
                 'img' => null,
-                'parent_id' => 2,
+                'category_id' => 2,
             ],    
                 // id=32
             [
@@ -278,7 +278,7 @@ class CategorySeeder extends Seeder
                 'name_en' => 'Shaving and hair removal',
                 'name_ru' => 'Бритье и удаление волос',
                 'img' => null,
-                'parent_id' => 2,
+                'category_id' => 2,
             ],    
                 // id=33
             [
@@ -286,7 +286,7 @@ class CategorySeeder extends Seeder
                 'name_en' => 'Toilet paper, napkins',
                 'name_ru' => 'Туалетная бумага, салфетки',
                 'img' => null,
-                'parent_id' => 2,
+                'category_id' => 2,
             ],    
                 // id=34
             [
@@ -294,7 +294,7 @@ class CategorySeeder extends Seeder
                 'name_en' => 'Body care devices',
                 'name_ru' => 'Приборы по уходу за телом',
                 'img' => null,
-                'parent_id' => 2,
+                'category_id' => 2,
             ],   
                 // id=35
             [
@@ -302,7 +302,7 @@ class CategorySeeder extends Seeder
                 'name_en' => 'Watches, shoes, bags and other accessories',
                 'name_ru' => 'Часы, обувь, сумки и прочие аксессуары',
                 'img' => null,
-                'parent_id' => 2,
+                'category_id' => 2,
             ],    
                 // id=36
             [
@@ -310,7 +310,7 @@ class CategorySeeder extends Seeder
                 'name_en' => 'Health',
                 'name_ru' => 'Здоровье',
                 'img' => null,
-                'parent_id' => 2,
+                'category_id' => 2,
             ],    
             // <-- end:: Gözellik we ideg (Parent Category) id=2 -->
         ];
@@ -323,7 +323,7 @@ class CategorySeeder extends Seeder
                 'name_en' => $parentCategory['name_en'],
                 'name_ru' => $parentCategory['name_ru'],
                 'img' => $parentCategory['img'],
-                'parent_id' => $parentCategory['parent_id'],
+                'category_id' => $parentCategory['category_id'],
             ]); 
         }
         // <-- end:: Parent Category -->
@@ -336,7 +336,7 @@ class CategorySeeder extends Seeder
                 'name_en' => $subCategory['name_en'],
                 'name_ru' => $subCategory['name_ru'],
                 'img' => $subCategory['img'],
-                'parent_id' => $subCategory['parent_id'],
+                'category_id' => $subCategory['category_id'],
             ]); 
         }
         // <-- end:: Sub Category -->
