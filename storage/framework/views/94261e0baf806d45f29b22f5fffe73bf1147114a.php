@@ -17,12 +17,17 @@
     <!--end::Fonts-->
 
     <?php echo $__env->yieldContent('style'); ?>
+    
+    <link rel="stylesheet" href="<?php echo e(asset('metronic-template/v7/assets/css/alert.css')); ?>">
+
 
 </head>
 <!--end::Head-->
 <!--begin::Body-->
 <?php echo $__env->yieldContent('body'); ?>
 <!--end::Body-->
+
+<?php echo $__env->make('layouts.scroll-top', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
 </html>
 <?php /**PATH /home/ubuntu/Documents/domains/ecommerce/resources/views/layouts/admin-template-app.blade.php ENDPATH**/ ?>

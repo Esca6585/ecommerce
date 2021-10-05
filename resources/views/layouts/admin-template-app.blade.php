@@ -17,11 +17,16 @@
     <!--end::Fonts-->
 
     @yield('style')
+    
+    <link rel="stylesheet" href="{{ asset('metronic-template/v7/assets/css/alert.css') }}">
+
 
 </head>
 <!--end::Head-->
 <!--begin::Body-->
 @yield('body')
 <!--end::Body-->
+
+@include('layouts.scroll-top')
 
 </html>

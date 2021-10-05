@@ -1,61 +1,52 @@
 <?php if($paginator->hasPages()): ?>
-<div class="pagination p1">
-    <ul class="ul">
-        
-        <?php if($paginator->onFirstPage()): ?>
-        <a class="admin-page-link is-passive">
-            <li>
-                <i class="flaticon2-left-arrow"></i>
-            </li>
-        </a>
-        <?php else: ?>
-        <a href="<?php echo e($paginator->previousPageUrl()); ?>" class="admin-page-link">
-            <li>
-                <i class="flaticon2-left-arrow"></i>
-            </li>
-        </a>
-        <?php endif; ?>
+<div class="example-preview">
+    <!--begin::Pagination-->
+    <div class="d-flex justify-content-between align-items-center flex-wrap">
+        <div class="d-flex flex-wrap py-2 mr-3">
+            
+            <?php if($paginator->onFirstPage()): ?>
+            <a class="btn btn-icon btn-sm btn-light mr-2 my-1 disabled admin-page-link">
+                <i class="ki ki-bold-arrow-back icon-xs"></i>
+            </a>
+            <?php else: ?>
+            <a href="<?php echo e($paginator->previousPageUrl()); ?>"
+                class="btn btn-icon btn-sm btn-light mr-2 my-1 admin-page-link">
+                <i class="ki ki-bold-arrow-back icon-xs"></i>
+            </a>
+            <?php endif; ?>
 
-        
-        <?php $__currentLoopData = $elements; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $element): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-        
-        <?php if(is_string($element)): ?>
-        <a href="#" class="is-active admin-page-link">
-            <li class="li"><?php echo e($element); ?></li>
-        </a>
-        <?php endif; ?>
+            
+            <?php $__currentLoopData = $elements; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $element): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+            <?php if(is_string($element)): ?>
+            <a class="btn btn-icon btn-sm border-0 btn-light btn-hover-primary active mr-2 my-1 admin-page-link"><?php echo e($element); ?></a>
+            <?php endif; ?>
 
-        
-        <?php if(is_array($element)): ?>
-        <?php $__currentLoopData = $element; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $page => $url): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-        <?php if($page == $paginator->currentPage()): ?>
-        <a class="is-active admin-page-link">
-            <li class="li"><?php echo e($page); ?></li>
-        </a>
-        <?php else: ?>
-        <a href="<?php echo e($url); ?>" class="admin-page-link">
-            <li><?php echo e($page); ?></li>
-        </a>
-        <?php endif; ?>
-        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-        <?php endif; ?>
-        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+            
+            <?php if(is_array($element)): ?>
+            <?php $__currentLoopData = $element; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $page => $url): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+            <?php if($page == $paginator->currentPage()): ?>
+            <a class="btn btn-icon btn-sm border-0 btn-light active mr-2 my-1 admin-page-link"><?php echo e($page); ?></a>
 
-        
-        <?php if($paginator->hasMorePages()): ?>
-        <a href="<?php echo e($paginator->nextPageUrl()); ?>" class="admin-page-link">
-            <li>
-                <i class="flaticon2-right-arrow"></i>
-            </li>
-        </a>
-        <?php else: ?>
-        <a class="admin-page-link is-passive">
-            <li>
-                <i class="flaticon2-right-arrow"></i>
-            </li>
-        </a>
-        <?php endif; ?>
-    </ul>
+            <?php else: ?>
+            <a href="<?php echo e($url); ?>" class="btn btn-icon btn-sm border-0 btn-light mr-2 my-1 admin-page-link"><?php echo e($page); ?></a>
+
+            <?php endif; ?>
+            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+            <?php endif; ?>
+            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+
+            
+            <?php if($paginator->hasMorePages()): ?>
+            <a href="<?php echo e($paginator->nextPageUrl()); ?>" class="btn btn-icon btn-sm btn-light mr-2 my-1 admin-page-link">
+                <i class="ki ki-bold-arrow-next icon-xs"></i>
+            </a>
+            <?php else: ?>
+            <a class="btn btn-icon btn-sm btn-light mr-2 my-1 disabled admin-page-link">
+                <i class="ki ki-bold-arrow-next icon-xs"></i>
+            </a>
+            <?php endif; ?>
+        </div>
+    </div>
+    <!--end:: Pagination-->
 </div>
-<?php endif; ?>
-<?php /**PATH /home/ubuntu/Documents/domains/ecommerce/resources/views/layouts/pagination.blade.php ENDPATH**/ ?>
+<?php endif; ?><?php /**PATH /home/ubuntu/Documents/domains/ecommerce/resources/views/layouts/pagination.blade.php ENDPATH**/ ?>

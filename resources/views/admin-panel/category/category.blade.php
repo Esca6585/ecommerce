@@ -29,8 +29,6 @@
 <link href="{{ asset('metronic-template/v7/assets/css/themes/layout/aside/dark.css') }}" rel="stylesheet"
     type="text/css" />
 
-<link rel="stylesheet" href="{{ asset('metronic-template/v7/assets/css/admin-pagination.css') }}">
-
 @endsection
 
 @section('body')
@@ -209,9 +207,9 @@
                                     <div class="d-flex justify-content-between">
                                         <div class="dataTables_length" id="kt_datatable_length">
                                             <label>
-                                                <select id="datatable_length" name="datatable_length"
+                                                <select id="datatable_length" name="datatable_length2"
                                                     aria-controls="kt_datatable"
-                                                    class="custom-select custom-select-sm form-control form-control-sm">
+                                                    class="form-control form-control-sm font-weight-bold mr-4 border-0 bg-light" style="width: 65px;">
                                                     <option value="5">5</option>
                                                     <option value="10" selected>10</option>
                                                     <option value="15">15</option>
