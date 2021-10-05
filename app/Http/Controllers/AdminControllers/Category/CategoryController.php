@@ -39,7 +39,7 @@ class CategoryController extends Controller
             if($request->search) {
                 $searchQuery = trim($request->query('search'));
                 
-                $requestData = ['name_tm', 'name_en', 'name_ru', 'svg'];
+                $requestData = ['name_tm', 'name_en', 'name_ru'];
     
                 $categories = Category::where(function($q) use($requestData, $searchQuery) {
                                         foreach ($requestData as $field)
@@ -47,10 +47,10 @@ class CategoryController extends Controller
                                 })->paginate($pagination);
             }
             
-            return view('admin-panel.category.category-table', compact('categories', 'categoryType'))->render();
+            return view('admin-panel.category.category-table', compact('categories', 'categoryType', 'pagination'))->render();
         }
 
-        return view('admin-panel.category.category', compact('categories', 'categoryType'));
+        return view('admin-panel.category.category', compact('categories', 'categoryType', 'pagination'));
     }
 
     /**

@@ -11,3 +11,7 @@
     pointer-events: none;
     cursor: default;
 }
+
+#search_clear:hover {
+    cursor: pointer;
+}

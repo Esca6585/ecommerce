@@ -257,10 +257,27 @@
                                                         placeholder="<?php echo e(__('Search')); ?>..."
                                                         aria-controls="kt_datatable">
 
-                                                    <div class="input-group-append">
-                                                        <span class="input-group-text">
-                                                            <i
-                                                                class="quick-search-close ki ki-close icon-sm text-muted"></i>
+                                                        <div class="input-group-append">
+                                                        <span class="input-group-text" id="search_clear">
+                                                            <!--begin::Svg Icon | public/metronic-template/v8/assets/media/icons/duotone/Navigation/Close.svg-->
+                                                            <span class="svg-icon svg-icon-lg">
+                                                                <svg width="24px" height="24px" viewBox="0 0 24 24"
+                                                                    version="1.1" xmlns="http://www.w3.org/2000/svg"
+                                                                    xmlns:xlink="http://www.w3.org/1999/xlink">
+                                                                    <g id="Group"
+                                                                        transform="translate(12.000000, 12.000000) rotate(-45.000000) translate(-12.000000, -12.000000) translate(4.000000, 4.000000)"
+                                                                        fill="#000000">
+                                                                        <rect fill="#000000" id="Rectangle-185" x="0"
+                                                                            y="7" width="16" height="2" rx="1"></rect>
+                                                                        <rect fill="#000000" id="Rectangle-185-Copy"
+                                                                            opacity="0.5"
+                                                                            transform="translate(8.000000, 8.000000) rotate(-270.000000) translate(-8.000000, -8.000000) "
+                                                                            x="0" y="7" width="16" height="2" rx="1">
+                                                                        </rect>
+                                                                    </g>
+                                                                </svg>
+                                                                <!--end::Svg Icon-->
+                                                            </span>
                                                         </span>
                                                     </div>
                                                 </div>
