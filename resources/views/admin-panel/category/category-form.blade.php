@@ -1,7 +1,7 @@
 @extends('layouts.admin-template-app')
 
 @section('title')
-{{ __('Dashboard') }}
+{{ __('Categories') }} {{ __( ucfirst(request()->segment(count(request()->segments())))) }}
 @endsection
 
 @section('style')
@@ -166,10 +166,14 @@
                         <div class="container">
                             <!--begin::Card-->
                             <div class="card card-custom">
-                                <div class="card-header">
-                                    <h3 class="card-title">
-
-                                    </h3>
+                                <div class="card-header flex-wrap py-5">
+                                    <div class="card-title">
+                                        <h3 class="card-label">{{ __('Categories') }}
+                                            <span class="d-block text-muted pt-2 font-size-sm">
+                                                {{ __( ucfirst(request()->segment(count(request()->segments())))) }}
+                                            </span>
+                                        </h3>
+                                    </div>
 
                                 </div>
                                 <!--begin::Form-->
@@ -240,9 +244,48 @@
                                                                 <option value="{{ $parentCategory->id }}" {{ $parentCategory->id == $category->category_id ? 'selected=selected' : '' }}>{{ $parentCategory->{ 'name_' . app()->getlocale() } }}</option>
                                                                 @endforeach
                                                             </select>
-
                                                         </div>
                                                     </div>
+
+                                                    @if($category->img)
+                                                    @foreach($category->img as $key => $image)
+                                                    <div class="col">
+                                                        <div class="image-input image-input-outline"
+                                                            id="kt_image_{{ $key }}"
+                                                            data-images-count="{{ $key }}"
+                                                            style="background-image: url()">
+                                                            <div class="image-input-wrapper"
+                                                                style="background-image: url({{ asset($image) }})">
+                                                            </div>
+
+                                                            <label
+                                                                class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow"
+                                                                data-action="change" data-toggle="tooltip" title=""
+                                                                data-original-title="Change avatar">
+                                                                <i class="fa fa-pen icon-sm text-muted"></i>
+                                                                <input type="file" name="profile_avatar"
+                                                                    accept=".png, .jpg, .jpeg" />
+
+                                                                <input type="hidden" name="profile_avatar_remove" />
+                                                            </label>
+
+                                                            <span
+                                                                class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow"
+                                                                data-action="cancel" data-toggle="tooltip"
+                                                                title="Cancel avatar">
+                                                                <i class="ki ki-bold-close icon-xs text-muted"></i>
+                                                            </span>
+
+                                                            <span
+                                                                class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow"
+                                                                data-action="remove" data-toggle="tooltip"
+                                                                title="Remove avatar">
+                                                                <i class="ki ki-bold-close icon-xs text-muted"></i>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                    @endforeach
+                                                    @endif
 
                                                 </div>
                                             </div>
@@ -405,201 +448,7 @@
     <script src="{{ asset('metronic-template/v7/assets/plugins/global/plugins.bundle.js') }}"></script>
     <script src="{{ asset('metronic-template/v7/assets/plugins/custom/prismjs/prismjs.bundle.js') }}"></script>
     <script src="{{ asset('metronic-template/v7/assets/js/scripts.bundle.js') }}"></script>
-    
-    <script src="{{ asset('metronic-template/v7/assets/js/pages/crud/forms/widgets/select2.js') }}"></script>
-    
-    <script>
-        <code class="language-js">
-      // Class definition
-      var KTSelect2 = function() {
-       // Private functions
-       var demos = function() {
-        // basic
-        $('#kt_select2_1').select2({
-         placeholder: "Select a state"
-        });
-
-        // nested
-        $('#kt_select2_2').select2({
-         placeholder: "Select a state"
-        });
-
-        // multi select
-        $('#kt_select2_3').select2({
-         placeholder: "Select a state",
-        });
-
-        // basic
-        $('#kt_select2_4').select2({
-         placeholder: "Select a state",
-         allowClear: true
-        });
-
-        // loading data from array
-        var data = [{
-         id: 0,
-         text: 'Enhancement'
-        }, {
-         id: 1,
-         text: 'Bug'
-        }, {
-         id: 2,
-         text: 'Duplicate'
-        }, {
-         id: 3,
-         text: 'Invalid'
-        }, {
-         id: 4,
-         text: 'Wontfix'
-        }];
-
-        $('#kt_select2_5').select2({
-         placeholder: "Select a value",
-         data: data
-        });
-
-        // loading remote data
-
-        function formatRepo(repo) {
-         if (repo.loading) return repo.text;
-         var markup = "&lt;div class='select2-result-repository clearfix'&gt;" +
-          "&lt;div class='select2-result-repository__meta'&gt;" +
-          "&lt;div class='select2-result-repository__title'&gt;" + repo.full_name + "&lt;/div&gt;";
-         if (repo.description) {
-          markup += "&lt;div class='select2-result-repository__description'&gt;" + repo.description + "&lt;/div&gt;";
-         }
-         markup += "&lt;div class='select2-result-repository__statistics'&gt;" +
-          "&lt;div class='select2-result-repository__forks'&gt;&lt;i class='fa fa-flash'&gt;&lt;/i&gt; " + repo.forks_count + " Forks&lt;/div&gt;" +
-          "&lt;div class='select2-result-repository__stargazers'&gt;&lt;i class='fa fa-star'&gt;&lt;/i&gt; " + repo.stargazers_count + " Stars&lt;/div&gt;" +
-          "&lt;div class='select2-result-repository__watchers'&gt;&lt;i class='fa fa-eye'&gt;&lt;/i&gt; " + repo.watchers_count + " Watchers&lt;/div&gt;" +
-          "&lt;/div&gt;" +
-          "&lt;/div&gt;&lt;/div&gt;";
-         return markup;
-        }
-
-        function formatRepoSelection(repo) {
-         return repo.full_name || repo.text;
-        }
-
-        $("#kt_select2_6").select2({
-         placeholder: "Search for git repositories",
-         allowClear: true,
-         ajax: {
-          url: "https://api.github.com/search/repositories",
-          dataType: 'json',
-          delay: 250,
-          data: function(params) {
-           return {
-            q: params.term, // search term
-            page: params.page
-           };
-          },
-          processResults: function(data, params) {
-           // parse the results into the format expected by Select2
-           // since we are using custom formatting functions we do not need to
-           // alter the remote JSON data, except to indicate that infinite
-           // scrolling can be used
-           params.page = params.page || 1;
-
-           return {
-            results: data.items,
-            pagination: {
-             more: (params.page * 30) &lt; data.total_count
-            }
-           };
-          },
-          cache: true
-         },
-         escapeMarkup: function(markup) {
-          return markup;
-         }, // let our custom formatter work
-         minimumInputLength: 1,
-         templateResult: formatRepo, // omitted for brevity, see the source of this page
-         templateSelection: formatRepoSelection // omitted for brevity, see the source of this page
-        });
-
-        // custom styles
-
-        // tagging support
-        $('#kt_select2_12_1, #kt_select2_12_2, #kt_select2_12_3, #kt_select2_12_4').select2({
-         placeholder: "Select an option",
-        });
-
-        // disabled mode
-        $('#kt_select2_7').select2({
-         placeholder: "Select an option"
-        });
-
-        // disabled results
-        $('#kt_select2_8').select2({
-         placeholder: "Select an option"
-        });
-
-        // limiting the number of selections
-        $('#kt_select2_9').select2({
-         placeholder: "Select an option",
-         maximumSelectionLength: 2
-        });
-
-        // hiding the search box
-        $('#kt_select2_10').select2({
-         placeholder: "Select an option",
-         minimumResultsForSearch: Infinity
-        });
-
-        // tagging support
-        $('#kt_select2_11').select2({
-         placeholder: "Add a tag",
-         tags: true
-        });
-
-        // disabled results
-        $('.kt-select2-general').select2({
-         placeholder: "Select an option"
-        });
-       }
-
-       var modalDemos = function() {
-        $('#kt_select2_modal').on('shown.bs.modal', function () {
-         // basic
-         $('#kt_select2_1_modal').select2({
-          placeholder: "Select a state"
-         });
-
-         // nested
-         $('#kt_select2_2_modal').select2({
-          placeholder: "Select a state"
-         });
-
-         // multi select
-         $('#kt_select2_3_modal').select2({
-          placeholder: "Select a state",
-         });
-
-         // basic
-         $('#kt_select2_4_modal').select2({
-          placeholder: "Select a state",
-          allowClear: true
-         });
-        });
-       }
-
-       // Public functions
-       return {
-        init: function() {
-         demos();
-         modalDemos();
-        }
-       };
-      }();
-
-      // Initialization
-      jQuery(document).ready(function() {
-       KTSelect2.init();
-      });
-      </code>
-    </script>
-
+        
 </body>
 <!--end::Body-->
 @endsection

@@ -21,7 +21,7 @@
                 <td>
                     @if($category->img)
                         @foreach($category->img as $image)
-                            <img src="{{ asset($image) }}" alt="{{ asset($image) }}" width="30px">
+                            <img src="{{ asset($image) }}" alt="{{ $image }}" width="30px">
                             @break
                         @endforeach
                     @endif

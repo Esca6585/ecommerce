@@ -18,7 +18,7 @@ class Category extends Model
     ];
 
     protected $casts = [
-        'img' => 'object'
+        'img' => 'array'
     ];
 
     public function parent()

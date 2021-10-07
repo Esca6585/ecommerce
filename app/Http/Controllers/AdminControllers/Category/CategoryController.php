@@ -96,7 +96,7 @@ class CategoryController extends Controller
             $original = $path . $fileName;
             $thumb = $path . $imageFitName;
 
-            $imgArray[] = [
+            $imgArray = [
                 'thumb' => $thumb,
                 'original' => $original
             ];
@@ -174,7 +174,7 @@ class CategoryController extends Controller
             $original = $path . $fileName;
             $thumb = $path . $imageFitName;
 
-            $imgArray[] = [
+            $imgArray = [
                 'thumb' => $thumb,
                 'original' => $original
             ];
@@ -210,7 +210,7 @@ class CategoryController extends Controller
     public function deleteFolder($category)
     {
         if($category->img){
-            $folder = explode('/', $category->img->thumb);
+            $folder = explode('/', $category->img['thumb']);
 
             if($folder[2] != 'category-seeder'){
                 \File::deleteDirectory($folder[0] . '/' . $folder[1] . '/' . $folder[2]);
