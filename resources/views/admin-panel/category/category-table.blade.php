@@ -18,7 +18,14 @@
                 <td>{{ $category->name_tm }}</td>
                 <td>{{ $category->name_en }}</td>
                 <td>{{ $category->name_ru }}</td>
-                <td>surat</td>
+                <td>
+                    @if($category->img)
+                        @foreach($category->img as $image)
+                            <img src="{{ asset($image) }}" alt="{{ asset($image) }}" width="30px">
+                            @break
+                        @endforeach
+                    @endif
+                </td>
                 <td>
                     <a href="{{ route(Request::segment(4) . '.show', [ app()->getlocale(), $categoryType, $category->parent ? $category->parent->id : $category->id ] ) }}" class="{{ $category->parent ? 'text-warning' : 'text-primary' }}">
                         {{ $category->parent ? $category->parent->{ 'name_' . app()->getlocale() } : __('Parent Category') }}

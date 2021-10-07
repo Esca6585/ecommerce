@@ -223,7 +223,7 @@
                                             <form method="get" class="quick-search-form">
                                                 <div class="input-group">
                                                     <div class="input-group-prepend">
-                                                        <span class="input-group-text">
+                                                        <span class="input-group-text" id="search_button">
                                                             <span class="svg-icon svg-icon-lg">
                                                                 <!--begin::Svg Icon | path:assets/media/svg/icons/General/Search.svg-->
                                                                 <svg xmlns="http://www.w3.org/2000/svg"

@@ -18,7 +18,14 @@
                 <td><?php echo e($category->name_tm); ?></td>
                 <td><?php echo e($category->name_en); ?></td>
                 <td><?php echo e($category->name_ru); ?></td>
-                <td>surat</td>
+                <td>
+                    <?php if($category->img): ?>
+                        <?php $__currentLoopData = $category->img; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $image): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <img src="<?php echo e(asset($image)); ?>" alt="<?php echo e(asset($image)); ?>" width="30px">
+                            <?php break; ?>
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                    <?php endif; ?>
+                </td>
                 <td>
                     <a href="<?php echo e(route(Request::segment(4) . '.show', [ app()->getlocale(), $categoryType, $category->parent ? $category->parent->id : $category->id ] )); ?>" class="<?php echo e($category->parent ? 'text-warning' : 'text-primary'); ?>">
                         <?php echo e($category->parent ? $category->parent->{ 'name_' . app()->getlocale() } : __('Parent Category')); ?>

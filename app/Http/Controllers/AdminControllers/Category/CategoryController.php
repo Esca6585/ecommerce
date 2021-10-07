@@ -60,9 +60,9 @@ class CategoryController extends Controller
      */
     public function create($lang, $categoryType, Category $category)
     {
-        $categories = Category::all();
+        $parentCategories = Category::all();
 
-        return view('admin-panel.category.category-form', compact('category', 'categoryType', 'categories'));
+        return view('admin-panel.category.category-form', compact('category', 'categoryType', 'parentCategories'));
     }
 
     /**
@@ -134,7 +134,7 @@ class CategoryController extends Controller
      */
     public function edit($lang, $categoryType, Category $category)
     {
-        $parentCategories = Category::whereNull('category_id')->orderBy('id')->get();
+        $parentCategories = Category::all();
 
         return view('admin-panel.category.category-form', compact('category', 'categoryType', 'parentCategories'));
     }

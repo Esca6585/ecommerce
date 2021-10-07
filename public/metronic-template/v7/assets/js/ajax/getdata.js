@@ -66,10 +66,6 @@ function getSearchData(search, pagination){
     });
 }
 
-searchClear();
-
-alertFade();
-
 $(document).on('click', '#search_clear', function () {
     searchClear();
     location.reload();
@@ -80,10 +76,21 @@ $(document).on('click', '#search_button', function () {
     location.reload();
 });
 
+searchClear();
+
+alertFade();
+
+showClear();
+
+
 function alertFade(){
     $("#alert-message").delay(2000).fadeOut(1000); // change 5000 to number of seconds in milliseconds
 }
 
 function searchClear(){
     $("#datatable_search").val('');
+}
+
+function showClear(){
+    $("#datatable_length").val(10);
 }

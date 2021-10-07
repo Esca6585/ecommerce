@@ -230,16 +230,14 @@
                                                         </div>
                                                     </div>
 
-                                                    
-
                                                     <div class="col-4">
                                                         <div class="form-group">
                                                             <label>{{ __('Category') }}</label>
                                                             <select class="form-control" id="exampleSelect1" name="category_id">
-                                                                <option value="" {{ $category->id ? 'selected=selected' : '' }}>_____{{ __('unselected') }}_____
+                                                                <option value="">---{{ __('unselected') }}---
                                                                 </option>
-                                                                @foreach($categories as $category)
-                                                                <option value="{{ $category->id }}" {{ $category->id ? 'selected=selected' : '' }}>{{ $category->{ 'name_' . app()->getlocale() } }}</option>
+                                                                @foreach($parentCategories as $parentCategory)
+                                                                <option value="{{ $parentCategory->id }}" {{ $parentCategory->id == $category->category_id ? 'selected=selected' : '' }}>{{ $parentCategory->{ 'name_' . app()->getlocale() } }}</option>
                                                                 @endforeach
                                                             </select>
 
