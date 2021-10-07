@@ -215,13 +215,11 @@
                                                 <select id="datatable_length" name="datatable_length2"
                                                     aria-controls="kt_datatable"
                                                     class="form-control form-control-sm font-weight-bold mr-4 border-0 bg-light" style="width: 65px;">
-                                                    <option value="5">5</option>
-                                                    <option value="10" selected>10</option>
-                                                    <option value="15">15</option>
-                                                    <option value="20">20</option>
-                                                    <option value="25">25</option>
-                                                    <option value="50">50</option>
-                                                    <option value="100">100</option>
+                                                    
+                                                    <?php $__currentLoopData = [5,10,15,20,25,50,100]; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $number): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                    <option value="<?php echo e($number); ?>" <?php echo e($pagination == $number ? 'selected=selected' : ''); ?> ><?php echo e($number); ?></option>
+                                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+
                                                 </select>
                                             </label>
                                         </div>

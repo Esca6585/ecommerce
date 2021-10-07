@@ -5,7 +5,7 @@
         <div class="d-flex flex-wrap py-2 mr-3">
             {{-- Previous Page Link --}}
             @if ($paginator->onFirstPage())
-            <a class="btn btn-icon btn-sm btn-light mr-2 my-1 disabled admin-page-link">
+            <a href="{{ $paginator->previousPageUrl() }}" class="btn btn-icon btn-sm btn-light mr-2 my-1 admin-page-link disabled">
                 <i class="ki ki-bold-arrow-back icon-xs"></i>
             </a>
             @else
@@ -26,7 +26,6 @@
             @foreach ($element as $page => $url)
             @if ($page == $paginator->currentPage())
             <a class="btn btn-icon btn-sm border-0 btn-light active mr-2 my-1 admin-page-link">{{ $page }}</a>
-
             @else
             <a href="{{ $url }}" class="btn btn-icon btn-sm border-0 btn-light mr-2 my-1 admin-page-link">{{ $page }}</a>
 
@@ -41,7 +40,7 @@
                 <i class="ki ki-bold-arrow-next icon-xs"></i>
             </a>
             @else
-            <a class="btn btn-icon btn-sm btn-light mr-2 my-1 disabled admin-page-link">
+            <a href="{{ $paginator->nextPageUrl() }}" class="btn btn-icon btn-sm btn-light mr-2 my-1 admin-page-link disabled">
                 <i class="ki ki-bold-arrow-next icon-xs"></i>
             </a>
             @endif

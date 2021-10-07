@@ -210,13 +210,11 @@
                                                 <select id="datatable_length" name="datatable_length2"
                                                     aria-controls="kt_datatable"
                                                     class="form-control form-control-sm font-weight-bold mr-4 border-0 bg-light" style="width: 65px;">
-                                                    <option value="5">5</option>
-                                                    <option value="10" selected>10</option>
-                                                    <option value="15">15</option>
-                                                    <option value="20">20</option>
-                                                    <option value="25">25</option>
-                                                    <option value="50">50</option>
-                                                    <option value="100">100</option>
+                                                    
+                                                    @foreach([5,10,15,20,25,50,100] as $number)
+                                                    <option value="{{ $number }}" {{ $pagination == $number ? 'selected=selected' : ''}} >{{ $number }}</option>
+                                                    @endforeach
+
                                                 </select>
                                             </label>
                                         </div>

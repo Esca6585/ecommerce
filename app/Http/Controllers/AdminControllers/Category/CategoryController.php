@@ -60,7 +60,7 @@ class CategoryController extends Controller
      */
     public function create($lang, $categoryType, Category $category)
     {
-        $categories = Category::whereNull('category_id')->with('childrenCategories')->get();
+        $categories = Category::all();
 
         return view('admin-panel.category.category-form', compact('category', 'categoryType', 'categories'));
     }
