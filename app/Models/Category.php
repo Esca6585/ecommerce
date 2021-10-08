@@ -14,11 +14,12 @@ class Category extends Model
         'name_en',
         'name_ru',
         'svg',
+        'images',
         'category_id',
     ];
 
     protected $casts = [
-        'img' => 'array'
+        'images' => 'object'
     ];
 
     public function parent()
@@ -34,9 +35,5 @@ class Category extends Model
     public function childrenCategories()
     {
         return $this->hasMany(Category::class)->with('categories');
-    }
-
-    public function products() {
-        return $this->belongsToMany(Product::class, 'category_product', 'category_id', 'product_id');
     }
 }

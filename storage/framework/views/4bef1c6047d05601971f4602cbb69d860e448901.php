@@ -173,11 +173,13 @@
                                             <div class="card card-custom card-stretch">
                                                 <div class="card-body p-0 rounded px-10 py-15 d-flex align-items-center justify-content-center"
                                                     style="background-color: #1BC5BD;">
-                                                    <?php $__currentLoopData = $category->img; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $image): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                                    <img src="<?php echo e(asset($image)); ?>" class="mw-100 w-200px"
-                                                        style="transform: scale(1.6);">
-                                                    <?php break; ?>
-                                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                                    <?php if($category->images): ?>
+                                                        <?php $__currentLoopData = $category->images; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $image): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                        <img src="<?php echo e(asset($image)); ?>" class="mw-100 w-200px"
+                                                            style="transform: scale(1.6);">
+                                                        <?php break; ?>
+                                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                                    <?php endif; ?>
                                                 </div>
                                             </div>
                                             <!--end::Image-->
@@ -198,11 +200,11 @@
                                     </div>
                                     <div class="row mb-6">
                                         <!--begin::Info-->
-                                        <?php if($category->img): ?>
-                                        <?php $__currentLoopData = $category->img; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $image): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                        <?php if($category->images): ?>
+                                        <?php $__currentLoopData = $category->images; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $image): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                         <div class="col m-5">
                                             <div class="image-input image-input-outline" id="kt_image_<?php echo e($key); ?>"
-                                                data-images-count="<?php echo e(count($category->img)); ?>"
+                                                data-images-count=""
                                                 style="background-image: url();">
                                                 <div class="image-input-wrapper"
                                                     style="background-image: url(<?php echo e(asset($image)); ?>)">

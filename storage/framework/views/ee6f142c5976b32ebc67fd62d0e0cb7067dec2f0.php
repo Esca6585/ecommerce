@@ -281,8 +281,8 @@ unset($__errorArgs, $__bag); ?>
                                                         </div>
                                                     </div>
 
-                                                    <?php if($category->img): ?>
-                                                    <?php $__currentLoopData = $category->img; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $image): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                    <?php if($category->images): ?>
+                                                    <?php $__currentLoopData = $category->images; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $image): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                                     <div class="col">
                                                         <div class="image-input image-input-outline"
                                                             id="kt_image_<?php echo e($key); ?>"

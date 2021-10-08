@@ -10,14 +10,39 @@ use App\Http\Requests\ProductRequest;
 
 class ProductController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth:admin');
+    }
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request, $lang, $pagination = 10)
     {
-        //
+        if($request->pagination) {
+            $pagination = (int)$request->pagination;
+        }
+
+        $products = Product::orderByDesc('id')->paginate($pagination);
+        
+        if(request()->ajax()){
+            if($request->search) {
+                $searchQuery = trim($request->query('search'));
+                
+                $requestData = ['name_tm', 'name_en', 'name_ru'];
+    
+                $products = Product::where(function($q) use($requestData, $searchQuery) {
+                                        foreach ($requestData as $field)
+                                        $q->orWhere($field, 'like', "%{$searchQuery}%");
+                                })->paginate($pagination);
+            }
+            
+            return view('admin-panel.product.product-table', compact('products', 'pagination'))->render();
+        }
+
+        return view('admin-panel.product.product', compact('products', 'pagination'));
     }
 
     /**

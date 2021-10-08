@@ -247,8 +247,8 @@
                                                         </div>
                                                     </div>
 
-                                                    @if($category->img)
-                                                    @foreach($category->img as $key => $image)
+                                                    @if($category->images)
+                                                    @foreach($category->images as $key => $image)
                                                     <div class="col">
                                                         <div class="image-input image-input-outline"
                                                             id="kt_image_{{ $key }}"

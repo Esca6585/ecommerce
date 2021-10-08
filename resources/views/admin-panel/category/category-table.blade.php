@@ -19,8 +19,8 @@
                 <td>{{ $category->name_en }}</td>
                 <td>{{ $category->name_ru }}</td>
                 <td>
-                    @if($category->img)
-                        @foreach($category->img as $image)
+                    @if($category->images)
+                        @foreach($category->images as $image)
                             <img src="{{ asset($image) }}" alt="{{ $image }}" width="30px">
                             @break
                         @endforeach

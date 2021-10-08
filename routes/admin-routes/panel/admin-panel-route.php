@@ -17,6 +17,7 @@ Route::group([
         
         Route::resources([
             '/{categoryType}/category' => App\Http\Controllers\AdminControllers\Category\CategoryController::class,
+            '/brand' => App\Http\Controllers\AdminControllers\Brand\BrandController::class,
             '/product' => App\Http\Controllers\AdminControllers\Product\ProductController::class,
         ]);
     });

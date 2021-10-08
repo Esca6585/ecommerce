@@ -171,11 +171,13 @@
                                             <div class="card card-custom card-stretch">
                                                 <div class="card-body p-0 rounded px-10 py-15 d-flex align-items-center justify-content-center"
                                                     style="background-color: #1BC5BD;">
-                                                    @foreach($category->img as $image)
-                                                    <img src="{{ asset($image) }}" class="mw-100 w-200px"
-                                                        style="transform: scale(1.6);">
-                                                    @break
-                                                    @endforeach
+                                                    @if($category->images)
+                                                        @foreach($category->images as $image)
+                                                        <img src="{{ asset($image) }}" class="mw-100 w-200px"
+                                                            style="transform: scale(1.6);">
+                                                        @break
+                                                        @endforeach
+                                                    @endif
                                                 </div>
                                             </div>
                                             <!--end::Image-->
@@ -195,11 +197,11 @@
                                     </div>
                                     <div class="row mb-6">
                                         <!--begin::Info-->
-                                        @if($category->img)
-                                        @foreach($category->img as $key => $image)
+                                        @if($category->images)
+                                        @foreach($category->images as $key => $image)
                                         <div class="col m-5">
                                             <div class="image-input image-input-outline" id="kt_image_{{ $key }}"
-                                                data-images-count="{{ count($category->img) }}"
+                                                data-images-count=""
                                                 style="background-image: url();">
                                                 <div class="image-input-wrapper"
                                                     style="background-image: url({{ asset($image) }})">
