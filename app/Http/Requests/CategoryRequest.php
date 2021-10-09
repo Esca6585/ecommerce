@@ -27,8 +27,8 @@ class CategoryRequest extends FormRequest
             'name_tm' => 'required',
             'name_en' => 'required',
             'name_ru' => 'required',
-            'img' => 'nullable',
-            'parent_id' => 'nullable',
+            'images' => 'nullable',
+            'category_id' => 'nullable',
         ];
     }
 }

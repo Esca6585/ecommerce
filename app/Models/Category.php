@@ -13,7 +13,6 @@ class Category extends Model
         'name_tm',
         'name_en',
         'name_ru',
-        'svg',
         'images',
         'category_id',
     ];
@@ -30,6 +29,11 @@ class Category extends Model
     public function categories()
     {
         return $this->hasMany(Category::class,'category_id', 'id');
+    }
+
+    public function brands()
+    {
+        return $this->hasMany(Brand::class,'category_id', 'id');
     }
 
     public function childrenCategories()

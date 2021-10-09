@@ -14,9 +14,30 @@ class BrandController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request, $lang, $pagination = 10)
     {
-        //
+        if($request->pagination) {
+            $pagination = (int)$request->pagination;
+        }
+
+        $brands = Brand::orderByDesc('id')->paginate($pagination);
+        
+        if(request()->ajax()){
+            if($request->search) {
+                $searchQuery = trim($request->query('search'));
+                
+                $requestData = ['name'];
+    
+                $brands = Brand::where(function($q) use($requestData, $searchQuery) {
+                                        foreach ($requestData as $field)
+                                        $q->orWhere($field, 'like', "%{$searchQuery}%");
+                                })->paginate($pagination);
+            }
+            
+            return view('admin-panel.brand.brand-table', compact('brands', 'pagination'))->render();
+        }
+
+        return view('admin-panel.brand.brand', compact('brands', 'pagination'));
     }
 
     /**
