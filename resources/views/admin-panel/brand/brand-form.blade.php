@@ -141,14 +141,13 @@
                                     <ul
                                         class="breadcrumb breadcrumb-transparent breadcrumb-dot font-weight-bold p-0 my-2 font-size-sm">
                                         <li class="breadcrumb-item text-muted">
-                                            <a href="{{ route('category.index', [ app()->getlocale(), 'all' ]) }}"
-                                                class="text-muted">{{ __('Categories') }}</a>
+                                            <a href="{{ route('brand.index', [ app()->getlocale() ]) }}"
+                                                class="text-muted">{{ __('Brands') }}</a>
                                         </li>
 
                                         <li class="breadcrumb-item text-muted">
-                                            <a href="{{ route('category.index', [ app()->getlocale(), $categoryType ]) }}"
-                                                class="text-muted">
-                                                {{ __( ucfirst(Request::segment(3)) . ' Categories') }}
+                                            <a href="{{ route('brand.index', [ app()->getlocale() ]) }}"
+                                                class="text-muted"> {{ __( ucfirst(request()->segment(count(request()->segments())))) }}
                                             </a>
                                         </li>
                                     </ul>
@@ -168,7 +167,7 @@
                             <div class="card card-custom">
                                 <div class="card-header flex-wrap py-5">
                                     <div class="card-title">
-                                        <h3 class="card-label">{{ __('Categories') }}
+                                        <h3 class="card-label">{{ __('Brands') }}
                                             <span class="d-block text-muted pt-2 font-size-sm">
                                                 {{ __( ucfirst(request()->segment(count(request()->segments())))) }}
                                             </span>
@@ -177,15 +176,15 @@
 
                                 </div>
                                 <!--begin::Form-->
-                                @if($category->id)
+                                @if($brand->id)
                                 <form
-                                    action="{{ route(Request::segment(4) . '.update', [ app()->getlocale(), $categoryType, $category->id ] ) }}"
+                                    action="{{ route(Request::segment(3) . '.update', [ app()->getlocale(), $brand->id ] ) }}"
                                     method="post" enctype="multipart/form-data">
                                     @csrf
                                     @method('PUT')
                                     @else
                                     <form
-                                        action="{{ route(Request::segment(4) . '.store', [ app()->getlocale(), $categoryType ] ) }}"
+                                        action="{{ route(Request::segment(3) . '.store', [ app()->getlocale() ] ) }}"
                                         method="post" enctype="multipart/form-data">
                                         @csrf
                                         @endif
@@ -193,18 +192,17 @@
                                         <div class="card-body">
                                             <div class="container">
                                                 <div class="row">
-                                                    @foreach (Config::get('languages') as $lang => $language)
                                                     <div class="col-4">
                                                         <div class="form-group">
-                                                            <label>{{ __('Name') }} ({{ $language['name'] }})</label>
+                                                            <label>{{ __('Name') }}</label>
 
                                                             <input type="text"
-                                                                class="form-control @error('name_' . $lang ) is-invalid @enderror"
-                                                                name="name_{{ $lang }}"
-                                                                placeholder="{{ __('Name') }} ({{ $language['name'] }})..."
-                                                                value="{{ $category->{ 'name_' . $lang } ?? '' }}{{ request()->segment(count(request()->segments())) == 'create' ? old('name_' . $lang) : '' }}" />
+                                                                class="form-control @error('name') is-invalid @enderror"
+                                                                name="name"
+                                                                placeholder="{{ __('Name') }}..."
+                                                                value="{{ $brand->name }}{{ request()->segment(count(request()->segments())) == 'create' ? old('name') : '' }}" />
 
-                                                            @error('name_' . $lang )
+                                                            @error('name')
                                                             <div class="fv-plugins-message-container invalid-feedback">
                                                                 <div data-field="email" data-validator="notEmpty">
                                                                     {{ $message }}
@@ -214,16 +212,16 @@
                                                         </div>
 
                                                     </div>
-                                                    @endforeach
 
                                                     <div class="col-4">
                                                         <div class="form-group">
-                                                            <label>{{ __('Img') }}</label>
+                                                            <label>{{ __('Image') }}</label>
 
                                                             <input type="file"
-                                                                class="form-control @error('svg') is-invalid @enderror"
-                                                                name="img" placeholder="{{ __('Img') }}..." />
-                                                            @error('img')
+                                                                class="form-control @error('image') is-invalid @enderror"
+                                                                name="image" placeholder="{{ __('Image') }}..." />
+
+                                                            @error('image')
                                                             <div class="fv-plugins-message-container invalid-feedback">
                                                                 <div data-field="email" data-validator="notEmpty">
                                                                     {{ $message }}
@@ -235,14 +233,14 @@
 
                                                     <div class="col-4">
                                                         <div class="form-group">
-                                                            <label>{{ __('Category') }}</label>
+                                                            <label>{{ __('Brand') }}</label>
                                                             <select class="form-control" id="exampleSelect1"
                                                                 name="category_id">
                                                                 <option value="">---{{ __('unselected') }}---
                                                                 </option>
                                                                 @foreach($parentCategories as $parentCategory)
                                                                 <option value="{{ $parentCategory->id }}"
-                                                                    {{ $parentCategory->id == $category->category_id ? 'selected=selected' : '' }}>
+                                                                    {{ $parentCategory->id == $brand->category_id ? 'selected=selected' : '' }}>
                                                                     {{ $parentCategory->{ 'name_' . app()->getlocale() } }}
                                                                 </option>
                                                                 @endforeach
@@ -250,8 +248,8 @@
                                                         </div>
                                                     </div>
 
-                                                    @if($category->img)
-                                                    @foreach($category->img as $key => $image)
+                                                    @if($brand->images)
+                                                    @foreach($brand->images as $key => $image)
                                                     <div class="col">
                                                         <div class="image-input image-input-outline"
                                                             id="kt_image_{{ $key }}" data-images-count="{{ $key }}"
@@ -310,12 +308,12 @@
                                             </a>
 
                                             <button type="submit"
-                                                title="{{ $category->id ? __('Edit') : __('Create') }}"
-                                                class="btn {{ $category->id ? 'btn-warning' : 'btn-primary' }} font-weight-bolder">
+                                                title="{{ $brand->id ? __('Edit') : __('Create') }}"
+                                                class="btn {{ $brand->id ? 'btn-warning' : 'btn-primary' }} font-weight-bolder">
                                                 <span class="svg-icon svg-icon-md">
-                                                    @if($category->id)
+                                                    @if($brand->id)
                                                     <span
-                                                        class="svg-icon svg-icon-md {{ $category->id ? 'svg-icon-dark' : '' }}">
+                                                        class="svg-icon svg-icon-md {{ $brand->id ? 'svg-icon-dark' : '' }}">
                                                         <svg xmlns="http://www.w3.org/2000/svg"
                                                             xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
                                                             height="24px" viewBox="0 0 24 24" version="1.1">
@@ -354,8 +352,8 @@
                                                     </svg>
                                                     @endif
                                                 </span>
-                                                <span class="{{ $category->id ? 'text-dark' : '' }}">
-                                                    {{ $category->id ? __('Edit') : __('Create') }}
+                                                <span class="{{ $brand->id ? 'text-dark' : '' }}">
+                                                    {{ $brand->id ? __('Edit') : __('Create') }}
                                                 </span>
                                             </button>
                                         </div>

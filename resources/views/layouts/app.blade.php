@@ -12,7 +12,7 @@
 		<meta property="og:type" content="article" />
 		<meta property="og:title" content="Metronic - Bootstrap 5 HTML, VueJS, React, Angular &amp; Laravel Admin Dashboard Theme" />
 		<meta property="og:site_name" content="Keenthemes | Metronic" />
-		<link rel="shortcut icon" href="{{ asset('metronic-template/v8/assets/media/logos/favicon.ico') }}" />
+		<link rel="shortcut icon" href="{{ asset('metronic-template/v8/assets/media/logos/sumbar-market-logo-2-2.png') }}" />
 		<!--begin::Fonts-->
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" />
 		<!--end::Fonts-->

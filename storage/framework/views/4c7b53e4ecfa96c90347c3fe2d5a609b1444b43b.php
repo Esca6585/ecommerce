@@ -15,16 +15,16 @@
                 <td><?php echo e($loop->iteration); ?></td>
                 <td><?php echo e($brand->name); ?></td>
                 <td>
-                    <?php if($brand->img): ?>
-                        <?php $__currentLoopData = $brand->img; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $image): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                            <img src="<?php echo e(asset($image)); ?>" alt="<?php echo e($image); ?>" width="30px">
+                    <?php if($brand->images): ?>
+                        <?php $__currentLoopData = $brand->images; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $image): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <img src="<?php echo e(asset($image)); ?>" alt="<?php echo e($image); ?>" width="50px">
                             <?php break; ?>
                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                     <?php endif; ?>
                 </td>
                 <td>
-                    <a href="<?php echo e(route(Request::segment(4) . '.show', [ app()->getlocale(), $brand->parent ? $brand->parent->id : $brand->id ] )); ?>" class="<?php echo e($brand->parent ? 'text-warning' : 'text-primary'); ?>">
-                        <?php echo e($brand->parent ? $brand->parent->{ 'name_' . app()->getlocale() } : __('Parent brand')); ?>
+                    <a href="<?php echo e(route(Request::segment(3) . '.show', [ app()->getlocale(), $brand->parent ? $brand->parent->id : $brand->id ] )); ?>" class="<?php echo e($brand->parent ? 'text-warning' : 'text-primary'); ?>">
+                        <?php echo e($brand->category->{ 'name_' . app()->getlocale() }); ?>
 
                     </a>
                 </td>

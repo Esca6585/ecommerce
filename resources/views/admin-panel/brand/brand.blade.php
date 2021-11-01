@@ -142,15 +142,7 @@
                                     <ul
                                         class="breadcrumb breadcrumb-transparent breadcrumb-dot font-weight-bold p-0 my-2 font-size-sm">
                                         <li class="breadcrumb-item text-muted">
-                                            <a href="{{ route('brand.index', [ app()->getlocale() ]) }}"
-                                                class="text-muted">{{ __('Brands') }}</a>
-                                        </li>
-
-                                        <li class="breadcrumb-item text-muted">
-                                            <a href="{{ route('brand.index', [ app()->getlocale() ]) }}"
-                                                class="text-muted">
-                                                {{ __( ucfirst(Request::segment(3)) . ' Brands') }}
-                                            </a>
+                                            <a href="{{ route('brand.index', [ app()->getlocale() ]) }}" class="text-muted">{{ __('Brands') }}</a>
                                         </li>
                                     </ul>
                                     <!--end::Breadcrumb-->
@@ -169,11 +161,7 @@
                             <div class="card card-custom">
                                 <div class="card-header flex-wrap py-5">
                                     <div class="card-title">
-                                        <h3 class="card-label">{{ __('Brands') }}
-                                            <span class="d-block text-muted pt-2 font-size-sm">
-                                                {{ __( ucfirst(Request::segment(3)) . ' Brands') }}
-                                            </span>
-                                        </h3>
+                                        <h3 class="card-label">{{ __('Brands') }}</h3>
                                     </div>
                                     <div class="card-toolbar">
                                         <!--begin::Button-->

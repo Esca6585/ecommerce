@@ -85,7 +85,7 @@
             </li>
             <!--end::Categories-->
             <!--begin::Brand-->
-            <li class="menu-item <?php echo e(Request::is('*/admin/brand') ? 'menu-item-active' : ''); ?>" aria-haspopup="true">
+            <li class="menu-item <?php echo e(Request::is('*/admin/brand*') ? 'menu-item-active' : ''); ?>" aria-haspopup="true">
                 <a href="<?php echo e(route('brand.index', app()->getlocale() )); ?>" class="menu-link">
                     <span class="svg-icon menu-icon">
                         <svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1"

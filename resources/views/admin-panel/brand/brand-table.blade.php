@@ -15,16 +15,16 @@
                 <td>{{ $loop->iteration }}</td>
                 <td>{{ $brand->name }}</td>
                 <td>
-                    @if($brand->img)
-                        @foreach($brand->img as $image)
-                            <img src="{{ asset($image) }}" alt="{{ $image }}" width="30px">
+                    @if($brand->images)
+                        @foreach($brand->images as $image)
+                            <img src="{{ asset($image) }}" alt="{{ $image }}" width="50px">
                             @break
                         @endforeach
                     @endif
                 </td>
                 <td>
-                    <a href="{{ route(Request::segment(4) . '.show', [ app()->getlocale(), $brand->parent ? $brand->parent->id : $brand->id ] ) }}" class="{{ $brand->parent ? 'text-warning' : 'text-primary' }}">
-                        {{ $brand->parent ? $brand->parent->{ 'name_' . app()->getlocale() } : __('Parent brand') }}
+                    <a href="{{ route(Request::segment(3) . '.show', [ app()->getlocale(), $brand->parent ? $brand->parent->id : $brand->id ] ) }}" class="{{ $brand->parent ? 'text-warning' : 'text-primary' }}">
+                        {{ $brand->category->{ 'name_' . app()->getlocale() } }}
                     </a>
                 </td>
                 <td>@include('admin-panel.brand.brand-action', [ $brand ])</td>

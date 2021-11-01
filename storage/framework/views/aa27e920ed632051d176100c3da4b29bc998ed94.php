@@ -143,16 +143,7 @@
                                     <ul
                                         class="breadcrumb breadcrumb-transparent breadcrumb-dot font-weight-bold p-0 my-2 font-size-sm">
                                         <li class="breadcrumb-item text-muted">
-                                            <a href="<?php echo e(route('brand.index', [ app()->getlocale() ])); ?>"
-                                                class="text-muted"><?php echo e(__('Brands')); ?></a>
-                                        </li>
-
-                                        <li class="breadcrumb-item text-muted">
-                                            <a href="<?php echo e(route('brand.index', [ app()->getlocale() ])); ?>"
-                                                class="text-muted">
-                                                <?php echo e(__( ucfirst(Request::segment(3)) . ' Brands')); ?>
-
-                                            </a>
+                                            <a href="<?php echo e(route('brand.index', [ app()->getlocale() ])); ?>" class="text-muted"><?php echo e(__('Brands')); ?></a>
                                         </li>
                                     </ul>
                                     <!--end::Breadcrumb-->
@@ -171,13 +162,7 @@
                             <div class="card card-custom">
                                 <div class="card-header flex-wrap py-5">
                                     <div class="card-title">
-                                        <h3 class="card-label"><?php echo e(__('Brands')); ?>
-
-                                            <span class="d-block text-muted pt-2 font-size-sm">
-                                                <?php echo e(__( ucfirst(Request::segment(3)) . ' Brands')); ?>
-
-                                            </span>
-                                        </h3>
+                                        <h3 class="card-label"><?php echo e(__('Brands')); ?></h3>
                                     </div>
                                     <div class="card-toolbar">
                                         <!--begin::Button-->

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\AdminControllers\Brand;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use App\Models\Brand;
 use Illuminate\Http\Request;
 use App\Http\Requests\BrandRequest;
@@ -45,9 +46,11 @@ class BrandController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($lang, Brand $brand)
     {
-        //
+        $parentCategories = Category::all();
+
+        return view('admin-panel.brand.brand-form', compact('brand', 'parentCategories'));
     }
 
     /**

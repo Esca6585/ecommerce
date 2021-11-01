@@ -10,7 +10,7 @@
         content="Metronic admin dashboard live demo. Check out all the features of the admin panel. A large number of settings, additional services and widgets." />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 
-    <link rel="shortcut icon" href="{{ asset('metronic-template/v7/assets/media/logos/azykharytlar-logo.svg') }}" />
+    <link rel="shortcut icon" href="{{ asset('metronic-template/v8/assets/media/logos/sumbar-market-logo-2-2.png') }}" />
 
     <!--begin::Fonts-->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" />
@@ -20,6 +20,11 @@
     
     <link rel="stylesheet" href="{{ asset('metronic-template/v7/assets/css/alert.css') }}">
 
+    <style>
+        .brand {
+            background-color: #fff;
+        }
+    </style>
 
 </head>
 <!--end::Head-->
