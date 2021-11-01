@@ -214,6 +214,86 @@ class BrandSeeder extends Seeder
                 'images' => ['thumb' => 'assets/brand/brand-seeder/sarelle-33.png',   'original' => 'assets/brand/brand-seeder/sarelle-33.png'],
                 'category_id' => 1,
             ],
+            // id=34
+            [
+                'name' => 'Balin',
+                'images' => ['thumb' => 'assets/brand/brand-seeder/balin-34.png',   'original' => 'assets/brand/brand-seeder/balin-34.png'],
+                'category_id' => 1,
+            ],
+            // id=35
+            [
+                'name' => 'Perfecto',
+                'images' => ['thumb' => 'assets/brand/brand-seeder/perfecto-35.png',   'original' => 'assets/brand/brand-seeder/perfecto-35.png'],
+                'category_id' => 1,
+            ],
+            // id=36
+            [
+                'name' => 'Derek',
+                'images' => ['thumb' => 'assets/brand/brand-seeder/derek-36.png',   'original' => 'assets/brand/brand-seeder/derek-36.png'],
+                'category_id' => 1,
+            ],
+            // id=37
+            [
+                'name' => 'Alpinella',
+                'images' => ['thumb' => 'assets/brand/brand-seeder/alpinella-37.png',   'original' => 'assets/brand/brand-seeder/alpinella-37.png'],
+                'category_id' => 1,
+            ],
+            // id=38
+            [
+                'name' => 'Волшебница',
+                'images' => ['thumb' => 'assets/brand/brand-seeder/volshebnitsa-38.png',   'original' => 'assets/brand/brand-seeder/volshebnitsa-38.png'],
+                'category_id' => 1,
+            ],
+            // id=39
+            [
+                'name' => 'Спартак',
+                'images' => ['thumb' => 'assets/brand/brand-seeder/spartak-39.png',   'original' => 'assets/brand/brand-seeder/spartak-39.png'],
+                'category_id' => 1,
+            ],
+            // id=40
+            [
+                'name' => 'Crafers',
+                'images' => ['thumb' => 'assets/brand/brand-seeder/crafers-40.png',   'original' => 'assets/brand/brand-seeder/crafers-40.png'],
+                'category_id' => 1,
+            ],
+            // id=41
+            [
+                'name' => 'Elvan',
+                'images' => ['thumb' => 'assets/brand/brand-seeder/elvan-41.png',   'original' => 'assets/brand/brand-seeder/elvan-41.png'],
+                'category_id' => 1,
+            ],
+            // id=42
+            [
+                'name' => 'Doganlar Ýyldyzy',
+                'images' => ['thumb' => 'assets/brand/brand-seeder/doganlar-yyldyzy-42.png',   'original' => 'assets/brand/brand-seeder/doganlar-yyldyzy-42.png'],
+                'category_id' => 1,
+            ],
+            // id=43
+            [
+                'name' => 'Белый Мишка',
+                'images' => ['thumb' => 'assets/brand/brand-seeder/belyy-mishka-43.png',   'original' => 'assets/brand/brand-seeder/belyy-mishka-43.png'],
+                'category_id' => 1,
+            ],
+            // id=44
+            [
+                'name' => 'Idilia foods',
+                'images' => ['thumb' => 'assets/brand/brand-seeder/idilia-foods-44.png',   'original' => 'assets/brand/brand-seeder/idilia-foods-44.png'],
+                'category_id' => 1,
+            ],
+            // id=45
+            [
+                'name' => 'Милкимоны',
+                'images' => ['thumb' => 'assets/brand/brand-seeder/milkimony-45.png',   'original' => 'assets/brand/brand-seeder/milkimony-45.png'],
+                'category_id' => 1,
+            ],
+            // id=46
+            [
+                'name' => 'Нежный',
+                'images' => ['thumb' => 'assets/brand/brand-seeder/nezhnyy-46.png',   'original' => 'assets/brand/brand-seeder/nezhnyy-46.png'],
+                'category_id' => 1,
+            ],
+
+
             // <-- end:: category_id=1 Azyk harytlar -->
         ];
 
