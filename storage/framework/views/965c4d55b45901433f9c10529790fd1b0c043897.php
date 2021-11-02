@@ -6,6 +6,11 @@
                 <?php $__currentLoopData = Config::get('languages'); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $lang => $language): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                 <th><?php echo e(__('Name')); ?> (<?php echo e($language['name']); ?>)</th>
                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                <th><?php echo e(__('Description')); ?></th>
+                <th><?php echo e(__('Price')); ?></th>
+                <th><?php echo e(__('Sale Price')); ?></th>
+                <th><?php echo e(__('Sale Type')); ?></th>
+                <th><?php echo e(__('Discount')); ?></th>
                 <th><?php echo e(__('Img')); ?></th>
                 <th><?php echo e(__('Category')); ?> ID</th>
                 <th><?php echo e(__('Actions')); ?></th>
@@ -18,9 +23,14 @@
                 <td><?php echo e($product->name_tm); ?></td>
                 <td><?php echo e($product->name_en); ?></td>
                 <td><?php echo e($product->name_ru); ?></td>
+                <td><?php echo e($product->description); ?></td>
+                <td><?php echo e($product->price); ?></td>
+                <td><?php echo e($product->sale_price); ?></td>
+                <td><?php echo e($product->discount); ?></td>
+                <td><?php echo e($product->sale_type); ?></td>
                 <td>
-                    <?php if($product->img): ?>
-                        <?php $__currentLoopData = $product->img; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $image): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                    <?php if($product->images): ?>
+                        <?php $__currentLoopData = $product->images; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $image): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                             <img src="<?php echo e(asset($image)); ?>" alt="<?php echo e($image); ?>" width="30px">
                             <?php break; ?>
                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>

@@ -18,7 +18,8 @@ class CreateCategoriesTable extends Migration
             $table->string('name_tm');
             $table->string('name_en');
             $table->string('name_ru');
-            $table->json('images')->nullable();
+            $table->string('icon_name')->nullable();
+            $table->string('image')->nullable();
             $table->unsignedBigInteger('category_id')->unsigned()->nullable();
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade')->unsigned();
             $table->timestamps();

@@ -13,12 +13,8 @@ class Category extends Model
         'name_tm',
         'name_en',
         'name_ru',
-        'images',
+        'image',
         'category_id',
-    ];
-
-    protected $casts = [
-        'images' => 'object'
     ];
 
     public function parent()

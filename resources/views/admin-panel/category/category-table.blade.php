@@ -6,6 +6,7 @@
                 @foreach (Config::get('languages') as $lang => $language)
                 <th>{{ __('Name') }} ({{ $language['name'] }})</th>
                 @endforeach
+                <th>icon</th>
                 <th>{{ __('Img') }}</th>
                 <th>{{ __('Category') }} ID</th>
                 <th>{{ __('Actions') }}</th>
@@ -18,14 +19,8 @@
                 <td>{{ $category->name_tm }}</td>
                 <td>{{ $category->name_en }}</td>
                 <td>{{ $category->name_ru }}</td>
-                <td>
-                    @if($category->images)
-                        @foreach($category->images as $image)
-                            <img src="{{ asset($image) }}" alt="{{ $image }}" width="30px">
-                            @break
-                        @endforeach
-                    @endif
-                </td>
+                <td><i class="{{ $category->icon_name }}"></i></td>
+                <td><img src="{{ asset($category->image) }}" alt="{{ $category->image }}" width="50px"></td>
                 <td>
                     <a href="{{ route(Request::segment(4) . '.show', [ app()->getlocale(), $categoryType, $category->parent ? $category->parent->id : $category->id ] ) }}" class="{{ $category->parent ? 'text-warning' : 'text-primary' }}">
                         {{ $category->parent ? $category->parent->{ 'name_' . app()->getlocale() } : __('Parent Category') }}

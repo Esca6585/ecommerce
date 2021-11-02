@@ -6,6 +6,11 @@
                 @foreach (Config::get('languages') as $lang => $language)
                 <th>{{ __('Name') }} ({{ $language['name'] }})</th>
                 @endforeach
+                <th>{{ __('Description') }}</th>
+                <th>{{ __('Price') }}</th>
+                <th>{{ __('Sale Price') }}</th>
+                <th>{{ __('Sale Type') }}</th>
+                <th>{{ __('Discount') }}</th>
                 <th>{{ __('Img') }}</th>
                 <th>{{ __('Category') }} ID</th>
                 <th>{{ __('Actions') }}</th>
@@ -18,9 +23,14 @@
                 <td>{{ $product->name_tm }}</td>
                 <td>{{ $product->name_en }}</td>
                 <td>{{ $product->name_ru }}</td>
+                <td>{{ $product->description }}</td>
+                <td>{{ $product->price }}</td>
+                <td>{{ $product->sale_price }}</td>
+                <td>{{ $product->discount }}</td>
+                <td>{{ $product->sale_type }}</td>
                 <td>
-                    @if($product->img)
-                        @foreach($product->img as $image)
+                    @if($product->images)
+                        @foreach($product->images as $image)
                             <img src="{{ asset($image) }}" alt="{{ $image }}" width="30px">
                             @break
                         @endforeach

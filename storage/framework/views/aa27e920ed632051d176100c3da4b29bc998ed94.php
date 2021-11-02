@@ -1,7 +1,7 @@
 
 
 <?php $__env->startSection('title'); ?>
-<?php echo e(__( ucfirst(Request::segment(3)) . ' Brands')); ?>
+    <?php echo e(__('Brands')); ?>
 
 <?php $__env->stopSection(); ?>
 

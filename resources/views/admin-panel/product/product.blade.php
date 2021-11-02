@@ -1,7 +1,7 @@
 @extends('layouts.admin-template-app')
 
 @section('title')
-{{ __( ucfirst(Request::segment(3)) . ' Products') }}
+    {{ __('Products') }}
 @endsection
 
 @section('style')
@@ -145,13 +145,6 @@
                                             <a href="{{ route('product.index', [ app()->getlocale() ]) }}"
                                                 class="text-muted">{{ __('Products') }}</a>
                                         </li>
-
-                                        <li class="breadcrumb-item text-muted">
-                                            <a href="{{ route('product.index', [ app()->getlocale() ]) }}"
-                                                class="text-muted">
-                                                {{ __( ucfirst(Request::segment(3)) . ' Products') }}
-                                            </a>
-                                        </li>
                                     </ul>
                                     <!--end::Breadcrumb-->
                                 </div>
@@ -170,9 +163,6 @@
                                 <div class="card-header flex-wrap py-5">
                                     <div class="card-title">
                                         <h3 class="card-label">{{ __('Products') }}
-                                            <span class="d-block text-muted pt-2 font-size-sm">
-                                                {{ __( ucfirst(Request::segment(3)) . ' Products') }}
-                                            </span>
                                         </h3>
                                     </div>
                                     <div class="card-toolbar">

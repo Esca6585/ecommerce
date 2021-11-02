@@ -73,33 +73,21 @@ class CategoryController extends Controller
      */
     public function store($lang, $categoryType, CategoryRequest $request)
     {
-        if($request->file('img')){
-            $img = $request->file('img');
+        if($request->file('image')){
+            $image = $request->file('image');
             
             $date = date("d-m-Y H-i-s");
             
             $fileRandName = Str::random(10);
-            $fileExt = $img->getClientOriginalExtension();
+            $fileExt = $image->getClientOriginalExtension();
 
             $fileName = $fileRandName . '.' . $fileExt;
             
             $path = 'assets/category/' . Str::slug($request->name_tm . '-' . $date ) . '/';
 
-            $img->move($path, $fileName);
-
-            $imageFit = Image::make($path . $fileName)->fit(20, 20);
-
-            $imageFitName = $fileRandName . '-20x20.' . $fileExt;
-        
-            $imageFit->save($path . $imageFitName , 80);
+            $image->move($path, $fileName);
             
-            $original = $path . $fileName;
-            $thumb = $path . $imageFitName;
-
-            $imgArray = [
-                'thumb' => $thumb,
-                'original' => $original
-            ];
+            $originalImage = $path . $fileName;
         }
         
         $category = new Category;
@@ -107,8 +95,9 @@ class CategoryController extends Controller
         $category->name_tm = $request->name_tm;
         $category->name_en = $request->name_en;
         $category->name_ru = $request->name_ru;
+        $category->icon_name = $request->icon_name;
+        $category->image = $originalImage ?? null;
         $category->category_id = $request->category_id;
-        $category->img = $imgArray ?? null;
         
         $category->save();
         
@@ -148,43 +137,32 @@ class CategoryController extends Controller
      */
     public function update($lang, $categoryType, CategoryRequest $request, Category $category)
     {
-        if($request->file('img')){
+        if($request->file('image')){
             
             $this->deleteFolder($category);
 
-            $img = $request->file('img');
+            $image = $request->file('image');
             
             $date = date("d-m-Y H-i-s");
             
             $fileRandName = Str::random(10);
-            $fileExt = $img->getClientOriginalExtension();
+            $fileExt = $image->getClientOriginalExtension();
 
             $fileName = $fileRandName . '.' . $fileExt;
             
-            $path = 'assets/category/' . Str::slug($request->name_tm . '-' . $date .'-updated' ) . '/';
+            $path = 'assets/category/' . Str::slug($request->name_tm . '-' . $date . '-updated' ) . '/';
 
-            $img->move($path, $fileName);
-
-            $imageFit = Image::make($path . $fileName)->fit(20, 20);
-
-            $imageFitName = $fileRandName . '-20x20.' . $fileExt;
-        
-            $imageFit->save($path . $imageFitName , 80);
+            $image->move($path, $fileName);
             
-            $original = $path . $fileName;
-            $thumb = $path . $imageFitName;
+            $originalImage = $path . $fileName;
 
-            $imgArray = [
-                'thumb' => $thumb,
-                'original' => $original
-            ];
-
-            $category->img = $imgArray;
+            $category->image = $originalImage;
         }
-        
+
         $category->name_tm = $request->name_tm;
         $category->name_en = $request->name_en;
         $category->name_ru = $request->name_ru;
+        $category->icon_name = $request->icon_name;
         $category->category_id = $request->category_id;
         
         $category->update();
@@ -209,8 +187,8 @@ class CategoryController extends Controller
 
     public function deleteFolder($category)
     {
-        if($category->img){
-            $folder = explode('/', $category->img['thumb']);
+        if($category->image){
+            $folder = explode('/', $category->image);
 
             if($folder[2] != 'category-seeder'){
                 \File::deleteDirectory($folder[0] . '/' . $folder[1] . '/' . $folder[2]);

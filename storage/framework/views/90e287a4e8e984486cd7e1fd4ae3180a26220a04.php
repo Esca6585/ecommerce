@@ -1,7 +1,7 @@
 
 
 <?php $__env->startSection('title'); ?>
-<?php echo e(__( ucfirst(Request::segment(3)) . ' Products')); ?>
+    <?php echo e(__('Products')); ?>
 
 <?php $__env->stopSection(); ?>
 
@@ -146,14 +146,6 @@
                                             <a href="<?php echo e(route('product.index', [ app()->getlocale() ])); ?>"
                                                 class="text-muted"><?php echo e(__('Products')); ?></a>
                                         </li>
-
-                                        <li class="breadcrumb-item text-muted">
-                                            <a href="<?php echo e(route('product.index', [ app()->getlocale() ])); ?>"
-                                                class="text-muted">
-                                                <?php echo e(__( ucfirst(Request::segment(3)) . ' Products')); ?>
-
-                                            </a>
-                                        </li>
                                     </ul>
                                     <!--end::Breadcrumb-->
                                 </div>
@@ -173,10 +165,6 @@
                                     <div class="card-title">
                                         <h3 class="card-label"><?php echo e(__('Products')); ?>
 
-                                            <span class="d-block text-muted pt-2 font-size-sm">
-                                                <?php echo e(__( ucfirst(Request::segment(3)) . ' Products')); ?>
-
-                                            </span>
                                         </h3>
                                     </div>
                                     <div class="card-toolbar">

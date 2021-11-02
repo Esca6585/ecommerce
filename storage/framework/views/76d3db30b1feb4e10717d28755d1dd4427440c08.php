@@ -8,20 +8,22 @@
             <div id="kt_header_menu" class="header-menu header-menu-mobile header-menu-layout-default">
                 <!--begin::Header Nav-->
                 <ul class="menu-nav">
-                    <li class="menu-item <?php echo e(Request::is('*/admin/dashboard') ? 'menu-item-active' : ''); ?>">
+
+                    <li class="menu-item <?php echo e(Request::is('*/admin/dashboard/*') ? 'menu-item-active' : ''); ?>">
                         <a href="<?php echo e(route('admin.dashboard', app()->getlocale() )); ?>" class="menu-link">
                             <span class="menu-text"><?php echo e(__('Dashboard')); ?></span>
                             <i class="menu-arrow"></i>
                         </a>
                     </li>
-                    <li class="menu-item menu-item-submenu menu-item-rel <?php echo e(Request::is('*/admin/*/category') ? 'menu-item-active' : ''); ?>" data-menu-toggle="click" aria-haspopup="true">
+
+                    <li class="menu-item menu-item-submenu menu-item-rel <?php echo e(Request::is('*/admin/*/category*') ? 'menu-item-active' : ''); ?>" data-menu-toggle="click" aria-haspopup="true">
                         <a href="#<?php echo e(__('Categories')); ?>" class="menu-link menu-toggle">
                             <span class="menu-text"><?php echo e(__('Categories')); ?></span>
                             <i class="menu-arrow"></i>
                         </a>
                         <div class="menu-submenu menu-submenu-classic menu-submenu-left">
                             <ul class="menu-subnav">
-                                <li class="menu-item <?php echo e(Request::is('*/admin/all/category') ? 'menu-item-active' : ''); ?>" aria-haspopup="true">
+                                <li class="menu-item <?php echo e(Request::is('*/admin/all/category*') ? 'menu-item-active' : ''); ?>" aria-haspopup="true">
                                     <a href="<?php echo e(route('category.index', [ app()->getlocale(), 'all' ] )); ?>" class="menu-link">
                                         <i class="menu-bullet menu-bullet-dot">
                                             <span></span>
@@ -29,7 +31,7 @@
                                         <span class="menu-text"><?php echo e(__('All Categories')); ?></span>
                                     </a>
                                 </li>
-                                <li class="menu-item <?php echo e(Request::is('*/admin/parent/category') ? 'menu-item-active' : ''); ?>" aria-haspopup="true">
+                                <li class="menu-item <?php echo e(Request::is('*/admin/parent/category*') ? 'menu-item-active' : ''); ?>" aria-haspopup="true">
                                     <a href="<?php echo e(route('category.index', [ app()->getlocale(), 'parent' ] )); ?>" class="menu-link">
                                         <i class="menu-bullet menu-bullet-dot">
                                             <span></span>
@@ -37,7 +39,7 @@
                                         <span class="menu-text"><?php echo e(__('Parent Categories')); ?></span>
                                     </a>
                                 </li>
-                                <li class="menu-item <?php echo e(Request::is('*/admin/sub/category') ? 'menu-item-active' : ''); ?>" aria-haspopup="true">
+                                <li class="menu-item <?php echo e(Request::is('*/admin/sub/category*') ? 'menu-item-active' : ''); ?>" aria-haspopup="true">
                                     <a href="<?php echo e(route('category.index', [ app()->getlocale(), 'sub' ] )); ?>" class="menu-link">
                                         <i class="menu-bullet menu-bullet-dot">
                                             <span></span>
@@ -47,6 +49,20 @@
                                 </li>
                             </ul>
                         </div>
+                    </li>
+
+                    <li class="menu-item <?php echo e(Request::is('*/admin/brand*') ? 'menu-item-active' : ''); ?>">
+                        <a href="<?php echo e(route('brand.index', app()->getlocale() )); ?>" class="menu-link">
+                            <span class="menu-text"><?php echo e(__('Brands')); ?></span>
+                            <i class="menu-arrow"></i>
+                        </a>
+                    </li>
+
+                    <li class="menu-item <?php echo e(Request::is('*/admin/product*') ? 'menu-item-active' : ''); ?>">
+                        <a href="<?php echo e(route('product.index', app()->getlocale() )); ?>" class="menu-link">
+                            <span class="menu-text"><?php echo e(__('Products')); ?></span>
+                            <i class="menu-arrow"></i>
+                        </a>
                     </li>
                 </ul>
                 <!--end::Header Nav-->

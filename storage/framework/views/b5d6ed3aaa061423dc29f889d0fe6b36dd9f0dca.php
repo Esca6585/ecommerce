@@ -148,8 +148,7 @@
 
                                         <li class="breadcrumb-item text-muted">
                                             <a href="<?php echo e(route('brand.index', [ app()->getlocale() ])); ?>"
-                                                class="text-muted">
-                                                <?php echo e(__( ucfirst(request()->segment(count(request()->segments()))))); ?>
+                                                class="text-muted"> <?php echo e(__( ucfirst(request()->segment(count(request()->segments()))))); ?>
 
                                             </a>
                                         </li>
@@ -235,7 +234,7 @@ unset($__errorArgs, $__bag); ?>
 
                                                     <div class="col-4">
                                                         <div class="form-group">
-                                                            <label><?php echo e(__('Image')); ?></label>
+                                                            <label><?php echo e(__('Img')); ?></label>
 
                                                             <input type="file"
                                                                 class="form-control <?php $__errorArgs = ['image'];
@@ -246,7 +245,7 @@ $message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>"
-                                                                name="image" placeholder="<?php echo e(__('Image')); ?>..." />
+                                                                name="image" />
 
                                                             <?php $__errorArgs = ['image'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
@@ -254,7 +253,7 @@ if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?>
                                                             <div class="fv-plugins-message-container invalid-feedback">
-                                                                <div data-field="email" data-validator="notEmpty">
+                                                                <div data-field="image" data-validator="notEmpty">
                                                                     <?php echo e($message); ?>
 
                                                                 </div>
@@ -269,7 +268,14 @@ unset($__errorArgs, $__bag); ?>
                                                     <div class="col-4">
                                                         <div class="form-group">
                                                             <label><?php echo e(__('Brand')); ?></label>
-                                                            <select class="form-control" id="exampleSelect1"
+                                                            <select class="form-control <?php $__errorArgs = ['category_id'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>" id="exampleSelect1"
                                                                 name="category_id">
                                                                 <option value="">---<?php echo e(__('unselected')); ?>---
                                                                 </option>
@@ -281,6 +287,22 @@ unset($__errorArgs, $__bag); ?>
                                                                 </option>
                                                                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                                             </select>
+
+                                                            <?php $__errorArgs = ['category_id'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                                            <div class="fv-plugins-message-container invalid-feedback">
+                                                                <div data-field="category_id" data-validator="notEmpty">
+                                                                    <?php echo e($message); ?>
+
+                                                                </div>
+                                                            </div>
+                                                            <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                                                         </div>
                                                     </div>
 

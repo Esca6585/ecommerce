@@ -13,7 +13,7 @@ class BrandRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -25,7 +25,7 @@ class BrandRequest extends FormRequest
     {
         return [
             'name' => 'required',
-            'images' => 'required',
+            'image' => 'nullable',
             'category_id' => 'required',
         ];
     }

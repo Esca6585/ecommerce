@@ -1,7 +1,7 @@
 @extends('layouts.admin-template-app')
 
 @section('title')
-{{ __( ucfirst(Request::segment(3)) . ' Brands') }}
+    {{ __('Brands') }}
 @endsection
 
 @section('style')

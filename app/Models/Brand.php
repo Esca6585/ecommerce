@@ -11,12 +11,8 @@ class Brand extends Model
 
     protected $fillable = [
         'name',
-        'images',
+        'image',
         'category_id',
-    ];
-
-    protected $casts = [
-        'images' => 'object'
     ];
 
     public function category()

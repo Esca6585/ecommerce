@@ -7,9 +7,15 @@ use App\Models\Category;
 use App\Models\Brand;
 use Illuminate\Http\Request;
 use App\Http\Requests\BrandRequest;
+use Image;
+use Str;
 
 class BrandController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth:admin');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -59,9 +65,34 @@ class BrandController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(BrandRequest $request)
     {
-        //
+        if($request->file('image')){
+            $image = $request->file('image');
+            
+            $date = date("d-m-Y H-i-s");
+            
+            $fileRandName = Str::random(10);
+            $fileExt = $image->getClientOriginalExtension();
+
+            $fileName = $fileRandName . '.' . $fileExt;
+            
+            $path = 'assets/brand/' . Str::slug($request->name . '-' . $date ) . '/';
+
+            $image->move($path, $fileName);
+            
+            $originalImage = $path . $fileName;
+        }
+        
+        $brand = new Brand;
+        
+        $brand->name = ucfirst($request->name);
+        $brand->image = $originalImage ?? null;
+        $brand->category_id = $request->category_id;
+        
+        $brand->save();
+        
+        return redirect()->route('brand.index', [ app()->getlocale() ])->with('success-create', 'The resource was created!');
     }
 
     /**
@@ -70,9 +101,9 @@ class BrandController extends Controller
      * @param  \App\Models\Brand  $brand
      * @return \Illuminate\Http\Response
      */
-    public function show(Brand $brand)
+    public function show($lang, Brand $brand)
     {
-        //
+        return view('admin-panel.brand.brand-show', compact('brand'));
     }
 
     /**
@@ -81,9 +112,11 @@ class BrandController extends Controller
      * @param  \App\Models\Brand  $brand
      * @return \Illuminate\Http\Response
      */
-    public function edit(Brand $brand)
+    public function edit($lang, Brand $brand)
     {
-        //
+        $parentCategories = Category::all();
+
+        return view('admin-panel.brand.brand-form', compact('brand', 'parentCategories'));
     }
 
     /**
@@ -93,9 +126,36 @@ class BrandController extends Controller
      * @param  \App\Models\Brand  $brand
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Brand $brand)
+    public function update($lang, BrandRequest $request, Brand $brand)
     {
-        //
+        if($request->file('image')){
+            
+            $this->deleteFolder($brand);
+
+            $image = $request->file('image');
+            
+            $date = date("d-m-Y H-i-s");
+            
+            $fileRandName = Str::random(10);
+            $fileExt = $image->getClientOriginalExtension();
+
+            $fileName = $fileRandName . '.' . $fileExt;
+            
+            $path = 'assets/brand/' . Str::slug($request->name_tm . '-' . $date . '-updated' ) . '/';
+
+            $image->move($path, $fileName);
+            
+            $originalImage = $path . $fileName;
+
+            $brand->image = $originalImage;
+        }
+
+        $brand->name = ucfirst($request->name);
+        $brand->category_id = $request->category_id;
+        
+        $brand->update();
+        
+        return redirect()->route('brand.index', [ app()->getlocale() ])->with('success-update', 'The resource was updated!');
     }
 
     /**
@@ -104,8 +164,23 @@ class BrandController extends Controller
      * @param  \App\Models\Brand  $brand
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Brand $brand)
+    public function destroy($lang, Brand $brand)
     {
-        //
+        $this->deleteFolder($brand);
+    
+        $brand->delete();
+    
+        return redirect()->route('brand.index', [ app()->getlocale() ])->with('success-delete', 'The resource was deleted!');
+    }
+
+    public function deleteFolder($brand)
+    {
+        if($brand->image){
+            $folder = explode('/', $brand->image);
+
+            if($folder[2] != 'brand-seeder'){
+                \File::deleteDirectory($folder[0] . '/' . $folder[1] . '/' . $folder[2]);
+            }
+        }
     }
 }

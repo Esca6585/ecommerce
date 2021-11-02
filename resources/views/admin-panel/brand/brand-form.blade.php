@@ -215,15 +215,15 @@
 
                                                     <div class="col-4">
                                                         <div class="form-group">
-                                                            <label>{{ __('Image') }}</label>
+                                                            <label>{{ __('Img') }}</label>
 
                                                             <input type="file"
                                                                 class="form-control @error('image') is-invalid @enderror"
-                                                                name="image" placeholder="{{ __('Image') }}..." />
+                                                                name="image" />
 
                                                             @error('image')
                                                             <div class="fv-plugins-message-container invalid-feedback">
-                                                                <div data-field="email" data-validator="notEmpty">
+                                                                <div data-field="image" data-validator="notEmpty">
                                                                     {{ $message }}
                                                                 </div>
                                                             </div>
@@ -234,7 +234,7 @@
                                                     <div class="col-4">
                                                         <div class="form-group">
                                                             <label>{{ __('Brand') }}</label>
-                                                            <select class="form-control" id="exampleSelect1"
+                                                            <select class="form-control @error('category_id') is-invalid @enderror" id="exampleSelect1"
                                                                 name="category_id">
                                                                 <option value="">---{{ __('unselected') }}---
                                                                 </option>
@@ -245,6 +245,14 @@
                                                                 </option>
                                                                 @endforeach
                                                             </select>
+
+                                                            @error('category_id')
+                                                            <div class="fv-plugins-message-container invalid-feedback">
+                                                                <div data-field="category_id" data-validator="notEmpty">
+                                                                    {{ $message }}
+                                                                </div>
+                                                            </div>
+                                                            @enderror
                                                         </div>
                                                     </div>
 

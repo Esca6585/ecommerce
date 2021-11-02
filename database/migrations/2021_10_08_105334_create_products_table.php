@@ -19,11 +19,11 @@ class CreateProductsTable extends Migration
             $table->string('name_en');
             $table->string('name_ru');
             $table->string('description');
-            $table->json('images')->nullable();
             $table->integer('price');
             $table->integer('sale_price')->nullable();
             $table->integer('discount')->default(0);
             $table->string('sale_type')->nullable();
+            $table->json('images')->nullable();
             $table->timestamps();
         });
     }
