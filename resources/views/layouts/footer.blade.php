@@ -5,7 +5,7 @@
         <!--begin::Copyright-->
         <div class="text-dark order-2 order-md-1">
             <span class="text-muted font-weight-bold mr-2">{{ date('Y') }}&copy</span>
-            <a href="{{ url('/') }}" class="text-dark-75 text-hover-primary" target="_blank" >azykharytlar</a>
+            <a href="{{ url('/') }}" class="text-dark-75 text-hover-primary" target="_blank" >Sumbar Market</a>
         </div>
         <!--end::Copyright-->
     </div>

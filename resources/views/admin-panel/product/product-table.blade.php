@@ -29,15 +29,10 @@
                 <td>{{ $product->discount }}</td>
                 <td>{{ $product->sale_type }}</td>
                 <td>
-                    @if($product->images)
-                        @foreach($product->images as $image)
-                            <img src="{{ asset($image) }}" alt="{{ $image }}" width="30px">
-                            @break
-                        @endforeach
-                    @endif
+                    <img src="{{ asset($product->images) }}" alt="{{ $product->images }}" width="50px">
                 </td>
                 <td>
-                    <a href="{{ route(Request::segment(4) . '.show', [ app()->getlocale(), $product->parent ? $product->parent->id : $product->id ] ) }}" class="{{ $product->parent ? 'text-warning' : 'text-primary' }}">
+                    <a href="{{ route(Request::segment(3) . '.show', [ app()->getlocale(), $product->parent ? $product->parent->id : $product->id ] ) }}" class="{{ $product->parent ? 'text-warning' : 'text-primary' }}">
                         {{ $product->parent ? $product->parent->{ 'name_' . app()->getlocale() } : __('Parent product') }}
                     </a>
                 </td>

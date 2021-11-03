@@ -29,15 +29,10 @@
                 <td><?php echo e($product->discount); ?></td>
                 <td><?php echo e($product->sale_type); ?></td>
                 <td>
-                    <?php if($product->images): ?>
-                        <?php $__currentLoopData = $product->images; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $image): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                            <img src="<?php echo e(asset($image)); ?>" alt="<?php echo e($image); ?>" width="30px">
-                            <?php break; ?>
-                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                    <?php endif; ?>
+                    <img src="<?php echo e(asset($product->images)); ?>" alt="<?php echo e($product->images); ?>" width="50px">
                 </td>
                 <td>
-                    <a href="<?php echo e(route(Request::segment(4) . '.show', [ app()->getlocale(), $product->parent ? $product->parent->id : $product->id ] )); ?>" class="<?php echo e($product->parent ? 'text-warning' : 'text-primary'); ?>">
+                    <a href="<?php echo e(route(Request::segment(3) . '.show', [ app()->getlocale(), $product->parent ? $product->parent->id : $product->id ] )); ?>" class="<?php echo e($product->parent ? 'text-warning' : 'text-primary'); ?>">
                         <?php echo e($product->parent ? $product->parent->{ 'name_' . app()->getlocale() } : __('Parent product')); ?>
 
                     </a>

@@ -18,11 +18,13 @@ class CreateProductsTable extends Migration
             $table->string('name_tm');
             $table->string('name_en');
             $table->string('name_ru');
-            $table->string('description');
-            $table->integer('price');
-            $table->integer('sale_price')->nullable();
+            $table->string('description')->nullable();
+            $table->float('price');
+            $table->float('sale_price')->nullable();
             $table->integer('discount')->default(0);
             $table->string('sale_type')->nullable();
+            $table->integer('stock');
+            $table->string('code')->unique();
             $table->json('images')->nullable();
             $table->timestamps();
         });
